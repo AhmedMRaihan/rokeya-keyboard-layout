@@ -7,11 +7,22 @@ Majority of letters can be typed directly with English pronunciation of that let
 = Letter positions different to English pronunciation = 
 
 To embed 64 letter all of the 26 letter position in English keyboard are used. Some less used Bangla letters are placed in such a place where it holds a unique position but doesn't match with its english phonetic spelling letter. For example, onusshar(ং) is placed in shift+C position whereas its spelling doesn't match with the spelling of c. This technique faciliate a better quality layout design.
+The letters differ from usual pronunciation of english letter is listed below:
+
+ড় = q
+ঢ় = shift+q ( Capital Q)
+ং = shift+v ( Capital V)
+ত্‍ = shift+z ( Capital Z)
+ঁ = shift+b ( Capital B)
+ঃ = shift+m ( Capital M)
+থ = shift+r ( Capital R) 
+ধ = shift+w ( Capital W)
 
 
 = Letter with "h" as follower =
 
-People often express letter "kha(খ)" as letter "k" and then "h". To support this facility some letters are given provision to be typed by pressing a letter and then pressing h. "kha(খ)" is such an example which is typed by "ka(ক)" and "h" 
+People often express letter "kha(খ)" as letter "k" and then "h". To support this facility some letters are given provision to be typed by pressing a letter and then pressing h. "kha(খ)" is such an example which is typed by "ka(ক)" and "h".
+
 
 = Switch key =
 
@@ -21,4 +32,6 @@ When we type মিনি(mini) we have to type: m(ম) i(ি) n(ন) i(ি). In
 
 = Joiner key =
 
-Conjugate consonants need to be typed by hasanta. To provide conjugate letter functionality hasanta is placed in capital f position, that is to type hasanta we have to press shift and f altogether. 
+Conjugate consonants need to be typed by hasanta. To provide conjugate letter functionality hasanta is placed in "capital F" position, that is to type hasanta we have to press shift and f altogether. 
+
+For example, 
