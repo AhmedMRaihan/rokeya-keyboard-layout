@@ -1,4 +1,4 @@
-#Assign of Bangla letters in English letters in qwerty based keyboard
+Assign map of Bangla letters in English letters at qwerty based keyboard
 
 = Letter positions analogous to English pronunciation =
 
