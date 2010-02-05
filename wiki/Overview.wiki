@@ -1,4 +1,4 @@
-#summary Quick preview of the project
+Quick preview of the project
 
 = Introduction =
 
@@ -11,36 +11,7 @@ People used to type words like "Holud"(হলুদ) with "h/H" typing at first 
 
 This layout removes such ambiguity as much as possible. For example, হ is placed in "Capital H" so that Khata"(খাতা) typed by "K" + "h/H can be performed without any ambiguity.
 
-= Switch key =
 
-Switch key appear in vowels and TTha(থ) and DDha(ধ) where we use 2 key press to type a single letter.
-
-When we type মিনি(mini) we have to type: m(ম) i(ি) n(ন) i(ি). In this case i(ি) after m(ম) will form mee(মি). But when we wish to type মই(moi) we have to type m(ম) i(ি) also since both i(ি) and ee(ই) lies in the same key. This results an ambiguity and to solve this ambiguity a switching technique is applied. 
-The algorithm will decide when to i(ি) or when ee(ই). But if the user wish one instead of another he/she will press h to switch to the follower of the letter. Here i(ি) and ee(ই) are follower to each other.
-
-= Letter positions different to English pronunciation = 
-
-To embed 64 letter all of the 26 letter position in English keyboard are used. Some less used Bangla letters are placed in such a place where it holds a unique position but doesn't match with its english phonetic spelling letter. For example, onusshar(ং) is placed in shift+C position whereas its spelling doesn't match with the spelling of c. This technique faciliate a better quality layout design.
-
-= Position of TTha(থ) and DDha(ধ) =
-
-Since both Ta(ট) and TTa(ত) are typed using T so we choose to place them in the letter position of T. But TTha(থ) and DDha(ধ) are closely spelled with Ta(ট) and TTa(ত). Since 4 letters can't be placed into one position so we place into Ta(ট) and TTa(ত) letter position of T and code such that their followers are typed with H.
-
-= Conjugate letters =
-
-Conjugate letters are joined with hasanta(). And to speed up typing this joiner is placed in letter position of g
-
-= Example usage =
-
-কবুতর = k b u shift+t r 
-
-রংপুর  = r shift+b p u r
-
-মি    = m i
-
-মই   = m i h
-
-সঙ্গীত = s x g shift+g shift+i shift+t
 
 = Software platform =
 
