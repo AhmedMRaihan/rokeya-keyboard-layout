@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#Assign of Bangla letters in English letters in qwerty based keyboard
 
 = Letter positions analogous to English pronunciation =
 
