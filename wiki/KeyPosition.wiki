@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Letter positions analogous to English pronunciation =
+
+Majority of letters can be typed directly with English pronunciation of that letter. Like "ka(ক)" will be typerd with english letter "k". Vowel "ii(ঈ)" will be typed with english letter shift+i (Capital i)
+
+= Letter with "h" as follower =
+
+People often express letter "kha(খ)" as letter "k" and then "h". To support this facility some letters are given provision to be typed by pressing a letter and then pressing h. "kha(খ)" is such an example which is typed by "ka(ক)" and "h" 
+
+= Switch key =
+
+Switch key appear in vowels and TTha(থ) and DDha(ধ) where we use 2 key press to type a single letter.
+
+When we type মিনি(mini) we have to type: m(ম) i(ি) n(ন) i(ি). In this case i(ি) after m(ম) will form mee(মি). But when we wish to type মই(moi) we have to type m(ম) i(ি) also since both i(ি) and ee(ই) lies in the same key. This results an ambiguity and to solve this ambiguity a switching technique is applied. The algorithm will decide when to i(ি) or when ee(ই). But if the user wish one instead of another he/she will press h to switch to the follower of the letter. Here i(ি) and ee(ই) are follower to each other.
