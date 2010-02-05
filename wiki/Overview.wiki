@@ -8,7 +8,9 @@ This layout adapt the english letter keyboard layout as long as the adaptation d
 
 = Keyboard Idea =
 
-People used to type words like "Holud"(হলুদ) with "h/H" typing at first and most of the time use "H" with conjunction with some other letter to type an another letter(like: "Khata"(খাতা) typed by "K" + "h/H" to produce "Kha" (খ). So Capital H is chosen for Ha(হ) and leave small H for other letters, like ha(খ).
+If someone wish to type words like "Holud"(হলুদ) then he/she needs to type h,o,l,u,d in English. From observation it is obvious that majority of bangla letters are common to English alphabet also. So a general approach to maintain highest similarity in English and bangla is followed here. For example, bangla letter la(ল) is placed in the same position of english letter L.
+
+Moreover people used to type words like "Holud"(হলুদ) with "h/H" typing at first and most of the time use "H" with conjunction with some other letter to type an another letter(like: "Khata"(খাতা) typed by "K" + "h/H" to produce "Kha" (খ). So Capital H is chosen for Ha(হ) and leave small H for other letters, like kha(খ).
 
 This layout removes such ambiguity as much as possible. For example, হ is placed in "Capital H" so that Khata"(খাতা) typed by "K" + "h/H can be performed without any ambiguity.
 
