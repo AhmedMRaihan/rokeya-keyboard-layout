@@ -1,4 +1,6 @@
+#summary Supported browsers till now.
 #labels Phase-QA
+
 == This layout is supported if following browsers are used: ==
 
  # Internet Explorer 
