@@ -6,7 +6,7 @@ Majority of letters can be typed directly with English pronunciation of that let
 
 = Letter positions different to English pronunciation = 
 
-To embed 64 letter all of the 26 letter position in English keyboard are used. Some less used Bangla letters are placed in such a place where it holds a unique position but doesn't match with its english phonetic spelling letter. For example, onusshar(ং) is placed in shift+C position whereas its spelling doesn't match with the spelling of c. This technique faciliate a better quality layout design.
+To embed 64 letter all of the 26 letter position in English keyboard are used. Some less used Bangla letters are placed in such a place where it holds a unique position but doesn't match with its english phonetic spelling letter. For example, onusshar(ং) is placed in shift+V position whereas its spelling doesn't match with the spelling of v. This technique faciliate a better quality layout design.
 The letters differ from usual pronunciation of english letter is listed below:
 
 ড় = q
@@ -26,12 +26,11 @@ People often express letter "kha(খ)" as letter "k" and then "h". To support th
 
 = Switch key =
 
-Switch key appear in vowels and TTha(থ) and DDha(ধ) where we use 2 key press to type a single letter.
+Switch key appear in vowels and TTha(ঠ) and DDha(ঢ) where we use 2 key press to type a single letter.
 
 When we type মিনি(mini) we have to type: m(ম) i(ি) n(ন) i(ি). In this case i(ি) after m(ম) will form mee(মি). But when we wish to type মই(moi) we have to type m(ম) i(ি) also since both i(ি) and ee(ই) lies in the same key. This results an ambiguity and to solve this ambiguity a switching technique is applied. The algorithm will decide when to i(ি) or when ee(ই). But if the user wish one instead of another he/she will press h to switch to the follower of the letter. Here i(ি) and ee(ই) are follower to each other.
 
 = Joiner key =
 
-Conjugate consonants need to be typed by hasanta. To provide conjugate letter functionality hasanta is placed in "capital F" position, that is to type hasanta we have to press shift and f altogether. 
-
-For example, 
+Conjugate consonants are consist of one more consonants(may or may not be followed by vowel). To construct a conjugate letter we have to join all consonants in that conjugate letter. Hasanta( ্) is used as joiner according to unicode consortium guideline. 
+Due to the large number of conjugates, to provide quick typing facility of them hasanta is placed in the letter "f" position, that is to type hasanta we have to press f.
