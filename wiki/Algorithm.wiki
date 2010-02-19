@@ -1,3 +1,4 @@
+#summary Algorithm used
 == Steps of the algorithm ==
  # Select which key is pressed
  # Find the position of the key where it will be inserted
