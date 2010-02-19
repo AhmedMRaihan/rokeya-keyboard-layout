@@ -1,6 +1,4 @@
-#labels Phase-Design
-Quick preview of the project
-
+#labels Phase-Design,Phase-Requirements
 = Introduction =
 
 This layout adapt the english letter keyboard layout as long as the adaptation doesn't deteriorate the keyboard functionality significantly.
