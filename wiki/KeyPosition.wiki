@@ -1,4 +1,4 @@
-Assign map of Bangla letters in English letters at qwerty based keyboard
+#summary Key position discussion and keymap
 
 = Letter positions analogous to English pronunciation =
 
