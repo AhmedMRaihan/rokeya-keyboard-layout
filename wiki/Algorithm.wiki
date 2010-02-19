@@ -1,11 +1,12 @@
-* Steps of the algorithm
- * Select which key is pressed
- * Find the position of the key where it will be inserted
- * switch( input key )
+== Steps of the algorithm ==
+ # Select which key is pressed
+ # Find the position of the key where it will be inserted
+ # switch( input key )
    # case "h":
     # take the letter from input position and check pressing h change that letter. If changes then act accordingly
    # case "delete":
    # case "backspace":
     # Update texts so that deletion or backspace yields correct result
-   # default:
+   # default: 
     # Return corresponding letter for that key
+ # Insert the letter into the position founded in step 2.
