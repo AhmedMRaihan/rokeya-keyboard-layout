@@ -18,3 +18,7 @@ This layout removes such ambiguity as much as possible. For example, হ is plac
 = Software platform =
 
 The layout is primarily developed in javascript. It is planned to develop corresponding c/c++ and java code also so that it can be used in both web interface and desktop.
+
+= Online demo =
+
+[http://phonetic.sourceforge.net/ http://phonetic.sourceforge.net/]
