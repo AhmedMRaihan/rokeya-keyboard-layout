@@ -2,7 +2,7 @@
 
 = Letter positions analogous to English pronunciation =
 
-Majority of letters can be typed directly with English pronunciation of that letter. Like "ka(ক)" will be typerd with english letter "k". Vowel "ii(ঈ)" will be typed with english letter shift+i (Capital i)
+Majority of letters can be typed directly with English pronunciation of that letter. Like "ka(ক)" will be typerd with english letter "k". Vowel "ii(ঈ)" will be typed with english letter shift+ii (Capital I twice)
 
 = Letter positions different to English pronunciation = 
 
