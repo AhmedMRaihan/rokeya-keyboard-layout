@@ -9,7 +9,6 @@ Majority of letters can be typed directly with English pronunciation of that let
 To embed 64 letter all of the 26 letter position in English keyboard are used. Some less used Bangla letters are placed in such a place where it holds a unique position but doesn't match with its english phonetic spelling letter. For example, onusshar(ং) is placed in shift+V position whereas its spelling doesn't match with the spelling of v. This technique faciliate a better quality layout design.
 The letters differ from usual pronunciation of english letter is listed below:
 
-ড় = q
 ঢ় = shift+q ( Capital Q)
 ং = shift+v ( Capital V)
 ত্‍ = shift+z ( Capital Z)
