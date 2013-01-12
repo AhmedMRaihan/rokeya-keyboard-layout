@@ -21,4 +21,4 @@ The layout is primarily developed in javascript. It is planned to develop corres
 
 = Online demo =
 
-[http://phonetic.sourceforge.net/ http://phonetic.sourceforge.net/]
+[http://seoul.freehostia.com/ http://seoul.freehostia.com/]
