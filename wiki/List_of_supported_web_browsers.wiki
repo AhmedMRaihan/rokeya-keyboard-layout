@@ -6,13 +6,15 @@
  # Internet Explorer 
   * version-7
   * version-8
+  * 9+
 
- # Mozilla Firefox 
+ # Mozilla Firefox
   * version- 3.5+
 
  # Google chrome
   * version- 0.4.154.25
   * version- 4.0.249.89 (38071)
+  * subsequent versions are also expected to be working
 
  # Opera
-  * version- 10.10
+  * version- 10.10+
