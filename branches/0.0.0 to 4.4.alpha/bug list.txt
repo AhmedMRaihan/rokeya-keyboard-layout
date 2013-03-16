@@ -1,0 +1,4 @@
+a then h => should do nothing (solved)
+i then i => expected "eagle" but did not appear" (recognised)
+after . typed i => i-full form did not appear (solved)
+m + again + => hasanata wasn't replaced by + (solved)
