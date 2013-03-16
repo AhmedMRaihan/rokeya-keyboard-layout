@@ -1,5 +1,5 @@
 ﻿/*
-version: 4.4.21
+version: 4.4.71
 author: SR
 released as apache 2.0 license.
 
@@ -102,9 +102,15 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 	
 	// rab => r za-fola
 	if( keyState.unicodeKey == "\u09cd\u09af" && prev=="\u09b0")
-	{
-		keyState.position.start -=1;
-		keyState.unicodeKey = "\u09b0" + this.global.ZWNJ + "\u09cd" + "\u09af";
+	{		
+		// grand hotel spelling
+		if( keyState.position.start > 0 && this.global.bd.getFollower(prevPrev, 1) == 4)
+			keyState.unicodeKey = "\u09cd" + "\u09af";
+		else
+		{
+			keyState.position.start -=1;
+			keyState.unicodeKey = "\u09b0" + this.global.ZWNJ + "\u09cd" + "\u09af";
+		}
 	}
 	
 	// same vowel pressed twice will cause a switch
