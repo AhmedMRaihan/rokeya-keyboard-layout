@@ -1,4 +1,4 @@
-﻿/*
+/*
 version: 4.4.71
 author: SR
 released as apache 2.0 license.
