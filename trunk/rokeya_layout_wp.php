@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 Plugin Name: Wordpress Input Handler for Rokeya layout
 Plugin URI: http://code.google.com/p/bangla-keyboard-layout/
