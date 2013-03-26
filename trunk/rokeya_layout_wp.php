@@ -26,14 +26,19 @@ else
 jQuery("#pass2, #pass1").attr("disabled","disabled");
 
 //convert all text input field to accept bangla input
-var $textbox= jQuery("input:text, textarea").not('[noBanglaText]');
-jQuery.each($textbox,function(index,valueOfElement){
-	if(this.id == '')
-	{
-		this.id= Math.random();
-	}
-	new banglaLayout(this.id);
-});			
+//*
+if( window.location.href.indexOf("wp-admin/post-new.php") !== -1 || window.location.href.indexOf("wp-admin/profile.php") !== -1 )
+{
+	var $textbox= jQuery("input:text, textarea").not('[noBanglaText]');
+	jQuery.each($textbox,function(index,valueOfElement){
+		if(this.id == '')
+		{
+			this.id= Math.random();
+		}
+		new banglaLayout(this.id);
+	});			
+}
+//*/
 };
 
 // call jquery handling function
