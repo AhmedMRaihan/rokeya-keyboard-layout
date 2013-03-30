@@ -36,6 +36,7 @@ if( window.location.href.indexOf("wp-admin/post-new.php") !== -1 || window.locat
 			this.id= Math.random();
 		}
 		new banglaLayout(this.id);
+		jQuery('#'+this.id).loadHelpIconTooltip();
 	});			
 }
 //*/
@@ -48,6 +49,22 @@ if(!jQuery)
 }	
 jQuery(handlerKeyboardPageOpener);
 
+(function($){
+	$.fn.loadHelpIconTooltip = function(){	
+
+	// this = collection of textarea or inputbox
+	this.each(function( index ) {
+		var toolTipText = "ctrl+m চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
+		var $comment=$(this);
+		var str="<div class='tooltipOnRokeyaLayout' style='width: 10px; position:relative; cursor:help; color:red;";
+		str +=	"left:"+($comment.width())+"px; top:17px'><abbr title='"+toolTipText+"'>?</abbr></div>";
+		$comment.before(str);
+		// write css
+	});
+	return this;
+	}
+
+})(jQuery);
 </script>
 <?PHP
 }
