@@ -186,13 +186,14 @@ Keyboard.prototype.selectKeyPressed = function () {
             position: position
         }
     }
+	
+	// using ctrl+m or F9 button to language switched
+	if ( (this.oEvent.ctrlKey && code == 77) || code==120 ) {
+		var _C = this.global.currentLanguage == "bn_BD" ? "en_US" : "bn_BD";
+		this.global.currentLanguage = _C;
+	}
     //  ctrl, shift, alt, alt-grp, up arrow, down arrow
     if (this.oEvent.ctrlKey || this.oEvent.altKey || code < 32 || (code >= 37 && code <= 40)) {
-        // using ctrl+m button to language switch
-        if (this.oEvent.ctrlKey && code == 77) {
-            var _C = this.global.currentLanguage == "bn_BD" ? "en_US" : "bn_BD";
-            this.global.currentLanguage = _C;
-        }
         return {
             code: code,
             iShouldDealIt: false
