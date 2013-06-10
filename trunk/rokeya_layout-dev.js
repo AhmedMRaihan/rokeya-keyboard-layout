@@ -1,5 +1,5 @@
 /*
-version: 4.4.71
+version: 4.4.73
 author: SR
 released as apache 2.0 license.
 
@@ -123,6 +123,8 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 			keyState.position.start -=1;
 			keyState.unicodeKey = temp;
 		}
+		else
+			keyState.unicodeKey = this.global.bd.getFollower(keyState.unicodeKey, 2);
 	}
 	// change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
 	else if (keyState.characterType == 2 && !(prevCharacterType == 1 || prevCharacterType == 3)) {
@@ -513,7 +515,7 @@ function Letter_Information() {
 }
 Letter_Information.prototype.switchedLetter=
 [
-	["\u0985", ""],["\u09be","\u0986"],
+	["\u0985", ""],["\u09be",""],
 	["\u09c7", "\u09c8"],["\u098f","\u0990"],
 	["\u09cb", "\u09cc"],["\u0993","\u0994"],
 	["\u09bf", "\u09c0"],["\u0987","\u0988"],
