@@ -23,7 +23,7 @@ else
 			+"'<?PHP echo plugins_url( 'index.html' , __FILE__ ); ?>', 'Rokeya', 'height=400,width=700,top=200,left=150,scrollbars=1');return false;\" class='button'>অ.A</a></span>");
 
 //password field should be enabled as the password is automatically setin in oauth;
-jQuery("#pass2, #pass1").attr("disabled","disabled");
+jQuery("#pass2, #pass1").attr("noBanglaText","noBanglaText");
 
 //convert all text input field to accept bangla input
 //*
