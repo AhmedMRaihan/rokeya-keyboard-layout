@@ -8,7 +8,7 @@
 
 কবুতর = k b u shift+t r
 
-রংপুর = r shift+b p u r
+রংপুর = r shift+v p u r
 
 মি = m i
 
