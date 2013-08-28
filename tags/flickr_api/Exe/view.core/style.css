@@ -1,0 +1,89 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+    outline: 0;
+}
+h1 img { display: block; }
+img { border: 0; }
+a { color: #2276BB; text-decoration: none; border: 0} /* anchor tag */
+a:hover { color: blue;/*text-decoration: underline;*/ }
+
+.clear { clear: both; } /* clean all floating */
+.clear_left{ clear:left; } .left{float:left;}
+.clear_right{ clear: right;} .right{float: right;}
+.numberedUL {list-style: decimal-leading-zero;}
+
+body {
+    /*background:  #993300 url(images/bggreydiag.gif) repeat;*/
+    font-size: 16px;
+    font-family: tahoma, verdana, sans-serif;
+    padding: 20px 0 0 0;
+}
+blockquote {
+	background: url("images/quoteIcon.gif") no-repeat scroll left top transparent;
+	color: #717171;
+	font-style: italic;
+	margin-right: 10px;
+	padding-left: 28px;
+}
+abbr {
+	border-bottom: 1px dotted red;
+}
+/* inline-block div hack */
+.inline_block{
+    display: -moz-inline-stack;
+    display: inline-block;
+    zoom:1;
+    _display: inline;
+}
+/** layout **/
+#wrapper {
+    text-align: left;
+    margin: 0 auto;
+    width: 980px;
+    position: relative;
+}
+ol,ul{ list-style-position: inside; }
+
+/* define headers */
+h1{font-size: 24px;} h2{ font-size: 18px;} h4{font-size: 12px;} h6{ font-size: 8px;}
+
+/** header top **/
+#nav {
+  /*padding-top: 150px;*/
+  background: black;
+  background-repeat:no-repeat;
+  background-position:right top;
+
+}
+#nav ul {
+  height: 40px;
+  line-height: 36px;
+  border-left: 2px solid #9E9479;
+  /*background: url(images/cta-darkblue.gif) repeat scroll 100px 50px;*/
+  background-color: #423124;
+}
+#nav li {
+  list-style: none;
+  float: left;
+  padding: 0 10px;
+}
+#nav a.home {
+  text-decoration: underline;
+  font-size: 28px;
+}
+#nav a {
+  color: white;
+  font-size: 16px;
+}
+.nav_rss{
+    background: url(images/rss.png) no-repeat scroll bottom right;
+    padding-right:20px;
+}
+#nav img.wp-post-image{ max-width: 980px;}
+/********** sidebar css starts here */
+#content .right_col {
+  float: right;
+  width: 310px;
+  /*border-left: red dotted medium;*/
+}
