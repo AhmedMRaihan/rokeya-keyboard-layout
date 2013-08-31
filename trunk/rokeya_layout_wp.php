@@ -54,7 +54,7 @@ jQuery(handlerKeyboardPageOpener);
 
 	// this = collection of textarea or inputbox
 	this.each(function( index ) {
-		var toolTipText = "ctrl+m চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
+		var toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
 		var $comment=$(this);
 		var str="<div class='tooltipOnRokeyaLayout' style='width: 10px; position:relative; cursor:help; color:red;";
 		str +=	"left:"+($comment.width())+"px; top:17px'><abbr title='"+toolTipText+"'>?</abbr></div>";
