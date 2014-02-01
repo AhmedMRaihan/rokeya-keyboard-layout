@@ -499,7 +499,7 @@ function GlobalVariable() {
 		["\u09c3", "\u09a7"], // rii-kar and dhakesshori...... W
 		["\u0999", "\u099e"], // 5th and 10th consonant...... X
 		["\u09df", "\u09cd\u09af"], // ayan and z-fola...... Y
-		["\u09af", "\u09ce"], // zoti and khanda-ta...... Z
+		["\u09af", "\u09ce"] // zoti and khanda-ta...... Z
 	];
     this.numberKeyMap =
 	[
