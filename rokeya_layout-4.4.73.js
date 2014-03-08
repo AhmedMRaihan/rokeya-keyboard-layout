@@ -47,7 +47,7 @@ banglaLayout.prototype.loadHelpTooltip = function(){
 	top += $parent.height() < 5 ? 0:5;
 
 	var $tooltipDiv = document.createElement('abbr');
-	$tooltipDiv.setAttribute("style","width: 10px; position:relative; cursor:help; color:red; left:"+(left)+"px;top:"+(top)+"px;");
+	$tooltipDiv.setAttribute("style","width: 10px; position:absolute; cursor:help; color:red; left:"+(left)+"px;top:"+(top)+"px;");
 	$tooltipDiv.innerHTML = "?";
 	$tooltipDiv.setAttribute("title", toolTipText);
 	$tooltipDiv.onmouseover=function(){};
