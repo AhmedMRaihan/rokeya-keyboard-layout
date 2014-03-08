@@ -38,7 +38,7 @@ banglaLayout.prototype.loadHelpTooltip = function(){
 		return this;
 
 	var $sourceField=document.getElementById(this.sourceField);
-	var toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
+	var toolTipText = "ctrl+m ???? F9 ???? ????? ? ???????? ???? ???? ??????..\n..?=H, ?=Z, ?=x, ?=X, ?=V, ?=B, ?=M";
 	
 	$parent = jQuery("#"+this.sourceField);
 	var left = $parent.position().left+$parent.width();
@@ -56,8 +56,9 @@ banglaLayout.prototype.loadHelpTooltip = function(){
 	return this;
 }
 
+
 function Keyboard(){
-    this.global=new GlobalVariable();
+    this.global=new Letter_Information();
 }
 
 Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
@@ -80,12 +81,12 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 	if (keyState.placeTo >= 2) {
 		prevPrev = text.charAt(keyState.placeTo - 2);
 		prev = text.charAt(keyState.placeTo - 1);
-		prevCharacterType = this.global.bd.getFollower(prev, 1);
+		prevCharacterType = this.global.getFollower(prev, 1);
 	}
 	else if (keyState.placeTo == 1)
 	{
 		prev = text.charAt(keyState.placeTo - 1);
-		prevCharacterType = this.global.bd.getFollower(prev, 1);
+		prevCharacterType = this.global.getFollower(prev, 1);
 	}	
 	if (keyState.placeTo >= 0 && keyState.placeTo <= this.textInputSource.value.length - 2) {
 		nextNext = this.textInputSource.value.charAt(keyState.placeTo + 1);
@@ -112,11 +113,11 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 		}	
 		// other
 		else if( prevCharacterType == 2)
-			keyState.unicodeKey = this.global.bd.getFollower(prev, 2);
+			keyState.unicodeKey = this.global.getFollower(prev, 2);
 		else if( prevCharacterType == 7)
-			keyState.unicodeKey = this.global.ZWNJ + this.global.bd.getFollower(prev, 2);
+			keyState.unicodeKey = this.global.ZWNJ + this.global.getFollower(prev, 2);
 		else 
-			keyState.unicodeKey = this.global.bd.getFollower(prev, 2);
+			keyState.unicodeKey = this.global.getFollower(prev, 2);
 
 		// if valid key reduce start position-1 because this will not be inserted
 		if (keyState.unicodeKey.length > 0) {
@@ -129,7 +130,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 	if( keyState.unicodeKey == "\u09cd\u09af" && prev=="\u09b0")
 	{		
 		// grand hotel spelling
-		if( keyState.position.start > 0 && this.global.bd.getFollower(prevPrev, 1) == 4)
+		if( keyState.position.start > 0 && this.global.getFollower(prevPrev, 1) == 4)
 			keyState.unicodeKey = "\u09cd" + "\u09af";
 		else
 		{
@@ -141,7 +142,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 	// same vowel pressed twice will cause a switch
 	if(prev==keyState.unicodeKey && (prevCharacterType==2 || prevCharacterType==7) )
 	{	
-		var temp= this.global.bd.getSwitchedLetter(keyState.unicodeKey);
+		var temp= this.global.getSwitchedLetter(keyState.unicodeKey);
 		// for "onamika" => no switch character because switching a character with same character insert nothing
 		if( temp.length > 0)
 		{
@@ -149,11 +150,11 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 			keyState.unicodeKey = temp;
 		}
 		else
-			keyState.unicodeKey = this.global.bd.getFollower(keyState.unicodeKey, 2);
+			keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
 	}
 	// change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
 	else if (keyState.characterType == 2 && !(prevCharacterType == 1 || prevCharacterType == 3)) {
-		keyState.unicodeKey = this.global.bd.getFollower(keyState.unicodeKey, 2);
+		keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
 	}
 	
 	// fullstop button pressed twice will cause a dot ..
@@ -272,7 +273,7 @@ Keyboard.prototype.selectKeyPressed = function () {
         replaceLastChar: replaceLastChar, // =false
         placeTo: position.start, // =3
         position: position, // { 1,8 }
-		characterType: this.global.bd.getFollower(unicodeKey, 1) // 1~7
+		characterType: this.global.getFollower(unicodeKey, 1) // 1~7
     };
 }
 
@@ -489,9 +490,8 @@ Keyboard.prototype.cursorPosition = function () {
 }
 
 /**************** Global variable */
-// <summary>Global Variable Class</summary>
-function GlobalVariable() {
-    this.bd = new Letter_Information();
+// <summary>Letter Information Class</summary>
+function Letter_Information() {
     this.currentLanguage = "bn_BD";
     this.replaceLastChar = false; // eita ka er por h dile  kha( khata) likha hoe jai ei typer support ditey lagbe
     this.ZWNJ = "\u200c";
@@ -524,20 +524,15 @@ function GlobalVariable() {
 		["\u09c3", "\u09a7"], // rii-kar and dhakesshori...... W
 		["\u0999", "\u099e"], // 5th and 10th consonant...... X
 		["\u09df", "\u09cd\u09af"], // ayan and z-fola...... Y
-		["\u09af", "\u09ce"] // zoti and khanda-ta...... Z
+		["\u09af", "\u09ce"], // zoti and khanda-ta...... Z
 	];
     this.numberKeyMap =
 	[
 		"\u09e6", "\u09e7", "\u09e8", "\u09e9", "\u09ea", "\u09eb", "\u09ec", "\u09ed", "\u09ee", "\u09ef"
 	];
-
-
 }
 
-// <summary>Letter Information Class</summary>
-function Letter_Information() {
-    ;
-}
+
 Letter_Information.prototype.switchedLetter=
 [
 	["\u0985", ""],["\u09be",""],
