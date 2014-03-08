@@ -29,15 +29,16 @@ jQuery("#pass2, #pass1").attr("noBanglaText","noBanglaText");
 //*
 if( window.location.href.indexOf("wp-admin/post-new.php") !== -1 || window.location.href.indexOf("wp-admin/profile.php") !== -1 )
 {
-	var $textbox= jQuery("input:text, textarea").not('[noBanglaText]');
-	jQuery.each($textbox,function(index,valueOfElement){
-		if(this.id == '')
-		{
-			this.id= Math.random();
-		}
-		new banglaLayout(this.id);
-		jQuery('#'+this.id).loadHelpIconTooltip();
-	});			
+	(function($){
+		var $textbox= jQuery("input:text, textarea").not('[noBanglaText]');
+		$textbox.each(function(index,valueOfElement){
+			if(this.id == '')
+			{
+				this.id= Math.random();
+			}
+			new banglaLayout(this.id).loadHelpTooltip();
+		});	
+	})(jQuery);
 }
 //*/
 };
