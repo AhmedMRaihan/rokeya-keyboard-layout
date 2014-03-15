@@ -40,7 +40,7 @@ banglaLayout.prototype.loadHelpTooltip = function(){
 	var $sourceField=document.getElementById(this.sourceField);
 	var toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
 	
-	$parent = jQuery("#"+this.sourceField);
+	var $parent = jQuery("#"+this.sourceField);
 	var left = $parent.position().left+$parent.width();
 	left -= $parent.width() < 3 ? 0:3;
 	var top = $parent.position().top;
