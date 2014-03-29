@@ -17,7 +17,7 @@ echo "http://bangla-keyboard-layout.googlecode.com/svn/trunk/rokeya_layout-4.4.7
 <script type="text/javascript">
 var handlerKeyboardPageOpener=function() {
 
-var sourceDiv = "<span style='margin-left:5px;' id='rokeya_button_bn'><a onclick=\"window.open('<?PHP echo plugins_url( 'index.html' , __FILE__ ); ?>', 'Rokeya', 'height=400,width=700,top=200,left=150,scrollbars=1');return false;\" class='button'>অ.A</a></span>";
+var sourceDiv = "<span style='margin-left:5px;' id='rokeya_button_bn'><a onclick=\"window.open('<?PHP echo plugins_url( 'index.html' , __FILE__ ); ?>', 'Rokeya', 'height=400,width=700,top=200,left=150,scrollbars=1');return false;\" class='button button-small'>অ.A</a></span>";
 if( jQuery("#view-post-btn").length ==1 )
 	jQuery("#view-post-btn").after(sourceDiv);
 else
