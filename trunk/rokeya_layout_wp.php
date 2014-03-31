@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
 Plugin Name: Wordpress Input Handler for Rokeya layout
 Plugin URI: http://code.google.com/p/bangla-keyboard-layout/
@@ -32,7 +32,7 @@ if( window.location.href.indexOf("wp-admin/post-new.php") !== -1 || window.locat
 {
 	(function($){
 		try{
-			var $textbox= jQuery("input:text, textarea").not('[noBanglaText]');
+			var $textbox= jQuery("input[type=text], textarea").not('[noBanglaText]');
 			$textbox.each(function(index,valueOfElement){
 				if(this.id == '')
 				{
