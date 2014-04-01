@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 
-
 <html>
 	<!--
 		Rokeya Bangla Keyboard Layout
@@ -12,19 +11,28 @@
 	<meta name="keywords" content="rokeya, rokeya keyboard, rokeya keyboard layout, rokeya phonetic, rokeya phonetic layout, rokeya bangla keyboard, rokeya bangla writing software, rokeya bangla typing layout" />
 	<title>রোকেয়া কীবোর্ড লে-আউট | জাভাস্ক্রিপ্ট লাইব্রেরী টেস্ট পেইজ</title>
 		<style type="text/css">
-			body{color:#333;font-size:14px;}
 			input {width: 140px; margin-right: 5px; padding: 3px; border: 1px solid #DFE1E0;}
+			@font-face
+			{
+				font-family: 'Noto Sans Bengali';
+				src: url(NotoSansBengali-Regular.woff), url(NotoSansBengali-Regular.ttf);
+				font-weight: 400;
+			}
+			body{
+				color:#333;
+				font-size:14px;
+				font-family: tahoma, 'Noto Sans Bengali', 'Helvetica', 'Arial', sans-serif;
+			}
 		</style>	
 		<script type="text/javascript" src="http://bangla-keyboard-layout.googlecode.com/svn/trunk/rokeya_layout-4.4.73.js"></script>
-		<link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy' rel='stylesheet' type='text/css'>
-		
 	</head>
 	<body onload="document.getElementById('checkItOut').focus();">
+
 		<div style="text-align: center;">
 		<h1>নিচের টেক্সট-এরিয়া তে বাংলা লেখা শুরু করুন! </h1>
 		<h3>ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন....সহায়ক কি ম্যাপ: ঙ=x, ঞ=X, য়=y, হ=H, ৎ=Z, ং=V, ঁ=B, ঃ=M, য-ফলা = Y</h3>
 		<br>
-		<textarea style="font-family: 'Sorts Mill Goudy','Tahoma'; width: 100%; height: 400px;" onfocus="" id="checkItOut" name="checkItOut"></textarea>
+		<textarea style="font-family: 'Tahoma', 'Noto Sans Bengali'; width: 100%; height: 400px;" onfocus="" id="checkItOut" name="checkItOut"></textarea>
 
 		<br><br>
 		</div>
@@ -35,7 +43,7 @@
 <script type="text/javascript">
 function initRokeyaLayout()
 {
-	new banglaLayout("checkItOut");
+	new banglaLayout("checkItOut").loadHelpTooltip();
 }
 
 
