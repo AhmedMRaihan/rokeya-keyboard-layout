@@ -1,0 +1,6 @@
+@font-face
+	{
+		font-family: 'Noto Sans Bengali';
+		src: local('Noto Sans Bengali'), url(NotoSansBengali-Regular.woff), url(NotoSansBengali-Regular.ttf);
+		font-weight: 400;
+	}
