@@ -28,12 +28,12 @@ function banglaLayout(id)
 			if(!!keyEvent)
 			 keyEvent.preventDefault();
 		}
+		this.sourceField = id;
+		return this;
 	}catch(e){ 
 		if(console) 
 			console.log(e.message); 
 	}
-	this.sourceField = id;
-	return this;
 }
 banglaLayout.prototype.loadHelpTooltip = function(){
 	try{
