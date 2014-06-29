@@ -1,4 +1,4 @@
-/*
+﻿/*
 version: 4.4.73
 author: SR
 released as apache 2.0 license.
@@ -9,20 +9,26 @@ Keyboard.prototype.cursorPosition, Keyboard.prototype.writeFinalValue function(s
 function banglaLayout(id)
 {
     var inputbox=document.getElementById(id);
-    var keyboard = new Keyboard();
+	var keyboard = new Keyboard();
 	
 	try{
 		inputbox.onkeydown = function (keyEvent) {
-	
+			if(/(iPad|iPhone|iPod)/g.test( navigator.userAgent ))
+				return true;
+			
 			var oEvent = window.event || keyEvent;
 			var oSource = oEvent.srcElement || oEvent.target;
-	
 			this.returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
 			return this.returnValue;
 		}
 		inputbox.onkeypress = function (keyEvent) {
+			if(/(iPad|iPhone|iPod)/g.test( navigator.userAgent ))
+			{
+				var oEvent = window.event || keyEvent;
+				var oSource = oEvent.srcElement || oEvent.target;
+				this.returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
+			}
 			return this.returnValue;
-			//keyEvent.preventDefault();
 		}
 		inputbox.onkeyup = function (keyEvent) {
 			if(!!keyEvent)
@@ -34,6 +40,11 @@ function banglaLayout(id)
 	}
 	this.sourceField = id;
 	return this;
+}
+banglaLayout.prototype.main = function(keyEvent, keyboard){
+	var oEvent = window.event || keyEvent;
+	var oSource = oEvent.srcElement || oEvent.target;
+	return keyboard.handleKeyboardInput(oEvent, oSource);
 }
 banglaLayout.prototype.loadHelpTooltip = function(){
 	try{
@@ -203,10 +214,38 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 
     return false;
 }
-
+// <summary>Select and return which key is pressed in iOS</summary>
+Keyboard.prototype.select_iOS_KeyPressed = function () {
+	var code = this.oEvent.keyCode || this.oEvent.which;
+	var position = this.cursorPosition();
+	var unicodeKey = "", iShouldDealIt  = false;
+	
+	if (code >= 65 && code <= 90) {
+		unicodeKey = this.global.letterKeyMap[code - 65][1];
+	}
+	else if (code >= 97 && code <= 122) {
+		unicodeKey = this.global.letterKeyMap[code - 97][0];
+	}
+	else if (code >= 48 && code <= 57) {
+		unicodeKey = this.global.numberKeyMap[code - 48][0];
+	}
+	
+	var replaceLastChar = (unicodeKey == "" && code == 104);
+	return {
+		code: code,
+		unicodeKey: unicodeKey,
+		iShouldDealIt: unicodeKey != "" || replaceLastChar,
+		placeTo: position.start,
+		replaceLastChar: replaceLastChar,
+		position: position
+	}
+}
 // <summary>Select and return which key is pressed</summary>
 Keyboard.prototype.selectKeyPressed = function () {
-
+	var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+	if(iOS)
+		return this.select_iOS_KeyPressed();
+		
     var code = this.oEvent.keyCode || this.oEvent.which;
     var codeAsCharacter = String.fromCharCode(this.oEvent.keyCode || this.oEvent.which);
     var position = this.cursorPosition();
@@ -509,7 +548,7 @@ function Letter_Information() {
 		["\u09be", "\u0985"], // aa-kar and onamika......... A
 		["\u09ac", "\u0981"], // bandorban and chondrobindu..... B
 		["\u099a", "\u099b"], // chirokaal and chobi...... C
-		["\u09a1", "\u09a6"], // dahu and dekha...... D
+		["\u09a1", "\u09a6"], // dahuk and dekha...... D
 		["\u09c7", "\u098f"], // emni and oirabot...... E
 		["\u09ab", "\u09a5"], // ful and thimpu...... F
 		["\u0997", "\u0998"], // gotokal and ghatshila...... G
@@ -521,14 +560,14 @@ function Letter_Information() {
 		["\u09ae", "\u0983"], // minisha and dukkho...... M
 		["\u09a8", "\u09a3"], // notun and notto-bidhan...... N
 		["\u09cb", "\u0993"], // oli and oushodh...... O
-		["\u09aa", "\u09ab"], // polashi and farlin...... P
+		["\u09aa", "\u09ab"], // polashi and falgun...... P
 		["\u09cd", "\u09dd"], // hasanta and ashaar...... Q
 		["\u09b0", "\u09dc"], // rinita and jhor....... R
 		["\u09b8", "\u09b7"], // seoul and sholoi-december...... S
 		["\u099f", "\u09A4"], // tipaimukh and tutul...... T
 		["\u09c1", "\u0989"], // uttom and usha...... U
 		["\u09ad", "\u0982"], // vrammoman and itong-bitong...... V
-		["\u09c3", "\u09a7"], // rii-kar and dhakesshori...... W
+		["\u09c3", "\u09a7"], // rii-kar and dhormoshala...... W
 		["\u0999", "\u099e"], // 5th and 10th consonant...... X
 		["\u09df", "\u09cd\u09af"], // ayan and z-fola...... Y
 		["\u09af", "\u09ce"], // zoti and khanda-ta...... Z
