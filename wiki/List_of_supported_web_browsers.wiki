@@ -1,5 +1,5 @@
 #summary Supported browsers till now.
-#labels Phase-QA
+#labels Phase-Support
 
 == This layout is supported if following browsers are used: ==
 
@@ -7,14 +7,15 @@
   * version-7
   * version-8
   * 9+
-
  # Mozilla Firefox
   * version- 3.5+
-
  # Google chrome
   * version- 0.4.154.25
   * version- 4.0.249.89 (38071)
   * subsequent versions are also expected to be working
-
  # Opera
   * version- 10.10+
+ # iOS
+  * 5+
+ # Android
+  * 1.1+
