@@ -1,5 +1,5 @@
 #summary A quick overview
-#labels Phase-Design,Phase-Requirements
+#labels Phase-Design,Phase-Requirements,Phase-Support
 = Introduction =
 
 This layout adapt the english letter keyboard layout as long as the adaptation doesn't deteriorate the keyboard functionality significantly.
