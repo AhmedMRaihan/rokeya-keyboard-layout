@@ -84,7 +84,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
     this.textInputSource = oSource;
     this.oEvent = oEvent;
 	
-    var prev = "", prevPrev = "", next = "", nextNext = "", text = this.textInputSource.value, prevCharacterType=0;
+    var prev = "", prevPrev = "", next = "", nextNext = "", text = !!oSource ? this.textInputSource.value : this.text, prevCharacterType=0;
 
     var keyState = this.selectKeyPressed();
     
@@ -106,12 +106,12 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
 		prev = text.charAt(keyState.placeTo - 1);
 		prevCharacterType = this.global.getFollower(prev, 1);
 	}	
-	if (keyState.placeTo >= 0 && keyState.placeTo <= this.textInputSource.value.length - 2) {
-		nextNext = this.textInputSource.value.charAt(keyState.placeTo + 1);
-		next = this.textInputSource.value.charAt(keyState.placeTo + 0);
+	if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
+		nextNext = text.charAt(keyState.placeTo + 1);
+		next = text.charAt(keyState.placeTo + 0);
 	}
-	else if (keyState.placeTo >= 0 && keyState.placeTo <= this.textInputSource.value.length - 1)
-		next = this.textInputSource.value.charAt(keyState.placeTo + 0);
+	else if (keyState.placeTo >= 0 && keyState.placeTo <= text.length - 1)
+		next = text.charAt(keyState.placeTo + 0);
 
 
     /************************************** 
@@ -202,13 +202,14 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent,oSource) {
         keyState.position.end += nextNext == "\u09CD" ? 1 : 0;
     }
 
-
     // <summary>Final data preparation</summary>
     var firstPortion = text.slice(0, keyState.position.start);
     var lastPortion = text.slice(keyState.position.end);
     var finalText = firstPortion + keyState.unicodeKey + lastPortion;
-    var caretPosition = keyState.position.start + keyState.unicodeKey.length;
-
+	var caretPosition = keyState.position.start + keyState.unicodeKey.length;
+	
+	if(!oSource)
+		return { text: finalText, caret: caretPosition, hookSuccessful: true};
     // <summary>Write final data and update caret</summary>
     this.writeFinalValue(finalText, caretPosition);
 
@@ -396,9 +397,19 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
     }
 }
 
-
+Keyboard.prototype.plugin = function(text, caretPosition, e){
+	this.text = text;
+	this.caretPosition = caretPosition;
+	return this.handleKeyboardInput(e,null);
+}
 
 Keyboard.prototype.cursorPosition = function () {
+	if(!!this.caretPosition)
+		return {
+			start: this.caretPosition,
+			end: this.caretPosition
+		};
+
     //var textarea = document.getElementById("myTextArea");
     var start = 0, end = 0;
     if (typeof this.textInputSource.selectionStart == "number"
