@@ -393,7 +393,9 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
 Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
 	if(text.charAt(caretPosition) == '<' && text.length == caretPosition+4)
 		return true; // A delete is pressed at the end and tinymce itself will take care of it
-	
+	if(text.charAt(caretPosition) == '>' && caretPosition == 4)
+		return true; // Same above, but with backspace
+		
     this.text = text;
     this.caretPosition = caretPosition;
     return this.handleKeyboardInput(e, null);
