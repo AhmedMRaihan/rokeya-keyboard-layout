@@ -390,7 +390,10 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
     }
 }
 
-Keyboard.prototype.plugin = function (text, caretPosition, e) {
+Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
+	if(text.charAt(caretPosition) == '<' && text.length == caretPosition+4)
+		return true; // A delete is pressed at the end and tinymce itself will take care of it
+	
     this.text = text;
     this.caretPosition = caretPosition;
     return this.handleKeyboardInput(e, null);
