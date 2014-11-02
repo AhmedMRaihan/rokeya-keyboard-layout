@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wordpress Input Handler for Rokeya layout
+Plugin Name: BUETian.com Input Handler for Rokeya layout
 Plugin URI: http://code.google.com/p/bangla-keyboard-layout/
 Description: Add input button in admin panel new post writing and convert all text inputbox to accept bangla input
 Author: seoul
@@ -16,7 +16,7 @@ function ADD_BN_BUTTON() {
 <script type="text/javascript">
 var handlerKeyboardPageOpener=function() {
 
-	var sourceDiv = "<span style='margin-left:5px;' id='rokeya_button_bn'><a onclick=\"window.open('http://seoul.freehostia.com', 'Rokeya', 'height=400,width=700,top=200,left=150,scrollbars=1');return false;\" class='button button-small'>à¦….A</a></span>";
+	var sourceDiv = "<span style='margin-left:5px;' id='rokeya_button_bn'><a onclick=\"window.open('http://seoul.freehostia.com', 'Rokeya', 'height=400,width=700,top=200,left=150,scrollbars=1');return false;\" class='button button-small'>অ.A</a></span>";
 	if( jQuery("#view-post-btn").length ==1 )
 		jQuery("#view-post-btn").after(sourceDiv);
 	else
@@ -78,9 +78,12 @@ Keyboard.prototype.getCursorPosition = function (editor) {
 }
 
 window.onload = function () {
-	if(!!tinyMCE)
+	if(typeof tinyMCE != "undefined")
 	{
-		tinyMCE.get('content').on('keydown', function (e) {
+		var content = tinyMCE.get('content');
+		if(typeof content == "undefined" || !content)
+			return;
+		content.on('keydown', function (e) {
 			var editor = this;
 			var keyboard = new Keyboard();
 			var content = editor.getContent();
@@ -106,6 +109,8 @@ window.onload = function () {
 			}
 		});
 	}
+	else
+		new banglaLayout('content').loadHelpTooltip();
 }
 </script>
 <?PHP
