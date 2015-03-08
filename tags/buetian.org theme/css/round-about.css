@@ -25,3 +25,6 @@ footer {
 .navbar-brand{
 	color: white !important;
 }
+.page-header{
+	margin-top: 0px !important;
+}
