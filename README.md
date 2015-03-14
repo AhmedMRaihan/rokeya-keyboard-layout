@@ -30,23 +30,18 @@
 
 
 ##সাইট অ্যাডমিনদের জন্যে: ব্যবহার নির্দেশিকা
-প্রথমে স্ক্রিপ্টটি লোড করে নিন সাইটের HEAD এলিমেন্ট এর ভিতরে কোনএক জায়গায়:
+প্রথমে স্ক্রিপ্টটি লোড করে নিন সাইটের HEAD এলিমেন্ট এর ভিতরে কোন এক জায়গায়:
 ```javascritpt
-<code language="javascript">
 <script type="text/javascript" src="http://bangla-keyboard-layout.googlecode.com/svn/trunk/rokeya_layout-4.4.73.js"></script>
-</code>
 ```
 এরপরে যেই টেক্সটবক্সে রোকেয়া লেআউটের উপস্থিতি দেখতে চান, সেটার আইডি দিয়ে কল করুন:
 ```javascritpt
-<code language="javascript">
 new banglaLayout("{ID-GOES-HERE}");
 //যদি টুলটিপ দেখাতে চান, তাহলে উপরের লাইনের বদলের নিচের লাইনের মতো করে ফাংশন কল করুন:
 new banglaLayout("{ID-GOES-HERE}").loadHelpTooltip();
-</code>
 ```
 যদি সকল টেক্সটবক্সে দেখতে চান তাহলে নিচের জেকুয়েরী কোডটা কল করুন:
 ```javascritpt
-<code  language="javascript">
 (function($){
 try{
 	var $textbox= $("input[type=text], textarea").not('[noBanglaText]');
@@ -58,7 +53,7 @@ try{
 	new banglaLayout(this.id).loadHelpTooltip();
 	});	
 }catch(e){}
-})(jQuery);</code>
+})(jQuery);
 ```
 যদি কোন টেক্সটবক্সে রোকেয়া লেআউটের উপস্থিতি দেখতে না চান, তাহলে সেটার এইচটিএমএল কোডে নিচের অংশটি বসিয়ে দিন:
 ```html
