@@ -14,7 +14,7 @@
 ##অনলাইন ডেমো
 [Rokeya Layout Demo](http://seoul.freehostia.com/)
 
-#সহায়ক তথ্যাবলী
+##সহায়ক তথ্যাবলী
   * কি-ম্যাপ: প্রায় সকল বর্ণই ফোনেটিক স্টাইলের ইংরেজী বর্ণমালায় পাওয়া যাবে
   * ব্যতিক্রম: হ=H, ঙ=x, ঞ=X, য়=y, ৎ=Z, ং=V, ঁ=B, ঃ=M, হসন্ত = q অথবা +, এবং য-ফলা = Y
   * যুক্তাক্ষর লেখার নিয়ম: প্রথম বর্ণ, এরপরে হসন্ত (q অথবা প্লাস [+]) এবং তারপর দ্বিতীয় বর্ণ। যেমন: ক্স = k + s, ক্ত = k q T, হ্ম = H + m, হ্ন = H + n, ল্ক = l q k
@@ -76,3 +76,7 @@ This keyboard layout is based on QWERTY based English keyboard. The layout and t
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
 
 Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com/)
+
+#Links
+* Demo: [Here](http://seoul.freehostia.com/)
+* Logo: [Here](http://flagartist.com/art/svg/flags/flag-map-of-bangladesh-flagartist-com-flag-svg-youtube-facebook-linkedin-twitter-google/)
