@@ -78,5 +78,6 @@ This layout is developed keeping in mind that majority of bangladesh are accusto
 Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com/)
 
 #Links
+* Wiki: [Tree/Wiki](https://github.com/MythicAngel/bangla-keyboard-layout/tree/wiki)
 * Demo: [Here](http://seoul.freehostia.com/)
 * Logo: [Here](http://flagartist.com/art/svg/flags/flag-map-of-bangladesh-flagartist-com-flag-svg-youtube-facebook-linkedin-twitter-google/)
