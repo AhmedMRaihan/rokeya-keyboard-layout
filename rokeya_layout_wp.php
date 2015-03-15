@@ -10,7 +10,7 @@ function ADD_BN_BUTTON() {
 ?>
 
 <script type="text/javascript" src="<?PHP
-	echo "http://localhost/Rokeya_Layout_WP/rokeya_layout-dev.js";
+	echo "https://rawgit.com/MythicAngel/bangla-keyboard-layout/master/rokeya_layout-4.4.73.js";
 ?>"></script>
 
 <script type="text/javascript">
