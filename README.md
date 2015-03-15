@@ -31,17 +31,17 @@
 
 ##সাইট অ্যাডমিনদের জন্যে: ব্যবহার নির্দেশিকা
 প্রথমে স্ক্রিপ্টটি লোড করে নিন সাইটের HEAD এলিমেন্ট এর ভিতরে কোন এক জায়গায়:
-```javascritpt
+```javascript
 <script type="text/javascript" src="http://bangla-keyboard-layout.googlecode.com/svn/trunk/rokeya_layout-4.4.73.js"></script>
 ```
 এরপরে যেই টেক্সটবক্সে রোকেয়া লেআউটের উপস্থিতি দেখতে চান, সেটার আইডি দিয়ে কল করুন:
-```javascritpt
+```javascript
 new banglaLayout("{ID-GOES-HERE}");
 //যদি টুলটিপ দেখাতে চান, তাহলে উপরের লাইনের বদলের নিচের লাইনের মতো করে ফাংশন কল করুন:
 new banglaLayout("{ID-GOES-HERE}").loadHelpTooltip();
 ```
 যদি সকল টেক্সটবক্সে দেখতে চান তাহলে নিচের জেকুয়েরী কোডটা কল করুন:
-```javascritpt
+```javascript
 (function($){
 try{
 	var $textbox= $("input[type=text], textarea").not('[noBanglaText]');
@@ -61,8 +61,14 @@ noBanglaText='noBanglaText'
 ```
 
 যেমন, 
-বসানোর আগে: ```html<code language="html"><input type='text' id='1' /></code>```
-বসানোর পরে: ```html<input type='text' id='1' noBanglaText='noBanglaText' /></code>```
+বসানোর আগে: 
+```html
+<input type='text' id='1' /></code>
+```
+বসানোর পরে:
+```html
+<input type='text' id='1' noBanglaText='noBanglaText' />
+```
 
 #English
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
