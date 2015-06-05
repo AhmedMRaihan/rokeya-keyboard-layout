@@ -10,7 +10,7 @@
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/)
 * Wiki: [Tree/Wiki](https://github.com/MythicAngel/bangla-keyboard-layout/tree/wiki)
 * Demo: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
-* Logo: ![Here](https://github.com/MythicAngel/bangla-keyboard-layout/blob/gh-pages/flag_map_of_bangladesh.png)
+* Logo: [Here](https://github.com/MythicAngel/bangla-keyboard-layout/blob/gh-pages/flag_map_of_bangladesh.png)
 
 #License
 * See [license](LICENSE.md)
