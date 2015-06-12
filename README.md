@@ -29,7 +29,7 @@
 ##সাইট অ্যাডমিনদের জন্যে: ব্যবহার নির্দেশিকা
 প্রথমে স্ক্রিপ্টটি লোড করে নিন সাইটের HEAD এলিমেন্ট এর ভিতরে কোন এক জায়গায়:
 ```javascript
-<script type="text/javascript" src="//rokeya-keyboard-layout.mythicangel.com/rokeya_layout-4.4.73.js"></script>
+<script type="text/javascript" src="rokeya_layout-4.4.73.js"></script>
 ```
 এরপরে যেই টেক্সটবক্সে রোকেয়া লেআউটের উপস্থিতি দেখতে চান, সেটার আইডি দিয়ে কল করুন:
 ```javascript
@@ -67,6 +67,9 @@ noBanglaText='noBanglaText'
 <input type='text' id='1' noBanglaText='noBanglaText' />
 ```
 
+## বিশেষ দ্রষ্টব্য
+এই ব্রাঞ্চটি শুধুমাত্র ডেভেলপমেন্ট এর জন্যে ব্যবহৃত হচ্ছে। Release ব্রাঞ্চের জন্যে [এখানে](http://rokeya-keyboard-layout.mythicangel.com/#online-demo) ক্লিক করুন
+
 #English
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
 
@@ -77,5 +80,5 @@ Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com/)
 #Links
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/)
 * Wiki: [Tree/Wiki](https://github.com/MythicAngel/bangla-keyboard-layout/tree/wiki)
-* Demo: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
+* Release branch: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 * Logo: [Here](https://github.com/MythicAngel/bangla-keyboard-layout/blob/gh-pages/flag_map_of_bangladesh.png)
