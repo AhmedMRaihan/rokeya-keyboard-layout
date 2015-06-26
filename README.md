@@ -75,7 +75,7 @@ This keyboard layout is based on QWERTY based English keyboard. The layout and t
 
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
 
-Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com/)
+Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 
 #Links
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/)
