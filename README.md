@@ -67,8 +67,6 @@ noBanglaText='noBanglaText'
 <input type='text' id='1' noBanglaText='noBanglaText' />
 ```
 
-## বিশেষ দ্রষ্টব্য
-এই ব্রাঞ্চটি শুধুমাত্র ডেভেলপমেন্ট এর জন্যে ব্যবহৃত হচ্ছে। Release ব্রাঞ্চের জন্যে [এখানে](http://rokeya-keyboard-layout.mythicangel.com/#online-demo) ক্লিক করুন
 
 #English
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
@@ -77,8 +75,24 @@ This layout is developed keeping in mind that majority of bangladesh are accusto
 
 Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 
+# Supported Browsers
+1. Internet Explorer
+ * version-7+
+1. Mozilla Firefox
+ * version- 3.5+
+1. Google chrome
+ * version- 0.4.154.25+
+1. Opera
+ * version- 10.10+
+1. iOS
+ * 5+
+1. Android
+ * Not working properly due to a bug in GoogleChrome for Android, see [Issue 17](https://github.com/MythicAngel/bangla-keyboard-layout/issues/17)
+
+
 #Links
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/)
 * Wiki: [Tree/Wiki](https://github.com/MythicAngel/bangla-keyboard-layout/tree/wiki)
 * Release branch: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 * Logo: [Here](https://github.com/MythicAngel/bangla-keyboard-layout/blob/gh-pages/flag_map_of_bangladesh.png)
+
