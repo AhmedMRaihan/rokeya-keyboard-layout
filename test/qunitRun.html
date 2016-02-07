@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>QUnit Test Suite for Rokeya Keyboard Layout</title>  
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.20.0.css" type="text/css">
+	<script src="https://code.jquery.com/qunit/qunit-1.20.0.js"></script>
+	<script src="jQuery.2.2.0.js"></script>
+    <script type="text/javascript" data-cover src="../rokeya_layout-4.4.73.js"></script>
+</head>  
+<body>  	
+	<!-- Your project file goes here --> 	
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<textarea style="display:none" id="checkItOut" name="checkItOut"></textarea>
+  
+    <script>
+	function simulateKeyPress(character) {
+		jQuery.event.trigger({ type : 'keypress', which : character.charCodeAt(0) });
+	}
+
+	jQuery('body').keypress(function(e) {
+		console.log(e);
+	});
+
+	simulateKeyPress("e");
+	
+	QUnit.test( "Consonant and alphabet typing", function( assert ) {
+		new banglaLayout("checkItOut");
+		
+		var $textarea = jQuery("#checkItOut");
+		//$textarea.simulateKeyPress('k'); 
+		
+		assert.equal($textarea.val(), 'ক', "ক can be typed");
+	});
+    </script>
+	<!-- <script type='text/javascript' src='https://rawgit.com/alex-seville/blanket/v1.1.7/dist/qunit/blanket.min.js'></script> -->
+</body>  
+</html>  
