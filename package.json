@@ -1,0 +1,54 @@
+{
+  "name": "RokeyaKeyboardLayout",
+  "description": "This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.",
+  "version": "4.4.73",
+  "bugs": {
+    "web": "https://github.com/MythicAngel/rokeya-keyboard-layout/issues"
+  },
+  "keywords": [
+    "Bangla typing",
+    "Bangla Keyboard",
+    "Rokeya Layout"
+  ],
+  "homepage": "https://rokeya-keyboard-layout.mythicangel.com/",
+  "engines": {
+    "node": ">=0.10.3"
+  },
+  "author": [
+    {
+      "name": "Ahmed Mashfique Raihan",
+      "email": "",
+      "web": "http://www.mythicangel.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Shafiul Azom"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/MythicAngel/rokeya-keyboard-layout.git"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "dependencies": null,
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-jscs": "^2.7.0",
+	"grunt-contrib-qunit": "^0.4.0",
+	"grunt-ftp-push": "~0.4.4"
+  },
+  "scripts": {
+    "test": "grunt test01 --verbose"
+  }
+}

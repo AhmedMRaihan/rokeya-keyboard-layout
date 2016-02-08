@@ -1,37 +1,38 @@
-﻿/*
-version: 4.4.73
-author: seoul
-released as apache 2.0 license.
+/*
+RokeyaKeyboardLayout - v4.4.73 
+Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
 
-unicode values taken from this link: http://tlt.its.psu.edu/suggestions/international/bylanguage/bengalichart.html
-Keyboard.prototype.cursorPosition, Keyboard.prototype.writeFinalValue function(s) are taken from www
+This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. 
+Generated at: 2016-02-08
 */
 function banglaLayout(id) {
     var inputbox = document.getElementById(id);
     var keyboard = new Keyboard();
 
+	var returnComputeFn = function(keyEvent){
+		var oEvent = window.event || keyEvent;
+		var oSource = oEvent.srcElement || oEvent.target;
+		var returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
+		return returnValue;	
+	};
     try {
         inputbox.onkeydown = function (keyEvent) {
             if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent))
                 return true;
-
-            var oEvent = window.event || keyEvent;
-            var oSource = oEvent.srcElement || oEvent.target;
-            this.returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
-            return this.returnValue;
-        }
+				
+			this.returnValue = returnComputeFn(keyEvent);
+			return this.returnValue;
+        };
         inputbox.onkeypress = function (keyEvent) {
             if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
-                var oEvent = window.event || keyEvent;
-                var oSource = oEvent.srcElement || oEvent.target;
-                this.returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
+                this.returnValue = returnComputeFn(keyEvent);
             }
             return this.returnValue;
-        }
+        };
         inputbox.onkeyup = function (keyEvent) {
             if (!!keyEvent)
                 keyEvent.preventDefault();
-        }
+        };
     } catch (e) {
         if (console)
             console.log(e.message);
@@ -39,17 +40,11 @@ function banglaLayout(id) {
     this.sourceField = id;
     return this;
 }
-banglaLayout.prototype.main = function (keyEvent, keyboard) {
-    var oEvent = window.event || keyEvent;
-    var oSource = oEvent.srcElement || oEvent.target;
-    return keyboard.handleKeyboardInput(oEvent, oSource);
-}
 banglaLayout.prototype.loadHelpTooltip = function () {
     try {
         if (!jQuery)
             return this;
 
-        var $sourceField = document.getElementById(this.sourceField);
         var toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
 
         var $parent = jQuery("#" + this.sourceField);
@@ -58,7 +53,7 @@ banglaLayout.prototype.loadHelpTooltip = function () {
         var top = $parent.position().top;
         top += $parent.height() < 5 ? 0 : 5;
 
-        var $tooltipDiv = document.createElement('abbr');
+        var $tooltipDiv = document.createElement("abbr");
         $tooltipDiv.setAttribute("style", "width: 10px; position:absolute; cursor:help; color:red; left:" + (left) + "px;top:" + (top) + "px;");
         $tooltipDiv.innerHTML = "?";
         $tooltipDiv.setAttribute("title", toolTipText);
@@ -70,15 +65,12 @@ banglaLayout.prototype.loadHelpTooltip = function () {
         if (console)
             console.log(e.message);
     }
-}
-
-
+};
 function Keyboard() {
     this.global = new Letter_Information();
 }
 
 Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
-
     this.textInputSource = oSource;
     this.oEvent = oEvent;
 
@@ -87,9 +79,10 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     var keyState = this.selectKeyPressed();
 
     // <summary>Decision; Should script continue or not</summary>
-    if (!!keyState.iShouldDealIt == false) return true;
+    if (keyState.iShouldDealIt === false) 
+		return true;
 
-    if (this.global.currentLanguage == "en_US") {
+    if (this.global.currentLanguage === "en_US") {
         return true;
     }
 
@@ -99,10 +92,11 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
         prev = text.charAt(keyState.placeTo - 1);
         prevCharacterType = this.global.getFollower(prev, 1);
     }
-    else if (keyState.placeTo == 1) {
+    else if (keyState.placeTo === 1) {
         prev = text.charAt(keyState.placeTo - 1);
         prevCharacterType = this.global.getFollower(prev, 1);
     }
+	
     if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
         nextNext = text.charAt(keyState.placeTo + 1);
         next = text.charAt(keyState.placeTo + 0);
@@ -122,14 +116,14 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
         if (prev == "\u09CD" && keyState.unicodeKey == "\u09CD") {
             keyState.unicodeKey = "\u002B";
         }
-            // if hasanta and h then force end at hasanta
-        else if (prev == "\u09CD" && keyState.unicodeKey == "") {
+        // if hasanta and h then force end at hasanta
+        else if (prev == "\u09CD" && keyState.unicodeKey === "") {
             keyState.unicodeKey = "\u09CD" + this.global.ZWNJ;
         }
-            // other
-        else if (prevCharacterType == 2)
+        // other
+        else if (prevCharacterType === 2)
             keyState.unicodeKey = this.global.getFollower(prev, 2);
-        else if (prevCharacterType == 7)
+        else if (prevCharacterType === 7)
             keyState.unicodeKey = this.global.ZWNJ + this.global.getFollower(prev, 2);
         else
             keyState.unicodeKey = this.global.getFollower(prev, 2);
@@ -142,9 +136,9 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     }
 
     // rab => r za-fola
-    if (keyState.unicodeKey == "\u09cd\u09af" && prev == "\u09b0") {
+    if (keyState.unicodeKey === "\u09cd\u09af" && prev === "\u09b0") {
         // grand hotel spelling
-        if (keyState.position.start > 0 && this.global.getFollower(prevPrev, 1) == 4)
+        if (keyState.position.start > 0 && this.global.getFollower(prevPrev, 1) === 4)
             keyState.unicodeKey = "\u09cd" + "\u09af";
         else {
             keyState.position.start -= 1;
@@ -153,7 +147,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     }
 
     // same vowel pressed twice will cause a switch
-    if (prev == keyState.unicodeKey && (prevCharacterType == 2 || prevCharacterType == 7)) {
+    if (prev === keyState.unicodeKey && (prevCharacterType === 2 || prevCharacterType === 7)) {
         var temp = this.global.getSwitchedLetter(keyState.unicodeKey);
         // for "onamika" => no switch character because switching a character with same character insert nothing
         if (temp.length > 0) {
@@ -169,27 +163,26 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     }
 
     // fullstop button pressed twice will cause a dot ..
-    if (prev == "\u0964" && keyState.unicodeKey == "\u0964") {
+    if (prev === "\u0964" && keyState.unicodeKey === "\u0964") {
         keyState.unicodeKey = "\u002E";
         keyState.position.start -= 1;
     }
 
     // <summary>Backspace or Delete</summary>
     // prevPrev is hasanta
-    if (keyState.code == 8) {
+    if (keyState.code === 8) {
 
         // if end==start then selected text so cursor should not move; otherwise should
         keyState.position.start -= +(keyState.position.start == keyState.position.end);
 
-        if (prevPrev == "\u09CD" || prevPrev == this.global.ZWNJ)
+        if (prevPrev === "\u09CD" || prevPrev === this.global.ZWNJ)
             keyState.position.start -= 1;
 
         if (keyState.position.start < 0)
             keyState.position.start = 0;
     }
     // nextNext is hasanta
-    if (keyState.code == 46) {
-
+    if (keyState.code === 46) {
         // if end==start then selected text so cursor should not move; otherwise should
         keyState.position.end += +(keyState.position.start == keyState.position.end);
         keyState.position.end += nextNext == "\u09CD" ? 1 : 0;
@@ -201,13 +194,11 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     var finalText = firstPortion + keyState.unicodeKey + lastPortion;
     var caretPosition = keyState.position.start + keyState.unicodeKey.length;
 
-    if (!oSource)
-        return { text: finalText, caret: caretPosition, hookSuccessful: true };
-    // <summary>Write final data and update caret</summary>
+	// <summary>Write final data and update caret</summary>
     this.writeFinalValue(finalText, caretPosition);
 
     return false;
-}
+};
 // <summary>Select and return which key is pressed in iOS</summary>
 Keyboard.prototype.select_iOS_KeyPressed = function () {
     var code = this.oEvent.keyCode || this.oEvent.which;
@@ -224,16 +215,17 @@ Keyboard.prototype.select_iOS_KeyPressed = function () {
         unicodeKey = this.global.numberKeyMap[code - 48][0];
     }
 
-    var replaceLastChar = (unicodeKey == "" && code == 104);
+    var replaceLastChar = (unicodeKey === "" && code === 104);
     return {
         code: code,
         unicodeKey: unicodeKey,
-        iShouldDealIt: unicodeKey != "" || replaceLastChar,
+        iShouldDealIt: unicodeKey !== "" || replaceLastChar,
         placeTo: position.start,
         replaceLastChar: replaceLastChar,
         position: position
-    }
-}
+    };
+};
+
 // <summary>Select and return which key is pressed</summary>
 Keyboard.prototype.selectKeyPressed = function () {
     var iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false);
@@ -245,18 +237,18 @@ Keyboard.prototype.selectKeyPressed = function () {
     var position = this.cursorPosition();
 
     // delete or backspace or dot-button or plus-button key
-    if (code == 8 || code == 46) {
+    if (code === 8 || code === 46) {
         return {
             code: code,
             unicodeKey: "",
             iShouldDealIt: true,
             placeTo: position.start,
             position: position
-        }
+        };
     }
 
     // using ctrl+m or F9 button to language switched
-    if ((this.oEvent.ctrlKey && code == 77) || code == 120) {
+    if ((this.oEvent.ctrlKey && code === 77) || code === 120) {
         var _C = this.global.currentLanguage == "bn_BD" ? "en_US" : "bn_BD";
         this.global.currentLanguage = _C;
     }
@@ -265,7 +257,7 @@ Keyboard.prototype.selectKeyPressed = function () {
         return {
             code: code,
             iShouldDealIt: false
-        }
+        };
     }
 
     var unicodeKey = "";
@@ -273,11 +265,11 @@ Keyboard.prototype.selectKeyPressed = function () {
     if (code >= 65 && code <= 90) {
         unicodeKey = this.global.letterKeyMap[code - 65][+!!this.oEvent.shiftKey];
     }
-    else if (code >= 48 && code <= 57 && this.oEvent.shiftKey == false) {
+    else if (code >= 48 && code <= 57 && this.oEvent.shiftKey === false) {
         unicodeKey = this.global.numberKeyMap[code - 48][0];
     }
         // numpad numbers except opera
-    else if (!window.opera && code >= 96 && code <= 105 && this.oEvent.shiftKey == false)
+    else if (!window.opera && code >= 96 && code <= 105 && this.oEvent.shiftKey === false)
         unicodeKey = this.global.numberKeyMap[code - 96][0];
         // taka symbol
     else if (code == 52 && this.oEvent.shiftKey)
@@ -285,7 +277,7 @@ Keyboard.prototype.selectKeyPressed = function () {
 
         // full-stop from keyboard/numpad	
     else if ((code == 190 || code == 110) && !this.oEvent.shiftKey)
-        unicodeKey = '\u0964';
+        unicodeKey = "\u0964";
         // shift with plus-sign, replace with Q[0] or hasanta
     else if ((code == 107) && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
@@ -315,8 +307,17 @@ Keyboard.prototype.selectKeyPressed = function () {
         position: position, // { 1,8 }
         characterType: this.global.getFollower(unicodeKey, 1) // 1~7
     };
-}
-
+};
+Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
+	if(text.charAt(caretPosition) == "<" && text.length == caretPosition+4 && (e.keyCode == 8 || e.keyCode == 46) )
+		return true; // A delete is pressed at the end and tinymce itself will take care of it
+	if( (text === "" || (caretPosition >0 && text.charAt(caretPosition-1) === ">")) && (e.keyCode === 8 || e.keyCode === 46) )
+		return false; // Tinymce converts > to &lt; so it will never appear in text
+		
+    this.text = text;
+    this.caretPosition = caretPosition;
+    return this.handleKeyboardInput(e, null);
+};
 // <summary>Write finalText to the text/input box</summary>
 Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
 
@@ -375,31 +376,24 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
     this.textInputSource.scrollTop = scrollTop;
 
     // move caret
-    if (this.textInputSource.setSelectionRange) {
-        this.textInputSource.focus();
-        this.textInputSource.setSelectionRange(caretPosition, caretPosition);
-    }
-    else if (this.textInputSource.createTextRange) {
-
-
-        var range = this.textInputSource.createTextRange();
-        range.collapse(true);
-        range.moveEnd('character', caretPosition);
-        range.moveStart('character', caretPosition);
-        range.select();
-    }
-}
-
-Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
-	if(text.charAt(caretPosition) == '<' && text.length == caretPosition+4 && (e.keyCode == 8 || e.keyCode == 46) )
-		return true; // A delete is pressed at the end and tinymce itself will take care of it
-	if( (text == '' || (caretPosition >0 && text.charAt(caretPosition-1) == '>')) && (e.keyCode == 8 || e.keyCode == 46) )
-		return false; // Tinymce converts > to &lt; so it will never appear in text
-		
-    this.text = text;
-    this.caretPosition = caretPosition;
-    return this.handleKeyboardInput(e, null);
-}
+	try{
+		if (this.textInputSource.setSelectionRange) {
+			this.textInputSource.focus();
+			this.textInputSource.setSelectionRange(caretPosition, caretPosition);
+		}
+		else if (this.textInputSource.createTextRange) {
+			var range = this.textInputSource.createTextRange();
+			range.collapse(true);
+			range.moveEnd("character", caretPosition);
+			range.moveStart("character", caretPosition);
+			range.select();
+		}
+	}catch(e) {
+		if(console) {
+			console.log(e);
+		}
+	}
+};
 
 Keyboard.prototype.cursorPosition = function () {
     if (!!this.caretPosition)
@@ -410,8 +404,7 @@ Keyboard.prototype.cursorPosition = function () {
 
     //var textarea = document.getElementById("myTextArea");
     var start = 0, end = 0;
-    if (typeof this.textInputSource.selectionStart == "number"
-        && typeof this.textInputSource.selectionEnd == "number") {
+    if (typeof this.textInputSource.selectionStart == "number" && typeof this.textInputSource.selectionEnd == "number") {
         // Non-IE browsers and IE 9
         start = this.textInputSource.selectionStart;
         end = this.textInputSource.selectionEnd;
@@ -459,11 +452,11 @@ Keyboard.prototype.cursorPosition = function () {
             // a \r\n from the end.
             do {
                 if (!before_finished) {
-                    if (before_range.compareEndPoints("StartToEnd", before_range) == 0) {
+                    if (before_range.compareEndPoints("StartToEnd", before_range) === 0) {
                         before_finished = true;
                     } else {
-                        before_range.moveEnd("character", -1)
-                        if (before_range.text == before_text) {
+                        before_range.moveEnd("character", -1);
+                        if (before_range.text === before_text) {
                             untrimmed_before_text += "\r\n";
                         } else {
                             before_finished = true;
@@ -471,11 +464,11 @@ Keyboard.prototype.cursorPosition = function () {
                     }
                 }
                 if (!selection_finished) {
-                    if (selection_range.compareEndPoints("StartToEnd", selection_range) == 0) {
+                    if (selection_range.compareEndPoints("StartToEnd", selection_range) === 0) {
                         selection_finished = true;
                     } else {
-                        selection_range.moveEnd("character", -1)
-                        if (selection_range.text == selection_text) {
+                        selection_range.moveEnd("character", -1);
+                        if (selection_range.text === selection_text) {
                             untrimmed_selection_text += "\r\n";
                         } else {
                             selection_finished = true;
@@ -483,10 +476,10 @@ Keyboard.prototype.cursorPosition = function () {
                     }
                 }
                 if (!after_finished) {
-                    if (after_range.compareEndPoints("StartToEnd", after_range) == 0) {
+                    if (after_range.compareEndPoints("StartToEnd", after_range) === 0) {
                         after_finished = true;
                     } else {
-                        after_range.moveEnd("character", -1)
+                        after_range.moveEnd("character", -1);
                         if (after_range.text == after_text) {
                             untrimmed_after_text += "\r\n";
                         } else {
@@ -506,8 +499,8 @@ Keyboard.prototype.cursorPosition = function () {
             }
             // ** END Untrimmed success test
 
-            var start = untrimmed_before_text.length;
-            var end = start + selection_range.text.length;
+            start = untrimmed_before_text.length;
+            end = start + selection_range.text.length;
             if (end != start)
                 end += start - end;
             //alert(start+" && "+end);
@@ -541,10 +534,8 @@ Keyboard.prototype.cursorPosition = function () {
     return {
         start: start,
         end: end
-    }
-}
-
-/**************** Global variable */
+    };
+};
 // <summary>Letter Information Class</summary>
 function Letter_Information() {
     this.currentLanguage = "bn_BD";
@@ -605,7 +596,7 @@ Letter_Information.prototype.getSwitchedLetter = function (inputValue) {
         }
     }
     return "";
-}
+};
 /* <summary>
 format:  bengali letter, type, follower
 Types of letters in bd =
@@ -638,4 +629,4 @@ Letter_Information.prototype.getFollower = function (inputValue, propertyNo) {
     }
 
     return "";
-}
+};

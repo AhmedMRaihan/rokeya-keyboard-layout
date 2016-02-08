@@ -1,16 +1,16 @@
 <?php
 /*
 Plugin Name: BUETian.com Input Handler for Rokeya layout
-Plugin URI: http://code.google.com/p/bangla-keyboard-layout/
+Plugin URI: https://github.com/MythicAngel/rokeya-keyboard-layout/
 Description: Add input button in admin panel new post writing and convert all text inputbox to accept bangla input
 Author: seoul
-Version: 2.0
+Version: 3.0.0
 */
 function ADD_BN_BUTTON() {
 ?>
 
 <script type="text/javascript" src="<?PHP
-	echo "https://rawgit.com/MythicAngel/bangla-keyboard-layout/master/rokeya_layout-4.4.73.js";
+	echo "https://rawgit.com/MythicAngel/rokeya-keyboard-layout/master/rokeya_layout-4.4.73.js";
 ?>"></script>
 
 <script type="text/javascript">
