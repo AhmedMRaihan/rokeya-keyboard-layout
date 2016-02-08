@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 		concat: {
 			options: {
 				stripBanners: true,
-				banner: '/*<%= pkg.name %> - v<%= pkg.version %> \nHomepage: <%= pkg.homepage %> \n\n<%= pkg.description %> \nGenerated at: <%= grunt.template.today("yyyy-mm-dd") %>*/\n',
+				banner: '/*\n<%= pkg.name %> - v<%= pkg.version %> \nHomepage: <%= pkg.homepage %> \n\n<%= pkg.description %> \nGenerated at: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
 			},
 			dist: {
 				src: ['src/*.js'],
@@ -37,10 +37,10 @@ module.exports = function(grunt) {
 			options: {
 				timeout: 30000,
 				coverage: {
-					src:["src/<%= pkg.name %>.js"],
+					src:["rokeya_layout-<%= pkg.version %>.js"],
 					instrumentedFiles: "temp/",
-					htmlReport: "build/report/coverage",
-					lcovReport: "build/report/lcov",
+					htmlReport: "build/coverage",
+					lcovReport: "build/lcov",
 					linesThresholdPct: 0
 				}
 			},
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: '.',
 				src: [
-					"build/report/coverage/*", "build/report/coverage/**/*"
+					"build/coverage/*", "build/report/coverage/**/*"
 				]
 			}
 		}
@@ -68,11 +68,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	//grunt.loadNpmTasks("grunt-qunit-istanbul");
-	//grunt.loadNpmTasks('grunt-ftp-push');
+	grunt.loadNpmTasks("grunt-qunit-istanbul");
+	grunt.loadNpmTasks('grunt-ftp-push');
 
 	// run tasks
-	grunt.registerTask('testIdentifier00', ['jshint', 'qunit']);
-	grunt.registerTask('test01', ['jscs', 'jshint', 'concat']);
+	grunt.registerTask('test01', ['jscs', 'jshint', 'concat', 'qunit']);
 	grunt.registerTask('ftpDeploy00', ['ftp_push']);
 };

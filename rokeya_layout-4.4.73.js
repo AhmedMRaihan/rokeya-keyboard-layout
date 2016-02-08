@@ -1,8 +1,10 @@
-/*RokeyaKeyboardLayout - v4.4.73 
+/*
+RokeyaKeyboardLayout - v4.4.73 
 Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
 
 This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. 
-Generated at: 2016-02-07*/
+Generated at: 2016-02-08
+*/
 function banglaLayout(id) {
     var inputbox = document.getElementById(id);
     var keyboard = new Keyboard();
@@ -374,19 +376,23 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
     this.textInputSource.scrollTop = scrollTop;
 
     // move caret
-    if (this.textInputSource.setSelectionRange) {
-        this.textInputSource.focus();
-        this.textInputSource.setSelectionRange(caretPosition, caretPosition);
-    }
-    else if (this.textInputSource.createTextRange) {
-
-
-        var range = this.textInputSource.createTextRange();
-        range.collapse(true);
-        range.moveEnd("character", caretPosition);
-        range.moveStart("character", caretPosition);
-        range.select();
-    }
+	try{
+		if (this.textInputSource.setSelectionRange) {
+			this.textInputSource.focus();
+			this.textInputSource.setSelectionRange(caretPosition, caretPosition);
+		}
+		else if (this.textInputSource.createTextRange) {
+			var range = this.textInputSource.createTextRange();
+			range.collapse(true);
+			range.moveEnd("character", caretPosition);
+			range.moveStart("character", caretPosition);
+			range.select();
+		}
+	}catch(e) {
+		if(console) {
+			console.log(e);
+		}
+	}
 };
 
 Keyboard.prototype.cursorPosition = function () {

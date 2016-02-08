@@ -56,19 +56,23 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
     this.textInputSource.scrollTop = scrollTop;
 
     // move caret
-    if (this.textInputSource.setSelectionRange) {
-        this.textInputSource.focus();
-        this.textInputSource.setSelectionRange(caretPosition, caretPosition);
-    }
-    else if (this.textInputSource.createTextRange) {
-
-
-        var range = this.textInputSource.createTextRange();
-        range.collapse(true);
-        range.moveEnd("character", caretPosition);
-        range.moveStart("character", caretPosition);
-        range.select();
-    }
+	try{
+		if (this.textInputSource.setSelectionRange) {
+			this.textInputSource.focus();
+			this.textInputSource.setSelectionRange(caretPosition, caretPosition);
+		}
+		else if (this.textInputSource.createTextRange) {
+			var range = this.textInputSource.createTextRange();
+			range.collapse(true);
+			range.moveEnd("character", caretPosition);
+			range.moveStart("character", caretPosition);
+			range.select();
+		}
+	}catch(e) {
+		if(console) {
+			console.log(e);
+		}
+	}
 };
 
 Keyboard.prototype.cursorPosition = function () {
