@@ -26,27 +26,23 @@
       "name": "Shafiul Azom"
     }
   ],
-  "repositories": [
-    {
+  "repository": {
       "type": "git",
       "url": "https://github.com/MythicAngel/rokeya-keyboard-layout.git"
-    }
-  ],
-  "licenses": [
-    {
+  },
+  "license": {
       "type": "Apache-2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
-  ],
+   },
   "dependencies": null,
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "~0.5.0",
+    "grunt-ftp-push": "~0.4.4",
     "grunt-jscs": "^2.7.0",
-    "grunt-qunit-istanbul": "^0.4.0",
-    "grunt-ftp-push": "~0.4.4"
+    "grunt-qunit-istanbul": "^0.4.0"
   },
   "scripts": {
     "test": "grunt test01 --verbose"

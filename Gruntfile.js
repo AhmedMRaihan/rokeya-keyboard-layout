@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 		},
 		qunit: {
 			options: {
-				timeout: 30000,
+				timeout: 60000,
 				coverage: {
 					src:["rokeya_layout-<%= pkg.version %>.js"],
 					instrumentedFiles: "temp/",

@@ -16,34 +16,36 @@
 	</div>
 	
     <script>
-	QUnit.test( "Consonant and alphabet typing", function( assert ) {
-		var $textarea = $("#checkItOut");
-		var pseudoKeyboard = new Keyboard();
-		
-		var event = $.Event("keypress");
-		event.keyCode = 65;
-		event.which = 65;
-		
-		var expectedString = "", msgOnSuccess = "";
-		
-		$textarea.on('keypress', function(keyEvent){
-			var oEvent = window.event || keyEvent;
-			var oSource = oEvent.srcElement || oEvent.target;
-			pseudoKeyboard.handleKeyboardInput(oEvent, oSource);
+	(function($){
+		QUnit.test( "Consonant and alphabet typing", function( assert ) {
+			var $textarea = $("#checkItOut");
+			var pseudoKeyboard = new Keyboard();
+			
+			var event = $.Event("keypress");
+			event.keyCode = 65;
+			event.which = 65;
+			
+			var expectedString = "", msgOnSuccess = "";
+			
+			$textarea.on('keypress', function(keyEvent){
+				var oEvent = window.event || keyEvent;
+				var oSource = oEvent.srcElement || oEvent.target;
+				pseudoKeyboard.handleKeyboardInput(oEvent, oSource);
 
-			assert.equal($textarea.val(), expectedString, msgOnSuccess);			
+				assert.equal($textarea.val(), expectedString, msgOnSuccess);			
+			});
+			
+			expectedString = 'আ';
+			msgOnSuccess = "আ can be typed";
+			$textarea.trigger(event);
+
+			expectedString = 'আক';
+			msgOnSuccess = "ক can be typed";		
+			event.keyCode = 75;
+			event.which = 75;
+			$textarea.trigger(event);
 		});
-		
-		expectedString = 'আ';
-		msgOnSuccess = "আ can be typed";
-		$textarea.trigger(event);
-
-		expectedString = 'আক';
-		msgOnSuccess = "ক can be typed";		
-		event.keyCode = 75;
-		event.which = 75;
-		$textarea.trigger(event);
-	});
+	})(jQuery);
     </script>
 	<!-- <script type='text/javascript' src='https://rawgit.com/alex-seville/blanket/v1.1.7/dist/qunit/blanket.min.js'></script> -->
 </body>  
