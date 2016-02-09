@@ -1,10 +1,7 @@
-/*
-RokeyaKeyboardLayout - v4.4.73 
+/* RokeyaKeyboardLayout - v4.4.73 
 Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
 
-This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. 
-Generated at: 2016-02-08
-*/
+This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. */
 function banglaLayout(id) {
     var inputbox = document.getElementById(id);
     var keyboard = new Keyboard();

@@ -3,8 +3,6 @@ node_js:
   - 'stable'
 before_install:
   - npm install grunt-cli -g
-after_success:
-  grunt ftpDeploy00
 
  # whitelist
 branches:

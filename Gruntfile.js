@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 		concat: {
 			options: {
 				stripBanners: true,
-				banner: '/*\n<%= pkg.name %> - v<%= pkg.version %> \nHomepage: <%= pkg.homepage %> \n\n<%= pkg.description %> \nGenerated at: <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n',
+				banner: '/* <%= pkg.name %> - v<%= pkg.version %> \nHomepage: <%= pkg.homepage %> \n\n<%= pkg.description %> */\n',
 			},
 			dist: {
 				src: ['src/*.js'],
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 		},
 		qunit: {
 			options: {
-				timeout: 60000,
+				timeout: 30000,
 				coverage: {
 					src:["rokeya_layout-<%= pkg.version %>.js"],
 					instrumentedFiles: "temp/",
@@ -72,6 +72,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-ftp-push');
 
 	// run tasks
-	grunt.registerTask('test01', ['jscs', 'jshint', 'concat', 'qunit']);
+	grunt.registerTask('test01', ['jscs', 'jshint', 'concat']);
 	grunt.registerTask('ftpDeploy00', ['ftp_push']);
 };
