@@ -72,6 +72,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-ftp-push');
 
 	// run tasks
-	grunt.registerTask('test01', ['jscs', 'jshint', 'concat']);
+	grunt.registerTask('test01', ['jscs', 'jshint', 'concat','qunit']);
 	grunt.registerTask('ftpDeploy00', ['ftp_push']);
 };

@@ -46,6 +46,6 @@
 	"testee": "~0.2.5"
   },
   "scripts": {
-    "test": "testee test/qunitRun.html --browsers firefox"
+    "test": "grunt test01 --verbose"
   }
 }
