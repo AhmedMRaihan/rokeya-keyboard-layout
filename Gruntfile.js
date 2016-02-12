@@ -34,6 +34,15 @@ module.exports = function(grunt) {
 			}
 		},
 		qunit: {
+      all: ["test/*.html"],
+      options: {
+        timeout: 3000,
+        coverage: {
+          src: ["rokeya_layout-<%= pkg.version %>.js"]
+        }
+      }
+    },
+		/*qunit: {
 			options: {
 				timeout: 30000,
 				coverage: {
@@ -45,7 +54,7 @@ module.exports = function(grunt) {
 				}
 			},
 			files: ['test/*.html']
-		},
+		},*/
 		ftp_push: {
 			options: {
 				username: process.env.ftpUser,
@@ -68,7 +77,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks("grunt-qunit-istanbul");
+	grunt.loadNpmTasks('grunt-contrib-qunit');
 	grunt.loadNpmTasks('grunt-ftp-push');
 
 	// run tasks
