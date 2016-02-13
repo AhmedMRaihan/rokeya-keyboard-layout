@@ -48,5 +48,5 @@ Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/
 * Google play: [Here](https://play.google.com/store/apps/details?id=org.buetian.rokeya_layout_webapp)
 * iOS: Supported by default, pls add a shortcut in your homepage for the official page
 * Wiki: [Wiki](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
-* Logo: [Here](https://github.com/MythicAngel/rokeya-keyboard-layout/blob/gh-pages/flag_map_of_bangladesh.png)
+* Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
 
