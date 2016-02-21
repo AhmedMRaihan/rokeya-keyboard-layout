@@ -30,19 +30,14 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: ['src/*.js'],
-				dest: 'rokeya_layout-<%= pkg.version %>.js',
+				dest: 'rokeya_layout-<%= pkg.version %>.js'
+			},
+			liveDemoUsage:{
+				src: ['src/*.js'],
+				dest: 'index.html/rokeya_layout-<%= pkg.version %>.js'
 			}
 		},
 		qunit: {
-      all: ["test/*.html"],
-      options: {
-        timeout: 3000,
-        coverage: {
-          src: ["rokeya_layout-<%= pkg.version %>.js"]
-        }
-      }
-    },
-		/*qunit: {
 			options: {
 				timeout: 30000,
 				coverage: {
@@ -54,7 +49,7 @@ module.exports = function(grunt) {
 				}
 			},
 			files: ['test/*.html']
-		},*/
+		},
 		ftp_push: {
 			options: {
 				username: process.env.ftpUser,
