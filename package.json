@@ -42,9 +42,9 @@
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-ftp-push": "~0.4.4",
     "grunt-jscs": "^2.7.0",
-    "grunt-contrib-qunit": "^0.5.2"
+    "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "grunt test01 --verbose"
+    "test": "grunt build01 --verbose"
   }
 }

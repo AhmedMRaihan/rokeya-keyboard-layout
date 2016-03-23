@@ -1,12 +1,18 @@
 language: node_js
 node_js:
   - 'stable'
-before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
+addons:
+  firefox: "43.0"
+before_script:
+  - npm install -g testee
+  - npm install grunt-cli -g
+  - echo "Starting framebuffer"
   - sh -e /etc/init.d/xvfb start
-  - sleep 3
-  - npm install -g grunt-cli
+  - export DISPLAY=:99.0
+  - echo "Extracting firefox and setting PATH variable..."
+  - tar -xjf /tmp/firefox-43.0.tar.bz2 --directory /tmp
+  - export PATH="/tmp/firefox:$PATH"
+  - echo "Using firefox version `firefox --version`"
   
  # whitelist
 branches:

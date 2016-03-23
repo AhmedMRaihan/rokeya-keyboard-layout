@@ -37,18 +37,20 @@ module.exports = function(grunt) {
 				dest: 'index.html/rokeya_layout-<%= pkg.version %>.js'
 			}
 		},
-		qunit: {
+		testee: {
 			options: {
-				timeout: 30000,
-				coverage: {
-					src:["rokeya_layout-<%= pkg.version %>.js"],
-					instrumentedFiles: "temp/",
-					htmlReport: "build/coverage",
-					lcovReport: "build/lcov",
-					linesThresholdPct: 0
-				}
+				reporter: 'Spec'
 			},
-			files: ['test/*.html']
+			coverage: {
+				options: {
+				  browsers: ['firefox'],
+				  coverage: {
+					dir: 'build/coverage/',
+					reporters: ['text','html']
+				  }
+				},
+				src: ['test/*.html']
+			}
 		},
 		ftp_push: {
 			options: {
@@ -72,10 +74,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-jscs");
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-qunit');
+	grunt.loadNpmTasks('testee');
 	grunt.loadNpmTasks('grunt-ftp-push');
 
 	// run tasks
-	grunt.registerTask('test01', ['jscs', 'jshint', 'concat','qunit']);
+	grunt.registerTask('build01', ['jscs', 'jshint', 'concat']);
+	grunt.registerTask('test01', ['testee']);
 	grunt.registerTask('ftpDeploy00', ['ftp_push']);
 };
