@@ -45,6 +45,6 @@
     "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "grunt build01 --verbose && grunt test01 --verbose"
+    "test": "grunt build01 --verbose && DEBUG=testee:* testee --browsers firefox test/qunitRun.html"
   }
 }
