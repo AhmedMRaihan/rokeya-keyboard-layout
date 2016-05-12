@@ -1,5 +1,5 @@
 {
-  "name": "RokeyaKeyboardLayout",
+  "name": "rokeya-keyboard-layout",
   "description": "This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.",
   "version": "4.4.73",
   "bugs": {
@@ -17,7 +17,7 @@
   "author": [
     {
       "name": "Ahmed Mashfique Raihan",
-      "email": "",
+      "email": "contact@buetian.org",
       "web": "http://www.mythicangel.com"
     }
   ],
@@ -45,6 +45,6 @@
     "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "grunt build01 --verbose && DEBUG=testee:* testee --browsers firefox test/qunitRun.html --coverage"
+    "test": "grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
   }
 }
