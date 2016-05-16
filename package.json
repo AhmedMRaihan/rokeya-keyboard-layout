@@ -14,13 +14,12 @@
   "engines": {
     "node": ">=0.10.3"
   },
-  "author": [
+  "author":
     {
       "name": "Ahmed Mashfique Raihan",
       "email": "contact@buetian.org",
       "web": "http://www.mythicangel.com"
-    }
-  ],
+    },
   "contributors": [
     {
       "name": "Shafiul Azom"
@@ -45,6 +44,6 @@
     "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
+    "test": "DEBUG=*:* grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
   }
 }

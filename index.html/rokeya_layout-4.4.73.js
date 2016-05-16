@@ -1,4 +1,4 @@
-/* RokeyaKeyboardLayout - v4.4.73 
+/* rokeya-keyboard-layout - v4.4.73 
 Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
 
 This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. */
