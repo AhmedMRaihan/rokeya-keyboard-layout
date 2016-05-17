@@ -2,15 +2,23 @@
 unicode values taken from this link: http://tlt.its.psu.edu/suggestions/international/bylanguage/bengalichart.html
 Keyboard.prototype.cursorPosition, Keyboard.prototype.writeFinalValue function(s) are taken from www
 */
-function banglaLayout(id) {
+function banglaLayout(id, keyEvents) {
     var inputbox = document.getElementById(id);
-    var keyboard = new Keyboard();
-
+    this.keyboard = new Keyboard();
+    
+    this.beforeKeyEvent = keyEvents.beforeKeyEvent || this.beforeKeyEvent;
+    this.afterKeyEvent = keyEvents.afterKeyEvent || this.afterKeyEvent;
+    
+    var root = this;
 	var returnComputeFn = function(keyEvent){
 		var oEvent = window.event || keyEvent;
 		var oSource = oEvent.srcElement || oEvent.target;
-		var returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
-		return returnValue;	
+        
+        root.beforeKeyEvent();
+		var returnValue = root.keyboard.handleKeyboardInput(oEvent, oSource);
+        root.afterKeyEvent();
+		
+        return returnValue;	
 	};
     try {
         inputbox.onkeydown = function (keyEvent) {
@@ -37,3 +45,10 @@ function banglaLayout(id) {
     this.sourceField = id;
     return this;
 }
+banglaLayout.prototype.keyboard = null;
+banglaLayout.prototype.beforeKeyEvent = function (params){
+    
+};
+banglaLayout.prototype.afterKeyEvent = function (params) {
+    
+};

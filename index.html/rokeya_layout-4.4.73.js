@@ -2,15 +2,23 @@
 Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
 
 This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. */
-function banglaLayout(id) {
+function banglaLayout(id, keyEvents) {
     var inputbox = document.getElementById(id);
-    var keyboard = new Keyboard();
-
+    this.keyboard = new Keyboard();
+    
+    this.beforeKeyEvent = keyEvents.beforeKeyEvent || this.beforeKeyEvent;
+    this.afterKeyEvent = keyEvents.afterKeyEvent || this.afterKeyEvent;
+    
+    var root = this;
 	var returnComputeFn = function(keyEvent){
 		var oEvent = window.event || keyEvent;
 		var oSource = oEvent.srcElement || oEvent.target;
-		var returnValue = keyboard.handleKeyboardInput(oEvent, oSource);
-		return returnValue;	
+        
+        root.beforeKeyEvent();
+		var returnValue = root.keyboard.handleKeyboardInput(oEvent, oSource);
+        root.afterKeyEvent();
+		
+        return returnValue;	
 	};
     try {
         inputbox.onkeydown = function (keyEvent) {
@@ -37,6 +45,13 @@ function banglaLayout(id) {
     this.sourceField = id;
     return this;
 }
+banglaLayout.prototype.keyboard = null;
+banglaLayout.prototype.beforeKeyEvent = function (params){
+    
+};
+banglaLayout.prototype.afterKeyEvent = function (params) {
+    
+};
 banglaLayout.prototype.loadHelpTooltip = function () {
     try {
         if (!jQuery)

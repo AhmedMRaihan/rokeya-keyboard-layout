@@ -49,4 +49,3 @@ Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/
 * iOS: Supported by default, pls add a shortcut in your homepage for the official page
 * Wiki: [Wiki](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
 * Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
-
