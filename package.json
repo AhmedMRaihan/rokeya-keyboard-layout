@@ -29,21 +29,17 @@
       "type": "git",
       "url": "https://github.com/MythicAngel/rokeya-keyboard-layout.git"
   },
-  "license": {
-      "type": "Apache-2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0"
-   },
-  "dependencies": null,
+  "license": "Apache-2.0",
+  "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "~0.5.0",
-    "grunt-ftp-push": "~0.4.4",
     "grunt-jscs": "^2.7.0",
     "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "DEBUG=*:* grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
+    "test": "grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
   }
 }

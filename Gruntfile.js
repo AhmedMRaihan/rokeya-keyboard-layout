@@ -52,22 +52,6 @@ module.exports = function(grunt) {
 				},
 				src: ['test/*.html']
 			}
-		},
-		ftp_push: {
-			options: {
-				username: process.env.ftpUser,
-				password: process.env.ftpPassword,
-				host: process.env.ftpHost,
-				dest: "seoul.freehostia.com/BanglaDateJS",
-				port: 21
-			},
-			files: {
-				expand: true,
-				cwd: '.',
-				src: [
-					"build/coverage/*", "build/report/coverage/**/*"
-				]
-			}
 		}
 	});
 
@@ -76,10 +60,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('testee');
-	grunt.loadNpmTasks('grunt-ftp-push');
-
+	
 	// run tasks
 	grunt.registerTask('build01', ['jscs', 'jshint', 'concat']);
 	grunt.registerTask('test01', ['testee']);
-	grunt.registerTask('ftpDeploy00', ['ftp_push']);
 };
