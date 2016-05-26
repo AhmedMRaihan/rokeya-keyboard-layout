@@ -14,20 +14,19 @@
   "engines": {
     "node": ">=0.10.3"
   },
-  "author":
-    {
-      "name": "Ahmed Mashfique Raihan",
-      "email": "contact@buetian.org",
-      "web": "http://www.mythicangel.com"
-    },
+  "author": {
+    "name": "Ahmed Mashfique Raihan",
+    "email": "contact@buetian.org",
+    "web": "http://www.mythicangel.com"
+  },
   "contributors": [
     {
       "name": "Shafiul Azom"
     }
   ],
   "repository": {
-      "type": "git",
-      "url": "https://github.com/MythicAngel/rokeya-keyboard-layout.git"
+    "type": "git",
+    "url": "https://github.com/MythicAngel/rokeya-keyboard-layout.git"
   },
   "license": "Apache-2.0",
   "dependencies": {},
@@ -36,7 +35,7 @@
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "~0.5.0",
-    "grunt-jscs": "^2.7.0",
+    "grunt-eslint": "^18.1.0",
     "testee": "^0.2.5"
   },
   "scripts": {

@@ -1,16 +1,18 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// configure
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		jscs: {
-			src: 'src/*.js',
+		eslint: {
 			options: {
-				"validateQuoteMarks": { "mark": "\"", "escape": true },
-				"disallowMultipleLineBreaks": false,
-				"validateLineBreaks": false,
-				"requireCurlyBraces": false
-			}
+				rules: {
+					"semi": 2,
+					"no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
+					"eqeqeq": "error",
+					"quotes": ["error", "double"]
+				}
+			},
+			target: 'src/*.js'
 		},
 		jshint: {
 			options: {
@@ -33,7 +35,7 @@ module.exports = function(grunt) {
 				src: ['src/*.js'],
 				dest: 'rokeya_layout-<%= pkg.version %>.js'
 			},
-			liveDemoUsage:{
+			liveDemoUsage: {
 				src: ['src/*.js'],
 				dest: 'index.html/rokeya_layout-<%= pkg.version %>.js'
 			}
@@ -44,11 +46,11 @@ module.exports = function(grunt) {
 			},
 			coverage: {
 				options: {
-				  browsers: ['firefox'],
-				  coverage: {
-					dir: 'build/coverage/',
-					reporters: ['text','html']
-				  }
+					browsers: ['firefox'],
+					coverage: {
+						dir: 'build/coverage/',
+						reporters: ['text', 'html']
+					}
 				},
 				src: ['test/*.html']
 			}
@@ -56,12 +58,12 @@ module.exports = function(grunt) {
 	});
 
 	// include libraries
-	grunt.loadNpmTasks("grunt-jscs");
+	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('testee');
-	
+
 	// run tasks
-	grunt.registerTask('build01', ['jscs', 'jshint', 'concat']);
+	grunt.registerTask('build01', ['eslint', 'jshint', 'concat']);
 	grunt.registerTask('test01', ['testee']);
 };

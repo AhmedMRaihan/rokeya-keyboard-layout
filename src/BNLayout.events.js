@@ -46,9 +46,9 @@ function banglaLayout(id, keyEvents) {
     return this;
 }
 banglaLayout.prototype.keyboard = null;
-banglaLayout.prototype.beforeKeyEvent = function (params){
+banglaLayout.prototype.beforeKeyEvent = function (){
     
 };
-banglaLayout.prototype.afterKeyEvent = function (params) {
+banglaLayout.prototype.afterKeyEvent = function () {
     
 };

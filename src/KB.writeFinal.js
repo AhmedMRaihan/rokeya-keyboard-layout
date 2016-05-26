@@ -3,7 +3,7 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
 
     var scrollTop = this.textInputSource.scrollTop;
 
-    if (typeof this.textInputSource.selectionStart == "number" && typeof this.textInputSource.selectionEnd == "number") {
+    if (typeof this.textInputSource.selectionStart === "number" && typeof this.textInputSource.selectionEnd === "number") {
 
         // Non-IE browsers and IE 9
         this.textInputSource.value = finalText;
@@ -84,12 +84,12 @@ Keyboard.prototype.cursorPosition = function () {
 
     //var textarea = document.getElementById("myTextArea");
     var start = 0, end = 0;
-    if (typeof this.textInputSource.selectionStart == "number" && typeof this.textInputSource.selectionEnd == "number") {
+    if (typeof this.textInputSource.selectionStart === "number" && typeof this.textInputSource.selectionEnd === "number") {
         // Non-IE browsers and IE 9
         start = this.textInputSource.selectionStart;
         end = this.textInputSource.selectionEnd;
     }
-    else if (document.selection && document.selection.createRange && this.textInputSource.type == "textarea") {
+    else if (document.selection && document.selection.createRange && this.textInputSource.type === "textarea") {
         // For IE up to version 8
         var textarea = this.textInputSource;
         textarea.focus();
@@ -105,7 +105,7 @@ Keyboard.prototype.cursorPosition = function () {
 
         var selection_range = document.selection.createRange().duplicate();
 
-        if (selection_range.parentElement() == textarea && this.textInputSource.type == "textarea") {
+        if (selection_range.parentElement() === textarea && this.textInputSource.type === "textarea") {
             // Check that the selection is actually in our textarea
             // Create three ranges, one containing all the text before the selection,
             // one containing all the text in the selection (this already exists), and one containing all
@@ -160,7 +160,7 @@ Keyboard.prototype.cursorPosition = function () {
                         after_finished = true;
                     } else {
                         after_range.moveEnd("character", -1);
-                        if (after_range.text == after_text) {
+                        if (after_range.text === after_text) {
                             untrimmed_after_text += "\r\n";
                         } else {
                             after_finished = true;
@@ -170,18 +170,20 @@ Keyboard.prototype.cursorPosition = function () {
 
             } while ((!before_finished || !selection_finished || !after_finished));
 
+            /* Start: untrimmed success text
             // Untrimmed success test to make sure our results match what is actually in the textarea
             // This can be removed once you're confident it's working correctly
             var untrimmed_text = untrimmed_before_text + untrimmed_selection_text + untrimmed_after_text;
+            
             var untrimmed_successful = false;
             if (textarea.value == untrimmed_text) {
                 untrimmed_successful = true;
             }
-            // ** END Untrimmed success test
+            END: Untrimmed success test */
 
             start = untrimmed_before_text.length;
             end = start + selection_range.text.length;
-            if (end != start)
+            if (end !== start)
                 end += start - end;
             //alert(start+" && "+end);
             //		return startPoint;

@@ -6,7 +6,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     this.textInputSource = oSource;
     this.oEvent = oEvent;
 
-    var prev = "", prevPrev = "", next = "", nextNext = "", text = !!oSource ? this.textInputSource.value : this.text, prevCharacterType = 0;
+    var prev = "", prevPrev = "", nextNext = "", text = !!oSource ? this.textInputSource.value : this.text, prevCharacterType = 0;
 
     var keyState = this.selectKeyPressed();
 
@@ -29,27 +29,27 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
         prevCharacterType = this.global.getFollower(prev, 1);
     }
 	
-    if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
+    /*if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
         nextNext = text.charAt(keyState.placeTo + 1);
         next = text.charAt(keyState.placeTo + 0);
     }
     else if (keyState.placeTo >= 0 && keyState.placeTo <= text.length - 1)
-        next = text.charAt(keyState.placeTo + 0);
+        next = text.charAt(keyState.placeTo + 0);*/
 
 
     /************************************** 
     unicodeKey change if necessary
     ***************************************/
     // consonant+h type input or hasanta pressed twice
-    keyState.replaceLastChar = keyState.replaceLastChar || (prev == "\u09CD" && keyState.unicodeKey == "\u09CD");
+    keyState.replaceLastChar = keyState.replaceLastChar || (prev === "\u09CD" && keyState.unicodeKey === "\u09CD");
 
     if (keyState.replaceLastChar) {
         // if hasanta then +
-        if (prev == "\u09CD" && keyState.unicodeKey == "\u09CD") {
+        if (prev === "\u09CD" && keyState.unicodeKey === "\u09CD") {
             keyState.unicodeKey = "\u002B";
         }
         // if hasanta and h then force end at hasanta
-        else if (prev == "\u09CD" && keyState.unicodeKey === "") {
+        else if (prev === "\u09CD" && keyState.unicodeKey === "") {
             keyState.unicodeKey = "\u09CD" + this.global.ZWNJ;
         }
         // other
@@ -90,7 +90,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
             keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
     }
         // change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
-    else if (keyState.characterType == 2 && !(prevCharacterType == 1 || prevCharacterType == 3)) {
+    else if (keyState.characterType === 2 && !(prevCharacterType === 1 || prevCharacterType === 3)) {
         keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
     }
 
@@ -105,7 +105,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     if (keyState.code === 8) {
 
         // if end==start then selected text so cursor should not move; otherwise should
-        keyState.position.start -= +(keyState.position.start == keyState.position.end);
+        keyState.position.start -= +(keyState.position.start === keyState.position.end);
 
         if (prevPrev === "\u09CD" || prevPrev === this.global.ZWNJ)
             keyState.position.start -= 1;
@@ -116,8 +116,8 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     // nextNext is hasanta
     if (keyState.code === 46) {
         // if end==start then selected text so cursor should not move; otherwise should
-        keyState.position.end += +(keyState.position.start == keyState.position.end);
-        keyState.position.end += nextNext == "\u09CD" ? 1 : 0;
+        keyState.position.end += +(keyState.position.start === keyState.position.end);
+        keyState.position.end += nextNext === "\u09CD" ? 1 : 0;
     }
 
     // <summary>Final data preparation</summary>

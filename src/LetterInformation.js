@@ -54,7 +54,7 @@ Letter_Information.prototype.switchedLetter =
 Letter_Information.prototype.getSwitchedLetter = function (inputValue) {
     var start = 0;
     for (; start < this.switchedLetter.length; ++start) {
-        if (this.switchedLetter[start][0] == inputValue) {
+        if (this.switchedLetter[start][0] === inputValue) {
             return this.switchedLetter[start][1];
         }
     }
@@ -83,7 +83,7 @@ Letter_Information.prototype.getFollower = function (inputValue, propertyNo) {
     var mid = Math.floor((end + start) / 2);
 
     for (; end >= start; mid = Math.floor((end + start) / 2)) {
-        if (this.letter_info[mid][0] == inputValue)
+        if (this.letter_info[mid][0] === inputValue)
             return this.letter_info[mid][propertyNo];
         if (this.letter_info[mid][0] > inputValue)
             end = mid - 1;

@@ -15,10 +15,11 @@ Keyboard.prototype.select_iOS_KeyPressed = function () {
     }
 
     var replaceLastChar = (unicodeKey === "" && code === 104);
+    iShouldDealIt = unicodeKey !== "" || replaceLastChar;
     return {
         code: code,
         unicodeKey: unicodeKey,
-        iShouldDealIt: unicodeKey !== "" || replaceLastChar,
+        iShouldDealIt: iShouldDealIt,
         placeTo: position.start,
         replaceLastChar: replaceLastChar,
         position: position
@@ -32,7 +33,6 @@ Keyboard.prototype.selectKeyPressed = function () {
         return this.select_iOS_KeyPressed();
 
     var code = this.oEvent.keyCode || this.oEvent.which;
-    var codeAsCharacter = String.fromCharCode(this.oEvent.keyCode || this.oEvent.which);
     var position = this.cursorPosition();
 
     // delete or backspace or dot-button or plus-button key
@@ -48,7 +48,7 @@ Keyboard.prototype.selectKeyPressed = function () {
 
     // using ctrl+m or F9 button to language switched
     if ((this.oEvent.ctrlKey && code === 77) || code === 120) {
-        var _C = this.global.currentLanguage == "bn_BD" ? "en_US" : "bn_BD";
+        var _C = this.global.currentLanguage === "bn_BD" ? "en_US" : "bn_BD";
         this.global.currentLanguage = _C;
     }
     //  ctrl, shift, alt, alt-grp, up arrow, down arrow
@@ -71,20 +71,20 @@ Keyboard.prototype.selectKeyPressed = function () {
     else if (!window.opera && code >= 96 && code <= 105 && this.oEvent.shiftKey === false)
         unicodeKey = this.global.numberKeyMap[code - 96][0];
         // taka symbol
-    else if (code == 52 && this.oEvent.shiftKey)
+    else if (code === 52 && this.oEvent.shiftKey)
         unicodeKey = "\u09f3";
 
         // full-stop from keyboard/numpad	
-    else if ((code == 190 || code == 110) && !this.oEvent.shiftKey)
+    else if ((code === 190 || code === 110) && !this.oEvent.shiftKey)
         unicodeKey = "\u0964";
         // shift with plus-sign, replace with Q[0] or hasanta
-    else if ((code == 107) && this.oEvent.shiftKey)
+    else if ((code === 107) && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
         // shitexplorer tweak for + button
-    else if (!!document.selection && !!document.selection.createRange && code == 187 && this.oEvent.shiftKey)
+    else if (!!document.selection && !!document.selection.createRange && code === 187 && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
         // opera,chrome 24+, firefox16+ tweak for + button
-    else if ((code == 187 || code == 61) && this.oEvent.shiftKey)
+    else if ((code === 187 || code === 61) && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
     else return {
         code: code,
@@ -93,7 +93,7 @@ Keyboard.prototype.selectKeyPressed = function () {
 
     // h || full-Stop || plus-Sign
     var replaceLastChar =
-            (code == 72) && !this.oEvent.shiftKey;
+            (code === 72) && !this.oEvent.shiftKey;
 
     return {
         code: code, // =65

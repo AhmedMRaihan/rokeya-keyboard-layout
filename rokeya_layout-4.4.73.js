@@ -46,10 +46,10 @@ function banglaLayout(id, keyEvents) {
     return this;
 }
 banglaLayout.prototype.keyboard = null;
-banglaLayout.prototype.beforeKeyEvent = function (params){
+banglaLayout.prototype.beforeKeyEvent = function (){
     
 };
-banglaLayout.prototype.afterKeyEvent = function (params) {
+banglaLayout.prototype.afterKeyEvent = function () {
     
 };
 banglaLayout.prototype.loadHelpTooltip = function () {
@@ -86,7 +86,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     this.textInputSource = oSource;
     this.oEvent = oEvent;
 
-    var prev = "", prevPrev = "", next = "", nextNext = "", text = !!oSource ? this.textInputSource.value : this.text, prevCharacterType = 0;
+    var prev = "", prevPrev = "", nextNext = "", text = !!oSource ? this.textInputSource.value : this.text, prevCharacterType = 0;
 
     var keyState = this.selectKeyPressed();
 
@@ -109,27 +109,27 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
         prevCharacterType = this.global.getFollower(prev, 1);
     }
 	
-    if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
+    /*if (keyState.placeTo >= 0 && keyState.placeTo <= text - 2) {
         nextNext = text.charAt(keyState.placeTo + 1);
         next = text.charAt(keyState.placeTo + 0);
     }
     else if (keyState.placeTo >= 0 && keyState.placeTo <= text.length - 1)
-        next = text.charAt(keyState.placeTo + 0);
+        next = text.charAt(keyState.placeTo + 0);*/
 
 
     /************************************** 
     unicodeKey change if necessary
     ***************************************/
     // consonant+h type input or hasanta pressed twice
-    keyState.replaceLastChar = keyState.replaceLastChar || (prev == "\u09CD" && keyState.unicodeKey == "\u09CD");
+    keyState.replaceLastChar = keyState.replaceLastChar || (prev === "\u09CD" && keyState.unicodeKey === "\u09CD");
 
     if (keyState.replaceLastChar) {
         // if hasanta then +
-        if (prev == "\u09CD" && keyState.unicodeKey == "\u09CD") {
+        if (prev === "\u09CD" && keyState.unicodeKey === "\u09CD") {
             keyState.unicodeKey = "\u002B";
         }
         // if hasanta and h then force end at hasanta
-        else if (prev == "\u09CD" && keyState.unicodeKey === "") {
+        else if (prev === "\u09CD" && keyState.unicodeKey === "") {
             keyState.unicodeKey = "\u09CD" + this.global.ZWNJ;
         }
         // other
@@ -170,7 +170,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
             keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
     }
         // change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
-    else if (keyState.characterType == 2 && !(prevCharacterType == 1 || prevCharacterType == 3)) {
+    else if (keyState.characterType === 2 && !(prevCharacterType === 1 || prevCharacterType === 3)) {
         keyState.unicodeKey = this.global.getFollower(keyState.unicodeKey, 2);
     }
 
@@ -185,7 +185,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     if (keyState.code === 8) {
 
         // if end==start then selected text so cursor should not move; otherwise should
-        keyState.position.start -= +(keyState.position.start == keyState.position.end);
+        keyState.position.start -= +(keyState.position.start === keyState.position.end);
 
         if (prevPrev === "\u09CD" || prevPrev === this.global.ZWNJ)
             keyState.position.start -= 1;
@@ -196,8 +196,8 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     // nextNext is hasanta
     if (keyState.code === 46) {
         // if end==start then selected text so cursor should not move; otherwise should
-        keyState.position.end += +(keyState.position.start == keyState.position.end);
-        keyState.position.end += nextNext == "\u09CD" ? 1 : 0;
+        keyState.position.end += +(keyState.position.start === keyState.position.end);
+        keyState.position.end += nextNext === "\u09CD" ? 1 : 0;
     }
 
     // <summary>Final data preparation</summary>
@@ -228,10 +228,11 @@ Keyboard.prototype.select_iOS_KeyPressed = function () {
     }
 
     var replaceLastChar = (unicodeKey === "" && code === 104);
+    iShouldDealIt = unicodeKey !== "" || replaceLastChar;
     return {
         code: code,
         unicodeKey: unicodeKey,
-        iShouldDealIt: unicodeKey !== "" || replaceLastChar,
+        iShouldDealIt: iShouldDealIt,
         placeTo: position.start,
         replaceLastChar: replaceLastChar,
         position: position
@@ -245,7 +246,6 @@ Keyboard.prototype.selectKeyPressed = function () {
         return this.select_iOS_KeyPressed();
 
     var code = this.oEvent.keyCode || this.oEvent.which;
-    var codeAsCharacter = String.fromCharCode(this.oEvent.keyCode || this.oEvent.which);
     var position = this.cursorPosition();
 
     // delete or backspace or dot-button or plus-button key
@@ -261,7 +261,7 @@ Keyboard.prototype.selectKeyPressed = function () {
 
     // using ctrl+m or F9 button to language switched
     if ((this.oEvent.ctrlKey && code === 77) || code === 120) {
-        var _C = this.global.currentLanguage == "bn_BD" ? "en_US" : "bn_BD";
+        var _C = this.global.currentLanguage === "bn_BD" ? "en_US" : "bn_BD";
         this.global.currentLanguage = _C;
     }
     //  ctrl, shift, alt, alt-grp, up arrow, down arrow
@@ -284,20 +284,20 @@ Keyboard.prototype.selectKeyPressed = function () {
     else if (!window.opera && code >= 96 && code <= 105 && this.oEvent.shiftKey === false)
         unicodeKey = this.global.numberKeyMap[code - 96][0];
         // taka symbol
-    else if (code == 52 && this.oEvent.shiftKey)
+    else if (code === 52 && this.oEvent.shiftKey)
         unicodeKey = "\u09f3";
 
         // full-stop from keyboard/numpad	
-    else if ((code == 190 || code == 110) && !this.oEvent.shiftKey)
+    else if ((code === 190 || code === 110) && !this.oEvent.shiftKey)
         unicodeKey = "\u0964";
         // shift with plus-sign, replace with Q[0] or hasanta
-    else if ((code == 107) && this.oEvent.shiftKey)
+    else if ((code === 107) && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
         // shitexplorer tweak for + button
-    else if (!!document.selection && !!document.selection.createRange && code == 187 && this.oEvent.shiftKey)
+    else if (!!document.selection && !!document.selection.createRange && code === 187 && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
         // opera,chrome 24+, firefox16+ tweak for + button
-    else if ((code == 187 || code == 61) && this.oEvent.shiftKey)
+    else if ((code === 187 || code === 61) && this.oEvent.shiftKey)
         unicodeKey = this.global.letterKeyMap[81 - 65][0];
     else return {
         code: code,
@@ -306,7 +306,7 @@ Keyboard.prototype.selectKeyPressed = function () {
 
     // h || full-Stop || plus-Sign
     var replaceLastChar =
-            (code == 72) && !this.oEvent.shiftKey;
+            (code === 72) && !this.oEvent.shiftKey;
 
     return {
         code: code, // =65
@@ -321,7 +321,7 @@ Keyboard.prototype.selectKeyPressed = function () {
     };
 };
 Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
-	if(text.charAt(caretPosition) == "<" && text.length == caretPosition+4 && (e.keyCode == 8 || e.keyCode == 46) )
+	if(text.charAt(caretPosition) === "<" && text.length === (caretPosition+4) && (e.keyCode === 8 || e.keyCode === 46) )
 		return true; // A delete is pressed at the end and tinymce itself will take care of it
 	if( (text === "" || (caretPosition >0 && text.charAt(caretPosition-1) === ">")) && (e.keyCode === 8 || e.keyCode === 46) )
 		return false; // Tinymce converts > to &lt; so it will never appear in text
@@ -335,7 +335,7 @@ Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
 
     var scrollTop = this.textInputSource.scrollTop;
 
-    if (typeof this.textInputSource.selectionStart == "number" && typeof this.textInputSource.selectionEnd == "number") {
+    if (typeof this.textInputSource.selectionStart === "number" && typeof this.textInputSource.selectionEnd === "number") {
 
         // Non-IE browsers and IE 9
         this.textInputSource.value = finalText;
@@ -416,12 +416,12 @@ Keyboard.prototype.cursorPosition = function () {
 
     //var textarea = document.getElementById("myTextArea");
     var start = 0, end = 0;
-    if (typeof this.textInputSource.selectionStart == "number" && typeof this.textInputSource.selectionEnd == "number") {
+    if (typeof this.textInputSource.selectionStart === "number" && typeof this.textInputSource.selectionEnd === "number") {
         // Non-IE browsers and IE 9
         start = this.textInputSource.selectionStart;
         end = this.textInputSource.selectionEnd;
     }
-    else if (document.selection && document.selection.createRange && this.textInputSource.type == "textarea") {
+    else if (document.selection && document.selection.createRange && this.textInputSource.type === "textarea") {
         // For IE up to version 8
         var textarea = this.textInputSource;
         textarea.focus();
@@ -437,7 +437,7 @@ Keyboard.prototype.cursorPosition = function () {
 
         var selection_range = document.selection.createRange().duplicate();
 
-        if (selection_range.parentElement() == textarea && this.textInputSource.type == "textarea") {
+        if (selection_range.parentElement() === textarea && this.textInputSource.type === "textarea") {
             // Check that the selection is actually in our textarea
             // Create three ranges, one containing all the text before the selection,
             // one containing all the text in the selection (this already exists), and one containing all
@@ -492,7 +492,7 @@ Keyboard.prototype.cursorPosition = function () {
                         after_finished = true;
                     } else {
                         after_range.moveEnd("character", -1);
-                        if (after_range.text == after_text) {
+                        if (after_range.text === after_text) {
                             untrimmed_after_text += "\r\n";
                         } else {
                             after_finished = true;
@@ -502,18 +502,20 @@ Keyboard.prototype.cursorPosition = function () {
 
             } while ((!before_finished || !selection_finished || !after_finished));
 
+            /* Start: untrimmed success text
             // Untrimmed success test to make sure our results match what is actually in the textarea
             // This can be removed once you're confident it's working correctly
             var untrimmed_text = untrimmed_before_text + untrimmed_selection_text + untrimmed_after_text;
+            
             var untrimmed_successful = false;
             if (textarea.value == untrimmed_text) {
                 untrimmed_successful = true;
             }
-            // ** END Untrimmed success test
+            END: Untrimmed success test */
 
             start = untrimmed_before_text.length;
             end = start + selection_range.text.length;
-            if (end != start)
+            if (end !== start)
                 end += start - end;
             //alert(start+" && "+end);
             //		return startPoint;
@@ -603,7 +605,7 @@ Letter_Information.prototype.switchedLetter =
 Letter_Information.prototype.getSwitchedLetter = function (inputValue) {
     var start = 0;
     for (; start < this.switchedLetter.length; ++start) {
-        if (this.switchedLetter[start][0] == inputValue) {
+        if (this.switchedLetter[start][0] === inputValue) {
             return this.switchedLetter[start][1];
         }
     }
@@ -632,7 +634,7 @@ Letter_Information.prototype.getFollower = function (inputValue, propertyNo) {
     var mid = Math.floor((end + start) / 2);
 
     for (; end >= start; mid = Math.floor((end + start) / 2)) {
-        if (this.letter_info[mid][0] == inputValue)
+        if (this.letter_info[mid][0] === inputValue)
             return this.letter_info[mid][propertyNo];
         if (this.letter_info[mid][0] > inputValue)
             end = mid - 1;
