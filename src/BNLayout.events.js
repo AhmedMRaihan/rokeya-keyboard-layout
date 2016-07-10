@@ -6,9 +6,10 @@ function banglaLayout(id, keyEvents) {
     var inputbox = document.getElementById(id);
     this.keyboard = new Keyboard();
     
-    this.beforeKeyEvent = keyEvents.beforeKeyEvent || this.beforeKeyEvent;
-    this.afterKeyEvent = keyEvents.afterKeyEvent || this.afterKeyEvent;
-    
+    if(typeof keyEvents === "object"){
+        this.beforeKeyEvent = keyEvents.beforeKeyEvent !== undefined ? keyEvents.beforeKeyEvent : this.beforeKeyEvent;
+        this.afterKeyEvent = keyEvents.afterKeyEvent !== undefined ? keyEvents.afterKeyEvent : this.afterKeyEvent;
+    }
     var root = this;
 	var returnComputeFn = function(keyEvent){
 		var oEvent = window.event || keyEvent;
