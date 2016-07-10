@@ -14,8 +14,6 @@ before_script:
   - export PATH="/tmp/firefox:$PATH"
   - echo "Using firefox version `firefox --version`"
   
-after_success:
-  test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
  # whitelist
 branches:
   only:
