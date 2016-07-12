@@ -39,6 +39,6 @@
     "testee": "^0.2.5"
   },
   "scripts": {
-    "test": "grunt build01 --verbose && testee --browsers firefox test/qunitRun.html --coverage"
+    "test": "grunt build01 && testee --browsers firefox test/qunitRun.html --coverage"
   }
 }
