@@ -29,18 +29,14 @@ This layout is developed keeping in mind that majority of bangladesh are accusto
 Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 
 ####Supported Browsers
-1. Internet Explorer
- * version-7+
-1. Mozilla Firefox
- * version- 3.5+
-1. Google chrome
- * version- 0.4.154.25+
-1. Opera
- * version- 10.10+
-1. iOS
- * 5+
-1. Android
- * Not working properly due to a bug in GoogleChrome for Android, see [Issue 17](https://github.com/MythicAngel/bangla-keyboard-layout/issues/17)
+
+1. Sign-off
+Chrome  | Opera | Firefox | Safari | IE
+-------- | -------- | -------- | -------- | --------
+![chrome](http://browserbadge.com/chrome/47) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/3) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/10)
+
+2. Pending
+ * In Android, it's not working properly because Chrome browser no longer trigger keyPress events.
 
 
 ##Links
