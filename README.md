@@ -28,20 +28,17 @@ This layout is developed keeping in mind that majority of bangladesh are accusto
 
 Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 
-####Supported Browsers
+## Supported Browsers
 
-1. Sign-off
-Chrome  | Opera | Firefox | Safari | IE
--------- | -------- | -------- | -------- | --------
-![chrome](http://browserbadge.com/chrome/47) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/3) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/10)
-
-2. Pending
- * In Android, it's not working properly because Chrome browser no longer trigger keyPress events.
+Chrome  | Opera | Firefox | Safari | IE | iOS | Android 
+-------- | -------- | -------- | -------- | -------- | -------- | --------
+![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9) | ![iOS](http://browserbadge.com/mobile-safari/4) | ![Android](http://browserbadge.com/android/17)
 
 
 ##Links
+
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
-* Google play: [Here](https://play.google.com/store/apps/details?id=org.buetian.rokeya_layout_webapp)
+* Google play: [Here](https://play.google.com/store/apps/details?id=org.buetian.rokeyalayout)
 * iOS: Supported by default, pls add a shortcut in your homepage for the official page
 * Wiki: [Wiki](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
 * Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
