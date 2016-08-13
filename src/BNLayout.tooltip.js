@@ -1,6 +1,6 @@
 ﻿banglaLayout.prototype.loadHelpTooltip = function () {
     try {
-        if (!jQuery)
+        if (typeof window.jQuery === "undefined")
             return this;
 
         var toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
