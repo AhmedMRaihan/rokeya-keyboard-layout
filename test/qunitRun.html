@@ -1,80 +1,27 @@
-﻿<!DOCTYPE html>  
-<html>  
-<head>  
-    <title>QUnit Test Suite for Rokeya Keyboard Layout</title>  
-    <link rel="stylesheet" href="qUnit.css" type="text/css">
-	<script type="text/javascript" src="jQuery.2.2.0.js"></script>
-    <script type="text/javascript" data-cover src="../rokeya_layout-4.4.73.js"></script>	
-	<script type="text/javascript" src="qUnit.js"></script>
-</head>  
-<body>  	
-	<!-- Your project file goes here --> 	
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>QUnit Test Suite for Rokeya Keyboard Layout</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.0.1/qunit.min.css" type="text/css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" data-cover src="../rokeya_layout-4.4.73.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.0.1/qunit.min.js"></script>
+</head>
+
+<body>
+	<!-- Your project file goes here -->
 	<div id="qunit"></div>
 	<div id="qunit-fixture">
 		<textarea style="display:block" id="checkItOut" name="checkItOut"></textarea>
 		<textarea style="display:none" id="basicUsage" name="basicUsage"></textarea>
 		<input type="text" id="basicUsageEvents" />
 	</div>
-	
-    <script>
-	(function($){
-		QUnit.test( "Consonant and alphabet typing", function( assert ) {
-			var $textarea = $("#checkItOut");
-			$textarea.val("");
-			var pseudoKeyboard = new Keyboard();
-			
-			var event = $.Event("keypress");
-			event.keyCode = 65;
-			event.which = 65;
-			
-			var expectedString = "", msgOnSuccess = "", doAssert = true;
-			
-			$textarea.on('keypress', function(keyEvent){
-				var oEvent = window.event || keyEvent;
-				var oSource = oEvent.srcElement || oEvent.target;
-				pseudoKeyboard.handleKeyboardInput(oEvent, oSource);
 
-				if(doAssert){
-					assert.equal($textarea.val(), expectedString, msgOnSuccess);
-				}				
-			});
-			
-			expectedString = 'আ';
-			msgOnSuccess = "আ can be typed";
-			$textarea.trigger(event);
-
-			expectedString = 'আক';
-			msgOnSuccess = "ক can be typed";		
-			event.keyCode = 75;
-			event.which = 75;
-			$textarea.trigger(event);
-
-			expectedString = 'আকঘ';
-			msgOnSuccess = "Consonant(s) can be switched with 'h'";		
-			event.keyCode = 71;
-			event.which = 71;
-			doAssert = false;
-			$textarea.trigger(event);
-			event.keyCode = 72;
-			event.which = 72;
-			doAssert = true;
-			$textarea.trigger(event);
-		});
-
-		QUnit.test("Basic usage", function(assert){
-			var bnLayout = new banglaLayout("basicUsage").loadHelpTooltip();
-			assert.ok(bnLayout != null, "Textarea invocation is successful");
-
-			var withEvents = {};
-			withEvents.beforeKeyEvent = function(){};
-			withEvents.afterKeyEvent = function(){};
-			var bnLayoutWithEvents = new banglaLayout("basicUsageEvents", withEvents);
-			assert.ok(bnLayoutWithEvents != null, "Input[type=text] invocation is successful");
-		});
-	})(jQuery);
-    </script>
+	<script type="text/javascript" src="qunitTest.js"></script>
 	<!--
 	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/blanket.js/1.1.4/blanket.min.js'></script>
-	--> 
-</body>  
+	-->
+</body>
+
 </html>
