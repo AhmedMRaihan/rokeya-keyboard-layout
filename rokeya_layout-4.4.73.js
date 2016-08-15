@@ -82,11 +82,14 @@ banglaLayout.prototype.loadHelpTooltip = function () {
             console.log(e.message);
     }
 };
-module.exports = {
-  banglaLayout: banglaLayout,
-  Keyboard: Keyboard,
-  Letter_Information: Letter_Information
-};
+// mimic jQuery to export modules
+if ("object" === typeof module && "object" === typeof module.exports) {
+  module.exports = {
+    banglaLayout: banglaLayout,
+    Keyboard: Keyboard,
+    Letter_Information: Letter_Information
+  };
+}
 function Keyboard() {
     this.global = new Letter_Information();
 }
