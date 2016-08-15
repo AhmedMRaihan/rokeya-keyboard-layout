@@ -4,6 +4,9 @@ Keyboard.prototype.cursorPosition, Keyboard.prototype.writeFinalValue function(s
 */
 function banglaLayout(id, keyEvents) {
     var inputbox = document.getElementById(id);
+    if (inputbox === null) {
+        throw new Error("No textarea/text input was found with the provided ID.");
+    }
     this.keyboard = new Keyboard();
     
     if(typeof keyEvents === "object"){
