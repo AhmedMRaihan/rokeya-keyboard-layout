@@ -4,6 +4,7 @@ window = jsdom().defaultView;
 document = window.document;
 jQuery = require('jquery');
 $ = jQuery;
+window.jQuery = jQuery;
 navigator = window.navigator;
 
 // assertion
@@ -37,12 +38,17 @@ describe('Installation', function () {
 
         done();
     });
+
+    it('should throw an error for missing ID', function (done) {
+        assert.throws(function(){new banglaLayout();}, Error);
+        done();
+    });
 });
 
 describe('Keyboard Functionality', function () {
 
     it('Should handle vowel and consonants', function (done) {
-        
+
         var $textarea = $("#checkItOut");
         $textarea.val("");
         var pseudoKeyboard = new Keyboard();

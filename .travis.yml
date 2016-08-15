@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 'stable'
 addons:
-  firefox: "43.0"
+  firefox: "47.0"
 before_script:
   - npm install -g testee
   - npm install grunt-cli -g
@@ -13,6 +13,9 @@ before_script:
   - tar -xjf /tmp/firefox-43.0.tar.bz2 --directory /tmp
   - export PATH="/tmp/firefox:$PATH"
   - echo "Using firefox version `firefox --version`"
+
+after_success:
+  npm run coverageIstanbul
   
  # whitelist
 branches:
