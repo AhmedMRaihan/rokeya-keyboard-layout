@@ -1,7 +1,7 @@
 {
   "name": "rokeya-keyboard-layout",
   "description": "This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.",
-  "version": "4.4.73",
+  "version": "4.4.73-release.082016",
   "bugs": {
     "web": "https://github.com/MythicAngel/rokeya-keyboard-layout/issues"
   },
