@@ -465,12 +465,12 @@ Keyboard.prototype.cursorPosition = function () {
             after_range.setEndPoint("StartToEnd", selection_range);      // Moves the start where we need it
 
             var before_finished = false, selection_finished = false, after_finished = false;
-            var before_text, untrimmed_before_text, selection_text, untrimmed_selection_text, after_text, untrimmed_after_text;
+            var before_text, untrimmed_before_text, selection_text, after_text;
 
             // Load the text values we need to compare
             before_text = untrimmed_before_text = before_range.text;
-            selection_text = untrimmed_selection_text = selection_range.text;
-            after_text = untrimmed_after_text = after_range.text;
+            selection_text = selection_range.text;
+            after_text = after_range.text;
             // Check each range for trimmed newlines by shrinking the range by 1 character and seeing
             // if the text property has changed.  If it has not changed then we know that IE has trimmed
             // a \r\n from the end.
