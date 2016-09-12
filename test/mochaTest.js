@@ -47,6 +47,7 @@ describe('Installation', function () {
 
 describe('Keyboard Functionality', function () {
 
+    // Get keycodes from: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
     it('Should handle vowel and consonants', function (done) {
 
         var $textarea = $("#checkItOut");
@@ -69,6 +70,7 @@ describe('Keyboard Functionality', function () {
             }
         });
 
+        // Regular functionality
         expectedString = 'আ';
         msgOnError = "আ should be inserted initially";
         $textarea.trigger(event);
@@ -78,6 +80,45 @@ describe('Keyboard Functionality', function () {
         event.keyCode = 75;
         event.which = 75;
         $textarea.trigger(event);
+
+        expectedString = 'আখ';
+        msgOnError = "খ should be switched via h";
+        event.keyCode = 72;
+        event.which = 72;
+        $textarea.trigger(event);
+
+        // Special characteristics
+        event.keyCode = 73;
+        event.which = 73;
+        doAssert = false;
+        $textarea.trigger(event);
+        expectedString = "আখী";        
+        msgOnError = "Vowels in car-form can be switched by typing again";
+        event.keyCode = 73;
+        event.which = 73;
+        doAssert = true;
+        $textarea.trigger(event);
+
+        expectedString = 'আখী।';
+        msgOnError = "। can be inserted";
+        event.keyCode = 190;
+        event.which = 190;
+        $textarea.trigger(event);
+
+        expectedString = 'আখী.';
+        msgOnError = "। can be switched by pressing it again";
+        event.keyCode = 190;
+        event.which = 190;
+        $textarea.trigger(event);
+
+        // Language switch
+        pseudoKeyboard.global.currentLanguage = "en_US";
+        expectedString = 'আখী.';
+        msgOnError = "English letters will be ignored when pressed";
+        event.keyCode = 89;
+        event.which = 89;
+        $textarea.trigger(event);
+        
 
         assert.equal($textarea.val(), expectedString);
         done();
