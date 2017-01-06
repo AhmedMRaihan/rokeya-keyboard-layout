@@ -21,12 +21,9 @@ class UserKeyPressed {
 }
 type PartialUserKeyPressed = Partial<UserKeyPressed>;
 
-interface KeyEvent extends Event { keyCode: number, which: number, 
-    ctrlKey: boolean, altKey: boolean, shiftKey: boolean }
-
 export class KeyboardHandler {
     public global: LetterInformation;
-    private oEvent: KeyEvent;
+    private oEvent: KeyboardEvent;
     private textInputSource:HTMLTextAreaElement|HTMLInputElement;
 
     constructor() {
@@ -145,7 +142,7 @@ export class KeyboardHandler {
         };
     };
 
-    handleKeyboardInput(oEvent:KeyEvent, oSource:HTMLInputElement|HTMLTextAreaElement):boolean {
+    handleKeyboardInput(oEvent:KeyboardEvent, oSource:HTMLInputElement|HTMLTextAreaElement):boolean {
         this.textInputSource = oSource;
         this.oEvent = oEvent;
 

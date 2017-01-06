@@ -4,7 +4,6 @@
         "module": "amd",
         "sourceMap": false,
         "alwaysStrict": true,
-        "noUnusedLocals": true,
-        "outFile": "./src-es6/_mergedBanglaLayout.js"
+        "noUnusedLocals": true
     }
 }
