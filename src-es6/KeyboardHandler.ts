@@ -111,8 +111,8 @@ export class KeyboardHandler {
             shiftKeyPressed: this.oEvent.shiftKey, // =false        
             replaceLastChar: replaceLastChar, // =false
             placeTo: position.start, // =3
-            position: position // { 1,8 }
-            //characterType: this.global.getFollower(unicodeKey, 1) // 1~7
+            position: position, // { 1,8 }
+            characterType: <number>this.global.getFollower(unicodeKey, 1) // 1~7
         };
         return userTypedKey;
     }
