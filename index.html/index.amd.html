@@ -78,12 +78,12 @@
 				var wasBNActive = sourceLabel.innerHTML === "বাংলা";
 				if(wasBNActive == false)
 				{
-					rokeyaLayoutKeyboard.keyboard.global.currentLanguage =  "bn_BD";
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "bn_BD";
 					modifySourceLabel("বাংলা", "green");
 				}
 				else
 				{
-					rokeyaLayoutKeyboard.keyboard.global.currentLanguage =  "en_US";
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "en_US";
 					modifySourceLabel("ইংরেজী", "#47a6f0"); 
 				}
 			}
@@ -98,7 +98,7 @@
 				window.rokeyaLayoutKeyboard = new BanglaLayout_1.BanglaLayout("checkItOut", 
 					{
 						afterKeyEvent:function(){
-							var isBNActive = rokeyaLayoutKeyboard.keyboard.global.currentLanguage === "bn_BD";
+							var isBNActive = rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage === "bn_BD";
 							if(isBNActive === true)
 							{
 								modifySourceLabel("বাংলা", "green");
