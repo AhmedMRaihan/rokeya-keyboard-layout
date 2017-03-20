@@ -1,11 +1,12 @@
 import {KeyboardHandler} from "./KeyboardHandler";
+import * as jQuery from "jquery";
 
 interface KeyEventFunctions{
     beforeKeyEvent?(): void;
     afterKeyEvent?():void;
 }
 
-declare var jQuery: JQueryStatic;
+//declare var jQuery: JQueryStatic;
 
 export class BanglaLayout implements KeyEventFunctions {
     keyboard: KeyboardHandler;

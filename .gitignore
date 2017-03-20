@@ -34,3 +34,4 @@ node_modules
 
 # Typescript generated files
 src-es6/*.js
+*.map
