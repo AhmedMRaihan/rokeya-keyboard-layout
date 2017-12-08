@@ -1,4 +1,4 @@
-##উপক্রমণিকা
+## উপক্রমণিকা
 এই কিবোর্ড সফটওয়ারটি ইংরেজী QWERTY কিবোর্ডের (ইউ.এস.এ লেআউট হিসেবে বহুল প্রচলিত এবং বাংলাদেশের সর্বত্র ব্যবহৃত) উপর ভিত্তি করে তৈরী। এখানে কিবোর্ড থেকে যেকোন কি প্রেস করা হলে সেই কি/অক্ষরটি কোন অক্ষর তা সনাক্ত করা হয়, পূর্বোক্ত অক্ষরের সাথে এর কোন সংযুক্তি হতে পারে নাকি তা বের করা হয় এবং সবশেষে সঠিক অক্ষরটি আউটপুট দেয়া হয়।
 
 এই লেআউট ডেভেলপ করার সময় এটা মাথায় রাখা হয়েছে যে বাংলাদেশের বেশিরভাগ মানুষই ইংরেজী কিবোর্ডে বা ইংরেজী লেআউটে বাংলা লিখে থাকেন। একই সাথে বাংলা বর্ণের গঠনকেও মাথায় রেখে এটাকে তৈরী করা হয়েছে।
@@ -35,7 +35,7 @@ Chrome  | Opera | Firefox | Safari | IE | iOS | Android
 ![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9) | ![iOS](http://browserbadge.com/mobile-safari/4) | ![Android](http://browserbadge.com/android/17)
 
 
-##Links
+## Links
 
 * Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
 * Google play: [Here](https://play.google.com/store/apps/details?id=org.buetian.rokeyalayout)
