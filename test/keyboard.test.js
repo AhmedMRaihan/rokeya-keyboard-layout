@@ -1,11 +1,8 @@
-﻿// window and document
-var jsdom = require('jsdom').jsdom;
-window = jsdom().defaultView;
-document = window.document;
-jQuery = require('jquery');
-$ = jQuery;
-window.jQuery = jQuery;
-navigator = window.navigator;
+﻿const {JSDOM} = require('jsdom');
+const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body></body></html>`);
+global.window = dom;
+global.document = dom;
+const $ = require('jquery');
 
 // assertion
 chai = require('chai');
