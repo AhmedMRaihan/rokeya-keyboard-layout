@@ -1,7 +1,7 @@
 {
   "name": "rokeya-keyboard-layout",
   "description": "This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.",
-  "version": "4.4.73-0",
+  "version": "4.4.73-1",
   "bugs": {
     "web": "https://github.com/MythicAngel/rokeya-keyboard-layout/issues"
   },
@@ -30,22 +30,21 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@types/jquery": "^2.0.34"
+    "@types/jquery": "^3.3.4",
+    "jquery": "^3.1.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "~2.0.0",
-    "grunt-eslint": "^19.0.0",
-    "jquery": "^3.1.0",
-    "jsdom": "^9.4.2",
-    "mocha": "^3.0.2",
-    "testee": "^0.2.5"
+    "chai": "^4.1.2",
+    "eslint": "^5.1.0",
+    "jest": "^23.4.1",
+    "jsdom": "^11.11.0",
+    "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "grunt build01 && testee --browsers firefox test/qunitRun.html --coverage",
-    "coverageIstanbul":"istanbul cover node_modules/mocha/bin/_mocha -- test/mochaTest.js"
+    "doEslint": "eslint --color src/*.js",
+    "generateJS": "cat src/*.js > rokeya_layout-4.4.73.js",
+    "test": "npm run doEslint && npm run generateJS && jest --coverage",
+    "test1": "grunt build01 && testee --browsers firefox test/qunitRun.html --coverage",
+    "coverageIstanbul": "istanbul cover node_modules/mocha/bin/_mocha -- test/mochaTest.js"
   }
 }
