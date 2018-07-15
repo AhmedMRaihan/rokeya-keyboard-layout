@@ -1,0 +1,8 @@
+{
+    "rules": {
+        "semi": 2,
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used" }],
+        "eqeqeq": "error",
+        "quotes": ["error", "double"]
+    }
+}

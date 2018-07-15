@@ -1,7 +1,7 @@
-/* rokeya-keyboard-layout - v4.4.73 
-Homepage: https://rokeya-keyboard-layout.mythicangel.com/ 
-
-This keyboard layout is based on QWERTY based English keyboard. It takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed. */
+﻿/*
+unicode values taken from this link: http://tlt.its.psu.edu/suggestions/international/bylanguage/bengalichart.html
+Keyboard.prototype.cursorPosition, Keyboard.prototype.writeFinalValue function(s) are taken from www
+*/
 function banglaLayout(id, keyEvents) {
     var inputbox = document.getElementById(id);
     if (inputbox === null) {
@@ -55,8 +55,7 @@ banglaLayout.prototype.beforeKeyEvent = function (){
 };
 banglaLayout.prototype.afterKeyEvent = function () {
     
-};
-banglaLayout.prototype.loadHelpTooltip = function () {
+};﻿banglaLayout.prototype.loadHelpTooltip = function () {
     try {
         if (typeof window.jQuery === "undefined")
             return this;
@@ -81,16 +80,14 @@ banglaLayout.prototype.loadHelpTooltip = function () {
         if (console)
             console.log(e.message);
     }
-};
-// mimic jQuery to export modules
+};// mimic jQuery to export modules
 if ("object" === typeof module && "object" === typeof module.exports) {
   module.exports = {
     banglaLayout: banglaLayout,
     Keyboard: Keyboard,
     Letter_Information: Letter_Information
   };
-}
-function Keyboard() {
+}﻿function Keyboard() {
     this.global = new Letter_Information();
 }
 
@@ -222,8 +219,7 @@ Keyboard.prototype.handleKeyboardInput = function (oEvent, oSource) {
     this.writeFinalValue(finalText, caretPosition);
 
     return false;
-};
-// <summary>Select and return which key is pressed in iOS</summary>
+};﻿// <summary>Select and return which key is pressed in iOS</summary>
 Keyboard.prototype.select_iOS_KeyPressed = function () {
     var code = this.oEvent.keyCode || this.oEvent.which;
     var position = this.cursorPosition();
@@ -331,8 +327,7 @@ Keyboard.prototype.selectKeyPressed = function () {
         position: position, // { 1,8 }
         characterType: this.global.getFollower(unicodeKey, 1) // 1~7
     };
-};
-Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
+};﻿Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
 	if(text.charAt(caretPosition) === "<" && text.length === (caretPosition+4) && (e.keyCode === 8 || e.keyCode === 46) )
 		return true; // A delete is pressed at the end and tinymce itself will take care of it
 	if( (text === "" || (caretPosition >0 && text.charAt(caretPosition-1) === ">")) && (e.keyCode === 8 || e.keyCode === 46) )
@@ -341,8 +336,7 @@ Keyboard.prototype.tinymceplugin = function (text, caretPosition, e) {
     this.text = text;
     this.caretPosition = caretPosition;
     return this.handleKeyboardInput(e, null);
-};
-// <summary>Write finalText to the text/input box</summary>
+};﻿// <summary>Write finalText to the text/input box</summary>
 Keyboard.prototype.writeFinalValue = function (finalText, caretPosition) {
 
     var scrollTop = this.textInputSource.scrollTop;
@@ -561,7 +555,7 @@ Keyboard.prototype.cursorPosition = function () {
         start: start,
         end: end
     };
-};
+};﻿/**************** Global variable */
 // <summary>Letter Information Class</summary>
 function Letter_Information() {
     this.currentLanguage = "bn_BD";
