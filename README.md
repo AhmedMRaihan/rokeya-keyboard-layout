@@ -30,9 +30,9 @@ Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/
 
 ## Supported Browsers
 
-Chrome  | Opera | Firefox | Safari | IE | iOS | Android 
--------- | -------- | -------- | -------- | -------- | -------- | --------
-![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9) | ![iOS](http://browserbadge.com/mobile-safari/4) | ![Android](http://browserbadge.com/android/17)
+Chrome  | Opera | Firefox | Safari | IE 
+-------- | -------- | -------- | -------- | -------- 
+![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9)
 
 
 ## Links
