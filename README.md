@@ -21,8 +21,8 @@
 [Wiki/Users](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Type-Instruction)
 
 
-## Introduction [![Build Status](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout.svg?branch=master)](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout) [![devDependencies Status](https://david-dm.org/MythicAngel/rokeya-keyboard-layout/dev-status.svg)](https://david-dm.org/MythicAngel/rokeya-keyboard-layout?type=dev)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout?ref=badge_shield)
+## Introduction [![Build Status](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout.svg?branch=master)](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout) [![devDependencies Status](https://david-dm.org/MythicAngel/rokeya-keyboard-layout/dev-status.svg)](https://david-dm.org/MythicAngel/rokeya-keyboard-layout?type=dev) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout?ref=badge_shield)
+
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
 
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
