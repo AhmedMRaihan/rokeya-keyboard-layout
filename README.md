@@ -12,7 +12,7 @@
 ## বহিঃস্থ সংযোগ:
 বিভিন্নভাবে আপনারা এই কিবোর্ডটি ব্যবহার করতে পারেন। বর্তমানে এটি ওয়েব, অ্যান্ড্রয়েড এবং আইফোনে ব্যবহার করা সম্ভব
 * অনলাইন ডেমো
-[Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
+[Rokeya Layout Demo](http://seoul.freehostia.com/)
 
 * ডেভেলপারদের সহায়ক নির্দেশিকা
 [Wiki/Developers](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Developers)
