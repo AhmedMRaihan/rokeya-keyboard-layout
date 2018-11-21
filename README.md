@@ -17,9 +17,6 @@
 * ডেভেলপারদের সহায়ক নির্দেশিকা
 [Wiki/Developers](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Developers)
 
-* ব্যবহারকারীদের জন্যে নির্দেশিকা
-[Wiki/Users](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Type-Instruction)
-
 
 ## Introduction [![Build Status](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout.svg?branch=master)](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout) [![devDependencies Status](https://david-dm.org/MythicAngel/rokeya-keyboard-layout/dev-status.svg)](https://david-dm.org/MythicAngel/rokeya-keyboard-layout?type=dev) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout?ref=badge_shield)
 
@@ -36,10 +33,8 @@ Chrome  | Opera | Firefox | Safari | IE
 ![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9)
 
 
-## Links
+## Appendix
 
-* Official page: [Here](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
-* Google play: [Here](https://play.google.com/store/apps/details?id=org.buetian.rokeyalayout)
 * iOS: Supported by default, pls add a shortcut in your homepage for the official page
 * Wiki: [Wiki](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
 * Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
