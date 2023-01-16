@@ -2,7 +2,10 @@
 const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body></body></html>`);
 global.window = dom;
 global.document = dom;
-const $ = require('jquery');
+//const $ = require('jquery');
+import $ from 'jquery';
+global.$ = $;
+global.jQuery = $;
 
 // assertion
 chai = require('chai');

@@ -8,7 +8,6 @@
  * সকল রকমের বাংলা বর্ণ লেখা সম্ভব
  * ফোনেটিক এবং ফিক্সড উভয় লেআউট হিসেবেই ব্যবহার করা সম্ভব
 
-
 ## বহিঃস্থ সংযোগ:
 বিভিন্নভাবে আপনারা এই কিবোর্ডটি ব্যবহার করতে পারেন। বর্তমানে এটি ওয়েব, অ্যান্ড্রয়েড এবং আইফোনে ব্যবহার করা সম্ভব
 * অনলাইন ডেমো
@@ -18,27 +17,25 @@
 [Wiki/Developers](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Developers)
 
 
-## Introduction [![Build Status](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout.svg?branch=master)](https://travis-ci.org/MythicAngel/rokeya-keyboard-layout) [![devDependencies Status](https://david-dm.org/MythicAngel/rokeya-keyboard-layout/dev-status.svg)](https://david-dm.org/MythicAngel/rokeya-keyboard-layout?type=dev) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout?ref=badge_shield)
+## Introduction
 
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
 
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
 
-Online demo: [Rokeya Layout Demo](http://rokeya-keyboard-layout.mythicangel.com/#online-demo)
+Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com)
 
-## Supported Browsers
+## Local Development
 
-Chrome  | Opera | Firefox | Safari | IE 
--------- | -------- | -------- | -------- | -------- 
-![chrome](http://browserbadge.com/chrome/2) | ![Opera](http://browserbadge.com/opera/10) | ![firefox](http://browserbadge.com/firefox/4) | ![safari](http://browserbadge.com/safari/5) |  ![ie](http://browserbadge.com/ie/9)
-
+First, install required libraries and start a http server using this command (You should have Python3 installed beforehand):
+```bash
+npm install
+npm audit fix
+python3 -m http.server 8080
+```
+Then, visit http://localhost:8080/index.html to test
 
 ## Appendix
 
-* iOS: Supported by default, pls add a shortcut in your homepage for the official page
-* Wiki: [Wiki](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
+* Wiki: [Here](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
 * Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FMythicAngel%2Frokeya-keyboard-layout?ref=badge_large)

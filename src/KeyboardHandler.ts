@@ -31,7 +31,7 @@ export class KeyboardHandler {
     }
 
     selectKeyPressed(): PartialUserKeyPressed {
-        let iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false);
+        let iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod|Macintosh)/g) ? true : false);
         if (iOS)
             return this.select_iOS_KeyPressed();
 
@@ -84,9 +84,6 @@ export class KeyboardHandler {
             unicodeKey = "\u0964";
             // shift with plus-sign, replace with Q[0] or hasanta
         else if ((code === 107) && this.oEvent.shiftKey)
-            unicodeKey = this.letterInformation.letterKeyMap[81 - 65][0];
-            // shitexplorer tweak for + button
-        else if (!!document['selection'] && !!document['selection'].createRange && code === 187 && this.oEvent.shiftKey)
             unicodeKey = this.letterInformation.letterKeyMap[81 - 65][0];
             // opera,chrome 24+, firefox16+ tweak for + button
         else if ((code === 187 || code === 61) && this.oEvent.shiftKey)

@@ -1,5 +1,4 @@
 import {KeyboardHandler} from "./KeyboardHandler";
-import * as jQuery from "jquery";
 
 interface KeyEventFunctions{
     beforeKeyEvent?(): void;
@@ -36,7 +35,7 @@ export class BanglaLayout implements KeyEventFunctions {
         var hasHookedAlready:boolean = false;
         
         var root = this;
-        var returnComputeFn = function(keyEvent){
+        var returnComputeFn = function(keyEvent:any){
             var oEvent = window.event || keyEvent;
             var oSource = oEvent.srcElement || oEvent.target;
             
@@ -70,28 +69,4 @@ export class BanglaLayout implements KeyEventFunctions {
                 console.log(e.message);
         }
     }
-
-    loadHelpTooltip():BanglaLayout {
-        try {
-            let toolTipText = "ctrl+m অথবা F9 চেপে বাংলা ও ইংরেজীতে সুইচ করতে পারবেন..\n..হ=H, ৎ=Z, ঙ=x, ঞ=X, ং=V, ঁ=B, ঃ=M";
-
-            let $parent:JQuery = jQuery("#" + this.sourceField);
-            let left = $parent.position().left + $parent.width();
-            left -= $parent.width() < 3 ? 0 : 3;
-            let top = $parent.position().top;
-            top += $parent.height() < 5 ? 0 : 5;
-
-            let $tooltipDiv = document.createElement("abbr");
-            $tooltipDiv.setAttribute("style", "width: 10px; position:absolute; cursor:help; color:red; left:" 
-            + (left) + "px;top:" + (top) + "px;");
-            $tooltipDiv.innerHTML = "?";
-            $tooltipDiv.setAttribute("title", toolTipText);
-
-            jQuery($tooltipDiv).insertAfter($parent);
-            return this;
-        } catch (e) {
-            if (console)
-                console.log(e.message);
-        }
-    };
 }
