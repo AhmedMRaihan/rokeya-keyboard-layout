@@ -11,13 +11,14 @@
     "jquery": "^3.6.3",
     "jsdom": "^21.0.0",
     "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   },
   "scripts": {
     "build": "tsc",
     "cleanup": "rm src/*.js || true",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register tests/**/*.test.ts",
-    "coverage": "npm run cleanup && npm run test"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc --reporter=text mocha -r ts-node/register tests/**/*.test.ts",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   }
 }

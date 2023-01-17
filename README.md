@@ -3,19 +3,10 @@
 
 এই লেআউট ডেভেলপ করার সময় এটা মাথায় রাখা হয়েছে যে বাংলাদেশের বেশিরভাগ মানুষই ইংরেজী কিবোর্ডে বা ইংরেজী লেআউটে বাংলা লিখে থাকেন। একই সাথে বাংলা বর্ণের গঠনকেও মাথায় রেখে এটাকে তৈরী করা হয়েছে।
 
-#### এই লেআউট যেভাবে বাকিদের থেকে স্বতন্ত্র
+## এই লেআউট যেভাবে বাকিদের থেকে স্বতন্ত্র
  * স্বরবর্ণ টাইপ করার সময় সেটি -কার রূপে হবে (যেমন: ই-কার, আ-কার ইত্যাদি) নাকি পূর্ণরূপে হবে সেটি অটোমেটিক্যালি সনাক্ত করা হয়
  * সকল রকমের বাংলা বর্ণ লেখা সম্ভব
  * ফোনেটিক এবং ফিক্সড উভয় লেআউট হিসেবেই ব্যবহার করা সম্ভব
-
-## বহিঃস্থ সংযোগ:
-বিভিন্নভাবে আপনারা এই কিবোর্ডটি ব্যবহার করতে পারেন। বর্তমানে এটি ওয়েব, অ্যান্ড্রয়েড এবং আইফোনে ব্যবহার করা সম্ভব
-* অনলাইন ডেমো
-[Rokeya Layout Demo](http://seoul.freehostia.com/)
-
-* ডেভেলপারদের সহায়ক নির্দেশিকা
-[Wiki/Developers](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki/Developers)
-
 
 ## Introduction
 
@@ -23,7 +14,7 @@ This keyboard layout is based on QWERTY based English keyboard. The layout and t
 
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
 
-Online demo: [Rokeya Layout Demo](http://seoul.freehostia.com)
+Test here: [Rokeya Layout Demo](http://seoul.freehostia.com)
 
 ## Local Development
 
@@ -37,5 +28,9 @@ Then, visit http://localhost:8080/index.html to test
 
 ## Appendix
 
-* Wiki: [Here](https://github.com/MythicAngel/rokeya-keyboard-layout/wiki)
-* Logo: [Here](https://openclipart.org/detail/240540/orange-squares-1)
+* Supported browsers:
+  * Google Chrome
+  * Microsoft Edge
+  * Mozilla Firefox
+
+* Logo: [From Openclipart](https://openclipart.org/detail/240540/orange-squares-1)
