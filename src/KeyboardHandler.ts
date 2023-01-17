@@ -31,10 +31,6 @@ export class KeyboardHandler {
     }
 
     selectKeyPressed(): PartialUserKeyPressed {
-        let iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod|Macintosh)/g) ? true : false);
-        if (iOS)
-            return this.select_iOS_KeyPressed();
-
         var code = this.oEvent.keyCode || this.oEvent.which;
         var position:CursorPosition = this.cursorPosition();
 
@@ -110,34 +106,6 @@ export class KeyboardHandler {
         };
         return userTypedKey;
     }
-
-    select_iOS_KeyPressed():PartialUserKeyPressed {
-        var code = this.oEvent.keyCode || this.oEvent.which;
-        var position:CursorPosition = this.cursorPosition();
-        var unicodeKey = "", iShouldDealIt = false;
-
-        if (code >= 65 && code <= 90) {
-            unicodeKey = this.letterInformation.letterKeyMap[code - 65][1];
-        }
-        else if (code >= 97 && code <= 122) {
-            unicodeKey = this.letterInformation.letterKeyMap[code - 97][0];
-        }
-        else if (code >= 48 && code <= 57) {
-            unicodeKey = this.letterInformation.numberKeyMap[code - 48];
-        }
-
-        var replaceLastChar = (unicodeKey === "" && code === 104);
-        iShouldDealIt = unicodeKey !== "" || replaceLastChar;
-        
-        return {
-            code: code,
-            unicodeKey: unicodeKey,
-            iShouldDealIt: iShouldDealIt,
-            placeTo: position.start,
-            replaceLastChar: replaceLastChar,
-            position: position
-        };
-    };
 
     handleKeyboardInput(oEvent:KeyboardEvent, oSource:HTMLInputElement|HTMLTextAreaElement):boolean {
         this.textInputSource = oSource;
