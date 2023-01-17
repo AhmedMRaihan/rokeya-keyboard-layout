@@ -14,7 +14,7 @@ This keyboard layout is based on QWERTY based English keyboard. The layout and t
 
 This layout is developed keeping in mind that majority of bangladesh are accustomed to English layout keyboard so the layout reflect this layout. At the same time bangla language architecture are also taken care of when the codes are developed in this project.
 
-Test here: [Rokeya Layout Demo](http://seoul.freehostia.com)
+Test here: [Rokeya Layout Demo](https://ahmedmraihan.github.io/rokeya-keyboard-layout/index.html)
 
 ## Local Development
 
