@@ -1,8 +1,8 @@
-﻿
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 
 <html>
-	<head>
+
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="description" content="Rokeya Bangla Keyboard Layout" />
 	<link rel="icon" href="Orange-squares-01.svg">
@@ -10,137 +10,163 @@
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Bengali">
 
-		<style type="text/css">
-			input {width: 140px; margin-right: 5px; padding: 3px; border: 1px solid #DFE1E0;}
-			
-			body{
-				color:#333;
-				font-family: 'Noto Sans Bengali', Tahoma, 'Helvetica', 'Arial', sans-serif;
-			}
+	<style type="text/css">
+		input {
+			width: 140px;
+			margin-right: 5px;
+			padding: 3px;
+			border: 1px solid #DFE1E0;
+		}
 
-			.help_texts{
-				float:left;
-				margin-right: -4px;
-				width:60%;
-				text-align: left;
-			}
-			.example_texts{
-				float:right;
-				margin-right: -4px;
-				width:40%;
-				text-align: justify;
-			}
-		</style>	
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/AhmedMRaihan/BanglaDateJS@master/src/buetDateTime.js"></script>
-	</head>
-	<body onload="document.getElementById('checkItOut').focus();">
+		body {
+			color: #333;
+			font-family: 'Noto Sans Bengali', Tahoma, 'Helvetica', 'Arial', sans-serif;
+		}
 
-		<div style="text-align: left;">
-		<h2>নিচের টেক্সট-এরিয়া তে বাংলা লিখুন <label onclick="switchLanguage()" id="activeLanguageIndicator" style="border-radius: 0.25rem;
-    color: #fff;
-    display: inline-block;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    padding: 0.25em 0.4em;
-    text-align: center;
-    vertical-align: baseline;
-    white-space: nowrap;
-	background-color: green;
-	cursor:pointer;">বাংলা</label>
-	<a href="https://travis-ci.org/MythicAngel/rokeya-keyboard-layout" style="float:right">
-		<img src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/build-and-deploy.yml/badge.svg" 
-		alt="Build Status" style="max-width:100%;">
-	</a>
-	
+		.user_instruction{
+			display: inline-block;
+		}
+
+		.help_texts {
+			float: left;
+			margin-right: -4px;
+			width: 60%;
+			text-align: left;
+		}
+
+		.example_texts {
+			float: right;
+			margin-right: -4px;
+			width: 40%;
+			text-align: justify;
+		}
+
+		.langugage_switch_button {
+			border-radius: 0.25rem;
+			color: #fff;
+			display: inline-block;
+			font-size: 75%;
+			font-weight: 700;
+			line-height: 1;
+			padding: 0.25em 0.4em;
+			text-align: center;
+			vertical-align: baseline;
+			white-space: nowrap;
+			background-color: green;
+			cursor: pointer;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/gh/AhmedMRaihan/BanglaDateJS@master/src/buetDateTime.js"></script>
+</head>
+
+<body onload="document.getElementById('checkItOut').focus();">
+
+	<div style="text-align: left;">
+		<h2>নিচের টেক্সট-এরিয়া তে বাংলা লিখুন <label onclick="switchLanguage()" id="activeLanguageIndicator"
+				class="langugage_switch_button">বাংলা</label>
+			<a href="https://travis-ci.org/MythicAngel/rokeya-keyboard-layout" style="float:right">
+				<img src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/build-and-deploy.yml/badge.svg"
+					alt="Build Status" style="max-width:100%;">
+			</a>
+
 		</h2>
-		
-		<textarea style="width: 100%; height: 300px;font-family: 'Noto Sans Bengali', tahoma, 'Helvetica', 'Arial', serif;" onfocus="" id="checkItOut" name="checkItOut"></textarea>
-		
+
+		<textarea
+			style="width: 100%; height: 300px;font-family: 'Noto Sans Bengali', tahoma, 'Helvetica', 'Arial', serif;"
+			onfocus="" id="checkItOut" name="checkItOut"></textarea>
+
 		<div class="user_instruction">
 			<div class="help_texts">
 				<h2>সহায়ক তথ্যাবলী: </h2>
 				<ul>
-					<li><strong>কি-ম্যাপ:</strong> প্রায় সকল বর্ণই ফোনেটিক স্টাইলের ইংরেজী বর্ণমালায় পাওয়া যাবে। <br/>যেমন: কবুতর = k b u shift+t r, রংপুর = r shift+v p u r, মি = m i, মই = m I, সঙ্গীত = s x q g ii shift+t</li>
-					<li><strong>ব্যতিক্রম:</strong> হ=H, ঙ=x, ঞ=X, য়=y, ৎ=Z, ং=V, ঁ=B, ঃ=M, হসন্ত = q অথবা +, এবং য-ফলা = Y</li>
-					<li><strong>যুক্তাক্ষর লেখার নিয়ম:</strong> প্রথম বর্ণ, এরপরে হসন্ত (q অথবা প্লাস [+]) এবং তারপর দ্বিতীয় বর্ণ। যেমন: ক্স = k + s, ক্ত = k q T, হ্ম = H + m, হ্ন = H + n, ল্ক = l q k</li>
-					<li><strong>র-ফলা টাইপ করার নিয়ম:</strong> "r(র) q(হসন্ত) বর্ণ" এই ক্রমে টাইপ করুন। যেমন: র্ণ = r q N</li>
-					<li>h চেপে <strong>স্বরবরর্ণের পূর্ন-রূপ ও কার-রূপে সুইচ করুন</strong>। যেমন: b i= বি এবং b i h= বই</li>
-					<li>কোন <strong>বর্ণের নিচে এককভাবে হসন্ত টাইপ</strong> করতে হসন্ত (q অথবা +) চেপে h চাপুন। যেমন: ক্‌ন = k q h n
+					<li><strong>কি-ম্যাপ:</strong> প্রায় সকল বর্ণই ফোনেটিক স্টাইলের ইংরেজী বর্ণমালায় পাওয়া যাবে।
+						<br />যেমন: কবুতর = k b u shift+t r, রংপুর = r shift+v p u r, মি = m i, মই = m I, সঙ্গীত = s x q
+						g ii shift+t</li>
+					<li><strong>ব্যতিক্রম:</strong> হ=H, ঙ=x, ঞ=X, য়=y, ৎ=Z, ং=V, ঁ=B, ঃ=M, হসন্ত = q অথবা +, এবং য-ফলা
+						= Y</li>
+					<li><strong>যুক্তাক্ষর লেখার নিয়ম:</strong> প্রথম বর্ণ, এরপরে হসন্ত (q অথবা প্লাস [+]) এবং তারপর
+						দ্বিতীয় বর্ণ। যেমন: ক্স = k + s, ক্ত = k q T, হ্ম = H + m, হ্ন = H + n, ল্ক = l q k</li>
+					<li><strong>র-ফলা টাইপ করার নিয়ম:</strong> "r(র) q(হসন্ত) বর্ণ" এই ক্রমে টাইপ করুন। যেমন: র্ণ = r q
+						N</li>
+					<li>h চেপে <strong>স্বরবরর্ণের পূর্ন-রূপ ও কার-রূপে সুইচ করুন</strong>। যেমন: b i= বি এবং b i h= বই
+					</li>
+					<li>কোন <strong>বর্ণের নিচে এককভাবে হসন্ত টাইপ</strong> করতে হসন্ত (q অথবা +) চেপে h চাপুন। যেমন:
+						ক্‌ন = k q h n
 					<li>কম্পিউটার থেকে বাংলা ও ইংরেজীতে সুইচ করতে ctrl+m অথবা F9 চাপুন</li>
-				</ul>		
+				</ul>
 			</div>
 			<div class="example_texts">
 				<h2>নিজে চেষ্টা করুন: </h2>
 				<span>এই প্যারাগ্রাফটিতে সকল বাংলা বর্ণ রয়েছে। চেষ্টা করুন এই কিবোর্ড লেআউট দিয়ে। </span>
 				<blockquote>
-				<p>বর্ষামুখর দিন শেষে, ঊর্দ্ধপানে চেয়ে যখন আষাঢ়ে গল্প শোনাতে বসে ওসমান ভুঁইঞা, ঈষান কোণে তখন অন্ধকার মেঘের আড়ম্বর, সবুজে ঋদ্ধ বনভূমির নির্জনতা চিরে থেকে থেকে ঐরাবতের ডাক, মাটির উপর শুকনো পাতা ঝরে পড়ে ঔদাসীন্যে, এবং তারই ফাঁকে জমে থাকা ঢের পুরোনো গভীর দুঃখ হঠাৎ যেন বৃষ্টিতে ধুয়ে মুছে ধূসর জীবনে রঙধনু এনে দেয়। </p>
+					<p>বর্ষামুখর দিন শেষে, ঊর্দ্ধপানে চেয়ে যখন আষাঢ়ে গল্প শোনাতে বসে ওসমান ভুঁইঞা, ঈষান কোণে তখন
+						অন্ধকার মেঘের আড়ম্বর, সবুজে ঋদ্ধ বনভূমির নির্জনতা চিরে থেকে থেকে ঐরাবতের ডাক, মাটির উপর শুকনো
+						পাতা ঝরে পড়ে ঔদাসীন্যে, এবং তারই ফাঁকে জমে থাকা ঢের পুরোনো গভীর দুঃখ হঠাৎ যেন বৃষ্টিতে ধুয়ে
+						মুছে ধূসর জীবনে রঙধনু এনে দেয়। </p>
 				</blockquote>
 
-				<span><div id="currentTime"></div></span>
+				<span>
+					<code><div id="currentTime"></div></code>					
+				</span>
 			</div>
 		</div>
-		
+
 		<div style="text-align: center;">
-			<br><br>
-			© <a href='https://github.com/AhmedMRaihan/rokeya-keyboard-layout'>Rokeya Bangla Keyboard Layout</a> 
+			© <a href='https://github.com/AhmedMRaihan/rokeya-keyboard-layout'>Rokeya Bangla Keyboard Layout</a>
 		</div>
 		<script type="text/javascript">
 			rokeyaLayoutKeyboard = null;
 			var sourceLabel = document.getElementById("activeLanguageIndicator");
 
-			function switchLanguage()
-			{
+			function switchLanguage() {
 				if (rokeyaLayoutKeyboard == null) {
 					return;
 				}
 
 				var wasBNActive = sourceLabel.innerHTML === "বাংলা";
-				if(wasBNActive == false)
-				{
-					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "bn_BD";
+				if (wasBNActive == false) {
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage = "bn_BD";
 					modifySourceLabel("বাংলা", "green");
 				}
-				else
-				{
-					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "en_US";
-					modifySourceLabel("ইংরেজী", "#47a6f0"); 
+				else {
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage = "en_US";
+					modifySourceLabel("ইংরেজী", "#47a6f0");
 				}
 			}
-			
-			function modifySourceLabel(text, backgroundColor)
-			{
+
+			function modifySourceLabel(text, backgroundColor) {
 				sourceLabel.innerHTML = text;
-				sourceLabel.style.backgroundColor = backgroundColor;				
+				sourceLabel.style.backgroundColor = backgroundColor;
 			}
-			
-			(function(){
+
+			(function () {
 				var data = new buetDateConverter().convert("বর্তমান সময়: l A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)");
 				var currentTimeBN = document.getElementById('currentTime');
-				currentTimeBN.innerText = data;	
+				currentTimeBN.innerText = data;
 			})();
 		</script>
 
 		<script type="text/javascript">
-			
-			requirejs(['./dist/BanglaLayout'], function(BanglaLayout_1) {
-				window.rokeyaLayoutKeyboard = new BanglaLayout_1.BanglaLayout("checkItOut", 
+
+			requirejs(['./dist/BanglaLayout'], function (BanglaLayout_1) {
+				window.rokeyaLayoutKeyboard = new BanglaLayout_1.BanglaLayout("checkItOut",
 					{
-						afterKeyEvent:function(){
+						afterKeyEvent: function () {
 							var isBNActive = rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage === "bn_BD";
-							if(isBNActive === true)
-							{
+							if (isBNActive === true) {
 								modifySourceLabel("বাংলা", "green");
 							}
-							else
-							{
+							else {
 								modifySourceLabel("ইংরেজী", "#47a6f0");
 							}
 						}
 					});
-				});
+			});
 			// */
 		</script>
 
-</body></html>
+</body>
+
+</html>
