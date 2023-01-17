@@ -1,46 +1,72 @@
-﻿// window and document
-var jsdom = require('jsdom').jsdom;
-window = jsdom().defaultView;
-document = window.document;
-jQuery = require('jquery');
-$ = jQuery;
-window.jQuery = jQuery;
-navigator = window.navigator;
+// JSDOM setup
+/*declare global {
+    namespace NodeJS {
+        interface Global {
+            document: Document;
+            window: Window;
+            navigator: Navigator;
+        }
+    }
+}
+*/
 
-// assertion
-chai = require('chai');
-assert = chai.assert;
-expect = chai.expect;
+import { JSDOM } from 'jsdom';
+declare var global:any;
 
-// library
-var bnKeyboardSource = require("../rokeya_layout-4.4.73.js");
-var Keyboard = bnKeyboardSource.Keyboard;
-var banglaLayout = bnKeyboardSource.banglaLayout;
+const { window } = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="checkItOut" name="checkItOut"></textarea><input type="text" id="basicUsageEvents" /></body></html>`);
 
-// preparation (i.e. qunit-fixture)
-$("body").append('<textarea style="display:block" id="checkItOut" name="checkItOut"></textarea><input type="text" id="basicUsageEvents" />');
+global.document = window.document;
+global.window = document.defaultView;
+// Object.keys(global.document.defaultView).forEach((property) => {
+//   if (typeof global[property] === 'undefined') {
+//     global[property] = global.document.defaultView[property];
+//   }
+// });
 
+global.navigator = {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
+};
+import * as $ from 'jquery';
+global.$ = $;
+global.jQuery = $;
+
+import { assert } from 'chai';
+import {BanglaLayout} from '../src/BanglaLayout';
+import { KeyboardHandler } from '../src/KeyboardHandler';
+
+// https://stackoverflow.com/a/62912768
+
+
+
+
+//const { window } = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="checkItOut" name="checkItOut"></textarea><input type="text" id="basicUsageEvents" /></body></html>`);
+//global.document = window.document;
+
+// Import jquery since windows is established now.
+//const $ = require('jquery')(window);
+
+/***** Tests start here */
 describe('Installation', function () {
 
     it('should initiate for textarea', function (done) {
-        var bnLayout = new banglaLayout("checkItOut").loadHelpTooltip();
+        var bnLayout = new BanglaLayout("checkItOut");
         assert.ok(bnLayout != null, "Class initiation failed");
         done();
     });
 
     it('should initiate for input[type=text]', function (done) {
-        var withEvents = {};
+        var withEvents:any = {};
         withEvents.beforeKeyEvent = function () { };
         withEvents.afterKeyEvent = function () { };
 
-        var bnLayoutWithEvents = new banglaLayout("basicUsageEvents", withEvents);
+        var bnLayoutWithEvents = new BanglaLayout("basicUsageEvents", withEvents);
         assert.ok(bnLayoutWithEvents != null, "Class initiation failed");
 
         done();
     });
 
     it('should throw an error for missing ID', function (done) {
-        assert.throws(function(){new banglaLayout();}, Error);
+        assert.throws(function(){new BanglaLayout("");}, Error);
         done();
     });
 });
@@ -52,7 +78,7 @@ describe('Keyboard Functionality', function () {
 
         var $textarea = $("#checkItOut");
         $textarea.val("");
-        var pseudoKeyboard = new Keyboard();
+        var pseudoKeyboard = new KeyboardHandler();
 
         var event = $.Event("keypress");
         event.keyCode = 65;
@@ -60,7 +86,7 @@ describe('Keyboard Functionality', function () {
 
         var expectedString = "", msgOnError = "", doAssert = true;
 
-        $textarea.on('keypress', function (keyEvent) {
+        $textarea.on('keypress', function (keyEvent:any) {
             var oEvent = window.event || keyEvent;
             var oSource = oEvent.srcElement || oEvent.target;
             pseudoKeyboard.handleKeyboardInput(oEvent, oSource);
@@ -112,7 +138,7 @@ describe('Keyboard Functionality', function () {
         $textarea.trigger(event);
 
         // Language switch
-        pseudoKeyboard.global.currentLanguage = "en_US";
+        pseudoKeyboard.letterInformation.currentLanguage = "en_US";
         expectedString = 'আখী.';
         msgOnError = "English letters will be ignored when pressed";
         event.keyCode = 89;
