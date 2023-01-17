@@ -115,30 +115,11 @@
 				sourceLabel.style.backgroundColor = backgroundColor;				
 			}
 			
-			
-			/* 
-			window.onload = function(e)
-			{
-				rokeyaLayoutKeyboard = new BanglaLayout("checkItOut", 
-					{
-						afterKeyEvent:function(){
-							var isBNActive = rokeyaLayoutKeyboard.keyboard.global.currentLanguage === "bn_BD";
-							if(isBNActive === true)
-							{
-								modifySourceLabel("বাংলা", "green");
-							}
-							else
-							{
-								modifySourceLabel("ইংরেজী", "#47a6f0");
-							}
-						}
-					});
-
-				var data = new buetDateConverter().convert("সময়: l A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)");
+			(function(){
+				var data = new buetDateConverter().convert("বর্তমান সময়: l A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)");
 				var currentTimeBN = document.getElementById('currentTime');
-				currentTimeBN.innerText = data;
-			};
-			// */
+				currentTimeBN.innerText = data;	
+			})();
 		</script>
 
 		<script type="text/javascript">
