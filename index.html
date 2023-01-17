@@ -87,7 +87,7 @@
 			© <a href='https://github.com/AhmedMRaihan/rokeya-keyboard-layout'>Rokeya Bangla Keyboard Layout</a> 
 		</div>
 		<script type="text/javascript">
-			var rokeyaLayoutKeyboard = null;
+			rokeyaLayoutKeyboard = null;
 			var sourceLabel = document.getElementById("activeLanguageIndicator");
 
 			function switchLanguage()
@@ -99,12 +99,12 @@
 				var wasBNActive = sourceLabel.innerHTML === "বাংলা";
 				if(wasBNActive == false)
 				{
-					rokeyaLayoutKeyboard.keyboard.global.currentLanguage =  "bn_BD";
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "bn_BD";
 					modifySourceLabel("বাংলা", "green");
 				}
 				else
 				{
-					rokeyaLayoutKeyboard.keyboard.global.currentLanguage =  "en_US";
+					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage =  "en_US";
 					modifySourceLabel("ইংরেজী", "#47a6f0"); 
 				}
 			}
