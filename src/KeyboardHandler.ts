@@ -52,7 +52,7 @@ export class KeyboardHandler {
             this.letterInformation.currentLanguage = _C;
         }
         //  ctrl, shift, alt, alt-grp, up arrow, down arrow
-        if (this.oEvent.ctrlKey || this.oEvent.altKey || code < 32 || (code >= 37 && code <= 40)) {
+        if (this.oEvent.ctrlKey || this.oEvent.altKey || this.oEvent.metaKey || code < 32 || (code >= 37 && code <= 40)) {
             let ignoreListOfKeys:PartialUserKeyPressed = {
                 code: code,
                 iShouldDealIt: false
