@@ -1,15 +1,3 @@
-// JSDOM setup
-/*declare global {
-    namespace NodeJS {
-        interface Global {
-            document: Document;
-            window: Window;
-            navigator: Navigator;
-        }
-    }
-}
-*/
-
 import { JSDOM } from 'jsdom';
 declare var global:any;
 
