@@ -47,16 +47,7 @@ export class BanglaLayout implements KeyEventFunctions {
         };
         try {
             inputbox.onkeydown = function(keyEvent) {
-                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent))
-                    return true;
                 hasHookedAlready = returnComputeFn(keyEvent);
-                return hasHookedAlready;
-            };
-            
-            inputbox.onkeypress = function (keyEvent) {
-                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
-                    hasHookedAlready = returnComputeFn(keyEvent);
-                }
                 return hasHookedAlready;
             };
 
