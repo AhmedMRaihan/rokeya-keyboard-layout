@@ -36,7 +36,7 @@ export class BanglaLayout implements KeyEventFunctions {
         
         var root = this;
         var returnComputeFn = function(keyEvent:any){
-            var oEvent = window.event || keyEvent;
+            var oEvent = keyEvent;
             var oSource = oEvent.srcElement || oEvent.target;
             
             root.beforeKeyEvent();

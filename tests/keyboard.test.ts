@@ -69,8 +69,7 @@ describe('Keyboard Functionality', function () {
         var pseudoKeyboard = new KeyboardHandler();
 
         var event = $.Event("keypress");
-        event.keyCode = 65;
-        event.which = 65;
+        event.key = 'a';
 
         var expectedString = "", msgOnError = "", doAssert = true;
 
@@ -91,46 +90,39 @@ describe('Keyboard Functionality', function () {
 
         expectedString = 'আক';
         msgOnError = "ক should be appended";
-        event.keyCode = 75;
-        event.which = 75;
+        event.key = 'k';
         $textarea.trigger(event);
 
         expectedString = 'আখ';
         msgOnError = "খ should be switched via h";
-        event.keyCode = 72;
-        event.which = 72;
+        event.key = 'h';
         $textarea.trigger(event);
 
         // Special characteristics
-        event.keyCode = 73;
-        event.which = 73;
+        event.key = 'i';
         doAssert = false;
         $textarea.trigger(event);
         expectedString = "আখী";        
         msgOnError = "Vowels in car-form can be switched by typing again";
-        event.keyCode = 73;
-        event.which = 73;
+        event.key = 'i';
         doAssert = true;
         $textarea.trigger(event);
 
         expectedString = 'আখী।';
         msgOnError = "। can be inserted";
-        event.keyCode = 190;
-        event.which = 190;
+        event.key = ".";
         $textarea.trigger(event);
 
         expectedString = 'আখী.';
         msgOnError = "। can be switched by pressing it again";
-        event.keyCode = 190;
-        event.which = 190;
+        event.key = ".";
         $textarea.trigger(event);
 
         // Language switch
         pseudoKeyboard.letterInformation.currentLanguage = "en_US";
         expectedString = 'আখী.';
         msgOnError = "English letters will be ignored when pressed";
-        event.keyCode = 89;
-        event.which = 89;
+        event.key = "F9";
         $textarea.trigger(event);
         
 
