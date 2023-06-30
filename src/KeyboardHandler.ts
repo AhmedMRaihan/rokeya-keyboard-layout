@@ -1,13 +1,13 @@
-import {LetterInformation} from "./LetterInformation";
+import { LetterInformation } from "./LetterInformation";
 
 
 type CursorPosition = {
-     start: number;
-     end: number;
+    start: number;
+    end: number;
 }
 
 class UserKeyPressed {
-    code: number; // =65
+    //code: number; // =65
     iShouldDealIt: boolean; // =false
 
     unicodeKey: string; // ="\u0041"
@@ -17,28 +17,27 @@ class UserKeyPressed {
     position: CursorPosition; // { 1,8 }
     characterType: number; // 1~7
 
-    constructor(){}
+    constructor() { }
 }
 type PartialUserKeyPressed = Partial<UserKeyPressed>;
 
 export class KeyboardHandler {
     public letterInformation: LetterInformation;
     private oEvent: KeyboardEvent;
-    private textInputSource:HTMLTextAreaElement|HTMLInputElement;
+    private textInputSource: HTMLTextAreaElement | HTMLInputElement;
 
     constructor() {
         this.letterInformation = new LetterInformation();
     }
 
     selectKeyPressed(): PartialUserKeyPressed {
-        var code = this.oEvent.keyCode || this.oEvent.which;
-        var position:CursorPosition = this.cursorPosition();
+        var keyPressed = this.oEvent.key;
+        var position: CursorPosition = this.cursorPosition();
 
-        // delete or backspace or dot-button or plus-button key
-        if (code === 8 || code === 46) {
-            let keyCodeForBackspace:PartialUserKeyPressed = {
-                code: code,
-                unicodeKey: "",
+        // delete or backspace - for immediate change
+        if (keyPressed === 'Delete' || keyPressed === 'Backspace') {
+            let keyCodeForBackspace: PartialUserKeyPressed = {
+                unicodeKey: keyPressed,
                 iShouldDealIt: true,
                 placeTo: position.start,
                 position: position
@@ -46,55 +45,55 @@ export class KeyboardHandler {
             return keyCodeForBackspace;
         }
 
-        // using ctrl+m or F9 button to language switched
-        if ((this.oEvent['ctrlKey'] && code === 77) || code === 120) {
+        // using ctrl+m or F9 button to language switch
+        if ((this.oEvent.ctrlKey == true && keyPressed === 'm') || keyPressed === 'F9') {
             let _C = this.letterInformation.currentLanguage === "bn_BD" ? "en_US" : "bn_BD";
             this.letterInformation.currentLanguage = _C;
         }
+
         //  ctrl, shift, alt, alt-grp, up arrow, down arrow
-        if (this.oEvent.ctrlKey || this.oEvent.altKey || this.oEvent.metaKey || code < 32 || (code >= 37 && code <= 40)) {
-            let ignoreListOfKeys:PartialUserKeyPressed = {
-                code: code,
+        if (this.oEvent.ctrlKey || this.oEvent.altKey || this.oEvent.metaKey || ['ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft', 'Escape', 'Insert', 'PageUp', 'PageDown', 'Alt' ].indexOf(keyPressed) >= 0) {
+            return {
                 iShouldDealIt: false
             };
-            return ignoreListOfKeys;
         }
 
         var unicodeKey = "";
+        var charCode = keyPressed.charCodeAt(0);
 
-        if (code >= 65 && code <= 90) {
-            unicodeKey = this.letterInformation.letterKeyMap[code - 65][+!!this.oEvent.shiftKey];
+        // letters: A-Z and a-z
+        var isLetter = (c:string) => c.toLowerCase() != c.toUpperCase() && c.length == 1;
+        var isNumber = (str:string) => !isNaN(parseInt(str)) && str.length == 1;
+
+        if (keyPressed >= 'A' && keyPressed <= 'Z' && isLetter(keyPressed)) {
+            unicodeKey = this.letterInformation.letterKeyMap[charCode - 'A'.charCodeAt(0)][1];
         }
-        else if (code >= 48 && code <= 57 && this.oEvent.shiftKey === false) {
-            unicodeKey = this.letterInformation.numberKeyMap[code - 48][0];
+        else if (keyPressed >= 'a' && keyPressed <= 'z' && isLetter(keyPressed)) {
+            unicodeKey = this.letterInformation.letterKeyMap[charCode - 'a'.charCodeAt(0)][0];
         }
-            // numpad numbers except opera
-        else if (!("opera" in window) && code >= 96 && code <= 105 && this.oEvent.shiftKey === false)
-            unicodeKey = this.letterInformation.numberKeyMap[code - 96];
-            // taka symbol
-        else if (code === 52 && this.oEvent.shiftKey)
+        // numbers: 0-9
+        else if ( (keyPressed >= '0' && keyPressed <= '9') && this.oEvent.shiftKey === false && isNumber(keyPressed) ) {
+            unicodeKey = this.letterInformation.numberKeyMap[charCode - '0'.charCodeAt(0)][0];
+        }
+        // taka symbol
+        else if (keyPressed === '$' && this.oEvent.shiftKey)
             unicodeKey = "\u09f3";
-
-            // full-stop from keyboard/numpad	
-        else if ((code === 190 || code === 110) && !this.oEvent.shiftKey)
+        // full-stop from keyboard/numpad
+        else if ((keyPressed === ".") && !this.oEvent.shiftKey)
             unicodeKey = "\u0964";
-            // shift with plus-sign, replace with Q[0] or hasanta
-        else if ((code === 107) && this.oEvent.shiftKey)
+        // shift with plus-sign, replace with Q[0] or hasanta
+        else if ((keyPressed === '+') && this.oEvent.shiftKey)
             unicodeKey = this.letterInformation.letterKeyMap[81 - 65][0];
-            // opera,chrome 24+, firefox16+ tweak for + button
-        else if ((code === 187 || code === 61) && this.oEvent.shiftKey)
-            unicodeKey = this.letterInformation.letterKeyMap[81 - 65][0];
+        
+        // not in scope and nothing to handle
         else return {
-            code: code,
             iShouldDealIt: false
         };
 
-        // h || full-Stop || plus-Sign
-        var replaceLastChar =
-                (code === 72) && !this.oEvent.shiftKey;
+        // change last character using `h`
+        var replaceLastChar = (keyPressed === 'h') && !this.oEvent.shiftKey;
 
         let userTypedKey: PartialUserKeyPressed = {
-            code: code, // =65
             iShouldDealIt: true, // =false
 
             unicodeKey: unicodeKey, // ="\u0041"
@@ -107,12 +106,12 @@ export class KeyboardHandler {
         return userTypedKey;
     }
 
-    handleKeyboardInput(oEvent:KeyboardEvent, oSource:HTMLInputElement|HTMLTextAreaElement):boolean {
+    handleKeyboardInput(oEvent: KeyboardEvent, oSource: HTMLInputElement | HTMLTextAreaElement): boolean {
         this.textInputSource = oSource;
         this.oEvent = oEvent;
 
-        var prev:string = "", prevPrev = "", nextNext = "", 
-            text:string = !!oSource ? this.textInputSource.value : "", prevCharacterType:number = 0;
+        var prev: string = "", prevPrev = "", nextNext = "",
+            text: string = !!oSource ? this.textInputSource.value : "", prevCharacterType: number = 0;
 
         var keyState = this.selectKeyPressed();
 
@@ -184,7 +183,7 @@ export class KeyboardHandler {
             else
                 keyState.unicodeKey = <string>this.letterInformation.getFollower(keyState.unicodeKey, 2);
         }
-            // change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
+        // change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
         else if (keyState.characterType === 2 && !(prevCharacterType === 1 || prevCharacterType === 3)) {
             keyState.unicodeKey = <string>this.letterInformation.getFollower(keyState.unicodeKey, 2);
         }
@@ -197,7 +196,7 @@ export class KeyboardHandler {
 
         // <summary>Backspace or Delete</summary>
         // prevPrev is hasanta
-        if (keyState.code === 8) {
+        if (keyState.unicodeKey === 'Backspace') {
 
             // if end==start then selected text so cursor should not move; otherwise should
             keyState.position.start -= +(keyState.position.start === keyState.position.end);
@@ -209,10 +208,14 @@ export class KeyboardHandler {
                 keyState.position.start = 0;
         }
         // nextNext is hasanta
-        if (keyState.code === 46) {
+        else if (keyState.unicodeKey === 'Delete') {
             // if end==start then selected text so cursor should not move; otherwise should
             keyState.position.end += +(keyState.position.start === keyState.position.end);
             keyState.position.end += nextNext === "\u09CD" ? 1 : 0;
+        }
+        // For Delete/Backspace, nothing should be written
+        if (keyState.unicodeKey == 'Delete' || keyState.unicodeKey == 'Backspace'){
+            keyState.unicodeKey = "";
         }
 
         // <summary>Final data preparation</summary>
@@ -226,7 +229,7 @@ export class KeyboardHandler {
         this.textInputSource.value = finalText;
         this.textInputSource.focus();
         this.textInputSource.scrollTop = scrollTop;
-		this.textInputSource.setSelectionRange(caretPosition, caretPosition);
+        this.textInputSource.setSelectionRange(caretPosition, caretPosition);
 
         return false;
     }
@@ -234,7 +237,7 @@ export class KeyboardHandler {
     // No support beyond IE <= 8. Details here: http://stackoverflow.com/a/16106012/385205
     cursorPosition(): CursorPosition {
         return {
-            start: this.textInputSource.selectionStart, 
+            start: this.textInputSource.selectionStart,
             end: this.textInputSource.selectionEnd
         };
     };
