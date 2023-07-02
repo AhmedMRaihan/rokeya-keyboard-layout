@@ -54,7 +54,7 @@ export class LetterInformation {
                 return this.switchedLetter[start][1];
             }
         }
-        return "";
+        throw new Error(`${inputValue} was not found in the list`);
     };
     /* <summary>
     format:  bengali letter, type, follower

@@ -1,43 +1,31 @@
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole } from 'jsdom';
 declare var global:any;
 
-const { window } = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="checkItOut" name="checkItOut"></textarea><input type="text" id="basicUsageEvents" /></body></html>`);
-
-global.document = window.document;
-global.window = document.defaultView;
-// Object.keys(global.document.defaultView).forEach((property) => {
-//   if (typeof global[property] === 'undefined') {
-//     global[property] = global.document.defaultView[property];
-//   }
-// });
-
-global.navigator = {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'
+const options = {
+    virtualConsole: new VirtualConsole().sendTo(console)
 };
-import * as $ from 'jquery';
-global.$ = $;
-global.jQuery = $;
+//var dom = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="placeholderForTests"></textarea><input type="text" id="basicUsageEvents" /></body></html>`, options);
+const dom = new JSDOM(
+    `<html>
+     <body>
+        <textarea style="display:block" id="placeholderForTests" ></textarea>
+        <input type="text" id="basicUsageEvents" />
+     </body>
+   </html>`,
+   options
+  );
+
+global.window = dom.window;
+global.document = dom.window.document;
 
 import { assert } from 'chai';
-import {BanglaLayout} from '../src/BanglaLayout';
-import { KeyboardHandler } from '../src/KeyboardHandler';
-
-// https://stackoverflow.com/a/62912768
-
-
-
-
-//const { window } = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="checkItOut" name="checkItOut"></textarea><input type="text" id="basicUsageEvents" /></body></html>`);
-//global.document = window.document;
-
-// Import jquery since windows is established now.
-//const $ = require('jquery')(window);
+import { BanglaLayout } from '../src/BanglaLayout';
 
 /***** Tests start here */
 describe('Installation', function () {
 
     it('should initiate for textarea', function (done) {
-        var bnLayout = new BanglaLayout("checkItOut");
+        var bnLayout = new BanglaLayout("placeholderForTests");
         assert.ok(bnLayout != null, "Class initiation failed");
         done();
     });
@@ -57,76 +45,66 @@ describe('Installation', function () {
         assert.throws(function(){new BanglaLayout("");}, Error);
         done();
     });
+
 });
 
 describe('Keyboard Functionality', function () {
+    //var pseudoKeyboard = new KeyboardHandler();
+    var srcElement = <HTMLTextAreaElement> document.getElementById("placeholderForTests");
 
-    // Get keycodes from: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-    it('Should handle vowel and consonants', function (done) {
+    beforeEach(() => {
+        new BanglaLayout(srcElement.id);
+        srcElement.value = "";
+        //console.debug(`OnClickHandlers prepared for ${srcElement.id}`);
+    });
 
-        var $textarea = $("#checkItOut");
-        $textarea.val("");
-        var pseudoKeyboard = new KeyboardHandler();
+    var test_key_conversion = function (givenKey: string, expectedString: string, msgOnError: string, doAssert:boolean = true) {
+        const event = new window.KeyboardEvent('keydown', { key: givenKey, bubbles: true });
+        srcElement.dispatchEvent(event);
 
-        var event = $.Event("keypress");
-        event.key = 'a';
+        if (doAssert) {
+            assert.equal(srcElement.value, expectedString, msgOnError);
+        }
+    }
 
-        var expectedString = "", msgOnError = "", doAssert = true;
-
-        $textarea.on('keypress', function (keyEvent:any) {
-            var oEvent = window.event || keyEvent;
-            var oSource = oEvent.srcElement || oEvent.target;
-            pseudoKeyboard.handleKeyboardInput(oEvent, oSource);
-
-            if (doAssert) {
-                assert.equal($textarea.val(), expectedString, msgOnError);
-            }
-        });
+    it('Should handle numbers and single characters', function (done) {
 
         // Regular functionality
-        expectedString = 'আ';
-        msgOnError = "আ should be inserted initially";
-        $textarea.trigger(event);
+        test_key_conversion("1", '১', "Number conversion failed");
+        test_key_conversion("$", '১৳', "$ is not converted to BDT symbol");
+        test_key_conversion(".", '১৳।', "। is not inserted by dot symbol");
 
-        expectedString = 'আক';
-        msgOnError = "ক should be appended";
-        event.key = 'k';
-        $textarea.trigger(event);
-
-        expectedString = 'আখ';
-        msgOnError = "খ should be switched via h";
-        event.key = 'h';
-        $textarea.trigger(event);
-
-        // Special characteristics
-        event.key = 'i';
-        doAssert = false;
-        $textarea.trigger(event);
-        expectedString = "আখী";        
-        msgOnError = "Vowels in car-form can be switched by typing again";
-        event.key = 'i';
-        doAssert = true;
-        $textarea.trigger(event);
-
-        expectedString = 'আখী।';
-        msgOnError = "। can be inserted";
-        event.key = ".";
-        $textarea.trigger(event);
-
-        expectedString = 'আখী.';
-        msgOnError = "। can be switched by pressing it again";
-        event.key = ".";
-        $textarea.trigger(event);
-
-        // Language switch
-        pseudoKeyboard.letterInformation.currentLanguage = "en_US";
-        expectedString = 'আখী.';
-        msgOnError = "English letters will be ignored when pressed";
-        event.key = "F9";
-        $textarea.trigger(event);
-        
-
-        assert.equal($textarea.val(), expectedString);
         done();
     });
+
+    it('Should handle vowels and consonants', function (done) {
+
+        // Regular functionality
+        test_key_conversion("a", 'আ', "আ is not inserted initially in full-form");
+        test_key_conversion("k", 'আক', "ক is not inserted");
+        test_key_conversion("i", 'আকি', "ই-কার is not inserted after a consonant");
+
+        done();
+    });
+
+    it('Should switch letter(s) by special combinations', function (done) {
+
+        // Change by h
+        test_key_conversion("k", 'ক', "N/A - prep step", false);
+        test_key_conversion("h", 'খ', "ক is not switched to খ");
+        test_key_conversion('i', "খি", "N/A - prep step", false);
+        test_key_conversion('i', "খী", "Vowels in car-form is not switched by typing again");
+        test_key_conversion(".", 'খী।', "N/A - prep step", false);
+        test_key_conversion(".", 'খী.', "। is not switched to dot by pressing it twice");
+        
+        done();
+    });
+
+    it('should change language', function (done) {
+        test_key_conversion("k", 'ক', "N/A - prep step", false);
+        test_key_conversion("F9", 'ক', "Language switching key should not change text contents");
+        
+        done();
+    });
+
 });
