@@ -24,8 +24,12 @@ jobs:
       # Ensure tests will pass
       - run: npm run test
 
+      # Remove files
+      - run: rm -rf node_modules
+      - run: rm -rf .nyc_output
+
       # Upload artifacts to use later
-      - name: Upload coverage artifacts
+      - name: Upload page artifacts
         uses: actions/upload-artifact@master
         with:
           name: ghpage-contents
