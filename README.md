@@ -8,7 +8,7 @@
  * সকল রকমের বাংলা বর্ণ লেখা সম্ভব
  * ফোনেটিক এবং ফিক্সড উভয় লেআউট হিসেবেই ব্যবহার করা সম্ভব
 
-## Introduction [![Build+Test+Publish](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/build-and-deploy.yml)
+## Introduction [![Build+Test+Publish](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg)](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml)
 
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
 
