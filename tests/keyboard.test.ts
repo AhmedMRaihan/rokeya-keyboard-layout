@@ -4,7 +4,6 @@ declare var global:any;
 const options = {
     virtualConsole: new VirtualConsole().sendTo(console)
 };
-//var dom = new JSDOM(`<!DOCTYPE html><html><head></head><body><textarea style="display:block" id="placeholderForTests"></textarea><input type="text" id="basicUsageEvents" /></body></html>`, options);
 const dom = new JSDOM(
     `<html>
      <body>
@@ -83,6 +82,7 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("a", 'আ', "আ is not inserted initially in full-form");
         test_key_conversion("k", 'আক', "ক is not inserted");
         test_key_conversion("i", 'আকি', "ই-কার is not inserted after a consonant");
+        test_key_conversion("P", 'আকিফ', "ফ is not inserted");
 
         done();
     });
