@@ -1,0 +1,50 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Build+Test+Publish
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  
+  continuous-integration-only:
+    uses: ./.github/workflows/build-and-test.yml
+    with:
+      commit_sha: ${{ github.sha }}
+
+  # Single deploy job since we're just deploying
+  deployment:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    needs: continuous-integration-only
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+    
+    - name: Download page artifacts
+      uses: actions/download-artifact@master
+      with:
+        name: ghpage-contents
+        path: .
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
