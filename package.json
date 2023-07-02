@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "4.4.73-20230630",
+  "version": "4.4.73-02072023",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "^4.3.5",
