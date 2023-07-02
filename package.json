@@ -20,7 +20,6 @@
     "build": "tsc",
     "cleanup": "rm src/*.js || true",
     "build-watch": "npm run cleanup && tsc --watch",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc --reporter=text mocha -r ts-node/register tests/**/*.test.ts",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' nyc --reporter text --reporter=html mocha -r ts-node/register tests/**/*.test.ts"
   }
 }
