@@ -26,7 +26,6 @@ jobs:
 
       # Remove files
       - run: rm -rf node_modules
-      - run: rm -rf .nyc_output
       - run: rm -rf .git
 
       # Upload artifacts to use later
