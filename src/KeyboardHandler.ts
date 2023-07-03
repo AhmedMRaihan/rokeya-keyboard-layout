@@ -6,8 +6,7 @@ type CursorPosition = {
     end: number;
 }
 
-class UserKeyPressed {
-    //code: number; // =65
+interface UserKeyPressed {
     iShouldDealIt: boolean; // =false
 
     unicodeKey: string; // ="\u0041"
@@ -16,8 +15,6 @@ class UserKeyPressed {
     placeTo: number; // =3
     position: CursorPosition; // { 1,8 }
     characterType: number; // 1~7
-
-    constructor() { }
 }
 type PartialUserKeyPressed = Partial<UserKeyPressed>;
 
@@ -82,8 +79,8 @@ export class KeyboardHandler {
         else if (keyPressed === ".")
             unicodeKey = "\u0964";
         // shift with plus-sign, replace with Q[0] or hasanta
-        else if ((keyPressed === '+') && this.oEvent.shiftKey)
-            unicodeKey = this.letterInformation.letterKeyMap[81 - 65][0];
+        else if (keyPressed === '+')
+            unicodeKey = this.letterInformation.letterKeyMap['q'.charCodeAt(0) - 'a'.charCodeAt(0)][0];
         
         // not in scope and nothing to handle
         else return {
