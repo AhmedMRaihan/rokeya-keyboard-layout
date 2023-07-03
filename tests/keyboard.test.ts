@@ -100,6 +100,15 @@ describe('Keyboard Functionality', function () {
         done();
     });
 
+    it('should conjugate letters', function (done) {
+        test_key_conversion("k", 'ক', "N/A - prep step", false);
+        test_key_conversion("q", 'ক্', "N/A - prep step", false);
+        test_key_conversion("r", 'ক্র', "Consonant conjugation using hasanta is not working");
+        test_key_conversion("Backspace", 'ক', "Backspace is not auto-removing preceeding hasanta");
+        
+        done();
+    });
+
     it('should change language', function (done) {
         test_key_conversion("k", 'ক', "N/A - prep step", false);
         test_key_conversion("F9", 'ক', "Language switching key should not change text contents");
