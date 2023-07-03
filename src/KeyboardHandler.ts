@@ -72,14 +72,14 @@ export class KeyboardHandler {
             unicodeKey = this.letterInformation.letterKeyMap[charCode - 'a'.charCodeAt(0)][0];
         }
         // numbers: 0-9
-        else if ( (keyPressed >= '0' && keyPressed <= '9') && this.oEvent.shiftKey === false && isNumber(keyPressed) ) {
+        else if ( (keyPressed >= '0' && keyPressed <= '9') && isNumber(keyPressed) ) {
             unicodeKey = this.letterInformation.numberKeyMap[charCode - '0'.charCodeAt(0)][0];
         }
         // taka symbol
         else if (keyPressed === '$')
             unicodeKey = "\u09f3";
         // full-stop from keyboard/numpad
-        else if ((keyPressed === ".") && !this.oEvent.shiftKey)
+        else if (keyPressed === ".")
             unicodeKey = "\u0964";
         // shift with plus-sign, replace with Q[0] or hasanta
         else if ((keyPressed === '+') && this.oEvent.shiftKey)
