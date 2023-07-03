@@ -105,7 +105,10 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("q", 'ক্', "N/A - prep step", false);
         test_key_conversion("r", 'ক্র', "Consonant conjugation using hasanta is not working");
         test_key_conversion("Backspace", 'ক', "Backspace is not auto-removing preceeding hasanta");
-        
+
+        test_key_conversion("+", 'ক্', "N/A - prep step", false);
+        test_key_conversion("T", 'ক্ত', "Consonant conjugation using hasanta is not working");
+
         done();
     });
 
