@@ -34,23 +34,23 @@ jobs:
     needs: continuous-integration-only
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@main
 
     - name: Setup Pages
-      uses: actions/configure-pages@v2
+      uses: actions/configure-pages@main
     
     - name: Download page artifacts
-      uses: actions/download-artifact@master
+      uses: actions/download-artifact@main
       with:
         name: ghpage-contents
         path: .
 
     - name: Upload artifact for Page deployment
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@main
       with:
         # Upload entire repository
         path: '.'
 
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@main
