@@ -17,32 +17,29 @@ const dom = new JSDOM(
 global.window = dom.window;
 global.document = dom.window.document;
 
-import { assert } from 'chai';
+import {expect, jest, test} from '@jest/globals';
 import { BanglaLayout } from '../src/BanglaLayout';
 
 /***** Tests start here */
-describe('Installation', function () {
+describe('Installation', () => {
 
-    it('should initiate for textarea', function (done) {
+    it('should initiate for textarea', () => {
         var bnLayout = new BanglaLayout("placeholderForTests");
-        assert.ok(bnLayout != null, "Class initiation failed");
-        done();
+        expect(bnLayout).not.toBeNull();
     });
 
-    it('should initiate for input[type=text]', function (done) {
+    it('should initiate for input[type=text]', () => {
         var withEvents:any = {};
         withEvents.beforeKeyEvent = function () { };
         withEvents.afterKeyEvent = function () { };
 
         var bnLayoutWithEvents = new BanglaLayout("basicUsageEvents", withEvents);
-        assert.ok(bnLayoutWithEvents != null, "Class initiation failed");
-
-        done();
+        expect(bnLayoutWithEvents).not.toBeNull();
+        
     });
 
-    it('should throw an error for missing ID', function (done) {
-        assert.throws(function(){new BanglaLayout("");}, Error);
-        done();
+    it('should throw an error for missing ID', () => {
+        expect(function(){new BanglaLayout("");}).toThrowError(Error);
     });
 
 });
@@ -62,32 +59,31 @@ describe('Keyboard Functionality', function () {
         srcElement.dispatchEvent(event);
 
         if (doAssert) {
-            assert.equal(srcElement.value, expectedString, msgOnError);
+            expect(srcElement.value).toEqual(expectedString);
+            // assert.equal(srcElement.value, expectedString, msgOnError);
         }
     }
 
-    it('Should handle numbers and single characters', function (done) {
+    it('Should handle numbers and single characters', () => {
 
         // Regular functionality
         test_key_conversion("1", '১', "Number conversion failed");
         test_key_conversion("$", '১৳', "$ is not converted to BDT symbol");
         test_key_conversion(".", '১৳।', "। is not inserted by dot symbol");
 
-        done();
     });
 
-    it('Should handle vowels and consonants', function (done) {
+    it('Should handle vowels and consonants', () => {
 
         // Regular functionality
         test_key_conversion("a", 'আ', "আ is not inserted initially in full-form");
         test_key_conversion("k", 'আক', "ক is not inserted");
         test_key_conversion("i", 'আকি', "ই-কার is not inserted after a consonant");
         test_key_conversion("P", 'আকিফ', "ফ is not inserted");
-
-        done();
+        test_key_conversion("Backspace", 'আকি', "Backspace is not working");
     });
 
-    it('Should switch letter(s) by special combinations', function (done) {
+    it('Should switch letter(s) by special combinations', () => {
 
         // Change by h
         test_key_conversion("k", 'ক', "N/A - prep step", false);
@@ -97,10 +93,9 @@ describe('Keyboard Functionality', function () {
         test_key_conversion(".", 'খী।', "N/A - prep step", false);
         test_key_conversion(".", 'খী.', "। is not switched to dot by pressing it twice");
         
-        done();
     });
 
-    it('should conjugate letters', function (done) {
+    it('should conjugate letters', () => {
         test_key_conversion("k", 'ক', "N/A - prep step", false);
         test_key_conversion("q", 'ক্', "N/A - prep step", false);
         test_key_conversion("r", 'ক্র', "Consonant conjugation using hasanta is not working");
@@ -109,14 +104,12 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("+", 'ক্', "N/A - prep step", false);
         test_key_conversion("T", 'ক্ত', "Consonant conjugation using hasanta is not working");
 
-        done();
     });
 
-    it('should change language', function (done) {
+    it('should change language', () => {
         test_key_conversion("k", 'ক', "N/A - prep step", false);
         test_key_conversion("F9", 'ক', "Language switching key should not change text contents");
         
-        done();
     });
 
 });
