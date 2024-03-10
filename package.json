@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^29.5.12",
