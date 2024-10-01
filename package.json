@@ -3,7 +3,7 @@
   "version": "5.1.0",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "@types/jsdom": "^21.1.7",
     "chai": "^5.1.1",
     "http-server": "^14.1.1",
