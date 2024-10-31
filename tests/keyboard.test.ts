@@ -17,7 +17,7 @@ const dom = new JSDOM(
 global.window = dom.window;
 global.document = dom.window.document;
 
-import {expect, jest, test} from '@jest/globals';
+import {expect} from '@jest/globals';
 import { BanglaLayout } from '../src/BanglaLayout';
 
 /***** Tests start here */
