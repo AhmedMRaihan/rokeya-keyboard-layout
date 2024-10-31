@@ -14,8 +14,8 @@ jobs:
     steps:
       # Prepare environment
       - name: Checkout
-        uses: actions/checkout@main
-      - uses: actions/setup-node@main
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       
       # Prepare dist folder
       - run: npm install
