@@ -1,4 +1,4 @@
-import { LetterInformation } from "./LetterInformation";
+import { LetterInformation, LetterType } from "./LetterInformation";
 
 
 type CursorPosition = {
@@ -136,17 +136,17 @@ export class KeyboardHandler {
 
         if (keyState.replaceLastChar) {
             // if hasanta then +
-            if (prev === "\u09CD" && keyState.unicodeKey === "\u09CD") {
+            if (prevCharacterType == LetterType.HASANTA && keyState.unicodeKey === "\u09CD") {
                 keyState.unicodeKey = "\u002B";
             }
             // if hasanta and h then force end at hasanta
-            else if (prev === "\u09CD" && keyState.unicodeKey === "") {
+            else if (prevCharacterType == LetterType.HASANTA && keyState.unicodeKey === "") {
                 keyState.unicodeKey = "\u09CD" + this.letterInformation.ZWNJ;
             }
             // other
-            else if (prevCharacterType === 2)
+            else if (prevCharacterType === LetterType.VOWEL_IN_KAR_FORM)
                 keyState.unicodeKey = <string>this.letterInformation.getFollower(prev, 2);
-            else if (prevCharacterType === 7)
+            else if (prevCharacterType === LetterType.VOWEL_IN_FULL_FORM)
                 keyState.unicodeKey = this.letterInformation.ZWNJ + this.letterInformation.getFollower(prev, 2);
             else
                 keyState.unicodeKey = <string>this.letterInformation.getFollower(prev, 2);
@@ -170,8 +170,8 @@ export class KeyboardHandler {
         }
 
         // same vowel pressed twice will cause a switch
-        if (prev === keyState.unicodeKey && (prevCharacterType === 2 || prevCharacterType === 7)) {
-            var temp = this.letterInformation.getSwitchedLetter(keyState.unicodeKey);
+        if (prev === keyState.unicodeKey && (prevCharacterType === LetterType.VOWEL_IN_KAR_FORM || prevCharacterType === LetterType.VOWEL_IN_FULL_FORM)) {
+            var temp = <string> this.letterInformation.getConsecutiveVowel(keyState.unicodeKey);
             // for "onamika" => no switch character because switching a character with same character insert nothing
             if (temp.length > 0) {
                 keyState.position.start -= 1;
@@ -181,7 +181,7 @@ export class KeyboardHandler {
                 keyState.unicodeKey = <string>this.letterInformation.getFollower(keyState.unicodeKey, 2);
         }
         // change vowel in full-form to kar-form if prevCharacterType is not consonant/fola
-        else if (keyState.characterType === 2 && !(prevCharacterType === 1 || prevCharacterType === 3)) {
+        else if (keyState.characterType === LetterType.VOWEL_IN_KAR_FORM && !(prevCharacterType === LetterType.CONSONANT || prevCharacterType === LetterType.FOLA)) {
             keyState.unicodeKey = <string>this.letterInformation.getFollower(keyState.unicodeKey, 2);
         }
 

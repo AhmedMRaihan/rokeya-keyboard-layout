@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "module": "AMD",
-        "moduleResolution": "Node",
-        "target": "ES6",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "target": "ESNext",
         "noImplicitAny": true,
         "jsx": "react",
         "allowJs": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "esModuleInterop": true
     },
     "include": [
         "src/**/*"
