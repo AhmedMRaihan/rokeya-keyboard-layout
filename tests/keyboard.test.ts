@@ -17,19 +17,20 @@ const dom = new JSDOM(
 global.window = dom.window;
 global.document = dom.window.document;
 
-import {expect} from '@jest/globals';
+// import {expect} from '@jest/globals';
+import {test, expect, describe, beforeEach} from 'vitest';
 import { BanglaLayout } from '../src/BanglaLayout';
 import { LetterInformation, LetterType } from '../src/LetterInformation';
 
 /***** Tests start here */
 describe('Installation', () => {
 
-    it('should initiate for textarea', () => {
+    test('should initiate for textarea', () => {
         var bnLayout = new BanglaLayout("placeholderForTests");
         expect(bnLayout).not.toBeNull();
     });
 
-    it('should initiate for input[type=text]', () => {
+    test('should initiate for input[type=text]', () => {
         var withEvents:any = {};
         withEvents.beforeKeyEvent = function () { };
         withEvents.afterKeyEvent = function () { };
@@ -39,7 +40,7 @@ describe('Installation', () => {
         
     });
 
-    it('should throw an error for missing ID', () => {
+    test('should throw an error for missing ID', () => {
         expect(function(){new BanglaLayout("");}).toThrowError(Error);
     });
 
@@ -65,7 +66,7 @@ describe('Keyboard Functionality', function () {
         }
     }
 
-    it('should handle numbers and single characters', () => {
+    test('should handle numbers and single characters', () => {
 
         // Regular functionality
         test_key_conversion("1", '১', "Number conversion failed");
@@ -74,7 +75,7 @@ describe('Keyboard Functionality', function () {
 
     });
 
-    it('should handle vowels and consonants', () => {
+    test('should handle vowels and consonants', () => {
 
         // Regular functionality
         test_key_conversion("a", 'আ', "আ is not inserted initially in full-form");
@@ -84,7 +85,7 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("Backspace", 'আকি', "Backspace is not working");
     });
 
-    it('should switch letter(s) by special combinations', () => {
+    test('should switch letter(s) by special combinations', () => {
 
         // Change by h
         test_key_conversion("k", 'ক', "N/A - prep step", false);
@@ -96,7 +97,7 @@ describe('Keyboard Functionality', function () {
         
     });
 
-    it('should conjugate letters', () => {
+    test('should conjugate letters', () => {
         test_key_conversion("k", 'ক', "N/A - prep step", false);
         test_key_conversion("q", 'ক্', "N/A - prep step", false);
         test_key_conversion("r", 'ক্র', "Consonant conjugation using hasanta is not working");
@@ -107,13 +108,13 @@ describe('Keyboard Functionality', function () {
 
     });
 
-    it('should handle special combinations', () => {
+    test('should handle special combinations', () => {
         test_key_conversion("s", 'স', "N/A - prep step", false);
         test_key_conversion("Z", 'সৎ', "N/A - prep step", false);
         test_key_conversion("a", 'সৎআ', "Vowels in Full form are not appearing after special consonant");
     });
 
-    it('should change language', () => {
+    test('should change language', () => {
         test_key_conversion("k", 'ক', "N/A - prep step", false);
         test_key_conversion("F9", 'ক', "Language switching key should not change text contents");
         
@@ -129,13 +130,13 @@ describe('LetterInformation', () => {
     letterInfo = new LetterInformation();
   });
 
-  it('should return the correct follower value for a symbol', () => {
+  test('should return the correct follower value for a symbol', () => {
     const inputValue = '\u0964';
     const expectedValue = '\u002e';
     expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
   });
 
-  it('should return the correct follower value for a vowel', () => {
+  test('should return the correct follower value for a vowel', () => {
     const inputValue = '\u09be';
     const expectedValue = '\u0986';
     expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
@@ -145,13 +146,13 @@ describe('LetterInformation', () => {
     expect(letterInfo.getConsecutiveVowel(inputValue2)).toBe(expectedValue2);
   });
 
-  it('should return the correct follower value for a consonant', () => {
+  test('should return the correct follower value for a consonant', () => {
     const inputValue = '\u09ac';
     const expectedValue = '\u09ad';
     expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
   });
 
-  it('should return an empty string for a non-existent letter_info value', () => {
+  test('should return an empty string for a non-existent letter_info value', () => {
     const inputValue = 'non-existent';
     expect(letterInfo.getFollower(inputValue, followerIndex)).toBe('');
   });
