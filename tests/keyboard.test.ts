@@ -61,8 +61,7 @@ describe('Keyboard Functionality', function () {
         srcElement.dispatchEvent(event);
 
         if (doAssert) {
-            expect(srcElement.value).toEqual(expectedString);
-            // assert.equal(srcElement.value, expectedString, msgOnError);
+            expect(srcElement.value, msgOnError).toEqual(expectedString);
         }
     }
 
@@ -111,7 +110,7 @@ describe('Keyboard Functionality', function () {
     test('should handle special combinations', () => {
         test_key_conversion("s", 'স', "N/A - prep step", false);
         test_key_conversion("Z", 'সৎ', "N/A - prep step", false);
-        test_key_conversion("a", 'সৎআ', "Vowels in Full form are not appearing after special consonant");
+        test_key_conversion("a", 'সৎআ', `Vowels in Full form are not appearing after ${LetterType[LetterType.MANDATORY_END]}`);
     });
 
     test('should change language', () => {
