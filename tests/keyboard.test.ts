@@ -19,6 +19,7 @@ global.document = dom.window.document;
 
 import {expect} from '@jest/globals';
 import { BanglaLayout } from '../src/BanglaLayout';
+import { LetterInformation, LetterType } from '../src/LetterInformation';
 
 /***** Tests start here */
 describe('Installation', () => {
@@ -112,4 +113,36 @@ describe('Keyboard Functionality', function () {
         
     });
 
+});
+
+describe('LetterInformation', () => {
+  let letterInfo: LetterInformation;
+  let followerIndex = 2;
+
+  beforeEach(() => {
+    letterInfo = new LetterInformation();
+  });
+
+  it('should return the correct follower value for a symbol', () => {
+    const inputValue = '\u0964';
+    const expectedValue = '\u002e';
+    expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
+  });
+
+  it('should return the correct follower value for a vowel', () => {
+    const inputValue = '\u09be';
+    const expectedValue = '\u0986';
+    expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
+  });
+
+  it('should return the correct follower value for a consonant', () => {
+    const inputValue = '\u09ac';
+    const expectedValue = '\u09ad';
+    expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
+  });
+
+  it('should return an empty string for a non-existent letter_info value', () => {
+    const inputValue = 'non-existent';
+    expect(letterInfo.getFollower(inputValue, followerIndex)).toBe('');
+  });
 });

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "module": "AMD",
+        "module": "ESNext",
         "moduleResolution": "Node",
-        "target": "ES6",
+        "target": "ESNext",
         "noImplicitAny": true,
         "jsx": "react",
         "allowJs": true,

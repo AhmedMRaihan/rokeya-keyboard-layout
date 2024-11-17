@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^29.5.13",
@@ -11,11 +11,11 @@
     "jsdom": "^25.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^5.1.6"
   },
   "scripts": {
     "build": "tsc",
-    "cleanup": "rm src/*.js || true",
+    "cleanup": "rm -rf dist || true",
     "build-watch": "npm run cleanup && tsc --watch",
     "test": "npm run build && jest --colors --collectCoverage --verbose"
   }
