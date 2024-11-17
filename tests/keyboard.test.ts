@@ -65,7 +65,7 @@ describe('Keyboard Functionality', function () {
         }
     }
 
-    it('Should handle numbers and single characters', () => {
+    it('should handle numbers and single characters', () => {
 
         // Regular functionality
         test_key_conversion("1", '১', "Number conversion failed");
@@ -74,7 +74,7 @@ describe('Keyboard Functionality', function () {
 
     });
 
-    it('Should handle vowels and consonants', () => {
+    it('should handle vowels and consonants', () => {
 
         // Regular functionality
         test_key_conversion("a", 'আ', "আ is not inserted initially in full-form");
@@ -84,7 +84,7 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("Backspace", 'আকি', "Backspace is not working");
     });
 
-    it('Should switch letter(s) by special combinations', () => {
+    it('should switch letter(s) by special combinations', () => {
 
         // Change by h
         test_key_conversion("k", 'ক', "N/A - prep step", false);
@@ -105,6 +105,12 @@ describe('Keyboard Functionality', function () {
         test_key_conversion("+", 'ক্', "N/A - prep step", false);
         test_key_conversion("T", 'ক্ত', "Consonant conjugation using hasanta is not working");
 
+    });
+
+    it('should handle special combinations', () => {
+        test_key_conversion("s", 'স', "N/A - prep step", false);
+        test_key_conversion("Z", 'সৎ', "N/A - prep step", false);
+        test_key_conversion("a", 'সৎআ', "Vowels in Full form are not appearing after special consonant");
     });
 
     it('should change language', () => {
@@ -133,6 +139,10 @@ describe('LetterInformation', () => {
     const inputValue = '\u09be';
     const expectedValue = '\u0986';
     expect(letterInfo.getFollower(inputValue, followerIndex)).toBe(expectedValue);
+
+    const inputValue2 = 'non-existent';
+    const expectedValue2 = '';
+    expect(letterInfo.getConsecutiveVowel(inputValue2)).toBe(expectedValue2);
   });
 
   it('should return the correct follower value for a consonant', () => {

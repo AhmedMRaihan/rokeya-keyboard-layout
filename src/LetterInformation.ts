@@ -49,7 +49,7 @@ export class LetterInformation {
         [
             "\u09e6", "\u09e7", "\u09e8", "\u09e9", "\u09ea", "\u09eb", "\u09ec", "\u09ed", "\u09ee", "\u09ef"
         ];
-    switchedLetter: string[][] =
+    consecutiveVowelMap: string[][] =
         [
             ["\u0985", ""], ["\u09be", ""],
             ["\u09c7", "\u09c8"], ["\u098f", "\u0990"],
@@ -59,13 +59,13 @@ export class LetterInformation {
             ["\u09c3", "\u098b"], ["\u09cd", "+"]
         ];
 
-    getSwitchedLetter = function (inputValue: string): string {
-        for (let start = 0; start < this.switchedLetter.length; ++start) {
-            if (this.switchedLetter[start][0] === inputValue) {
-                return this.switchedLetter[start][1];
+    getConsecutiveVowel = function (inputValue: string): string {
+        for (let start = 0; start < this.consecutiveVowelMap.length; ++start) {
+            if (this.consecutiveVowelMap[start][0] === inputValue) {
+                return this.consecutiveVowelMap[start][1];
             }
         }
-        throw new Error(`${inputValue} was not found in the list`);
+        return "";
     };
     
     letter_info =

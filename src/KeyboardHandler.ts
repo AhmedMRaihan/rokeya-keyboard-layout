@@ -171,7 +171,7 @@ export class KeyboardHandler {
 
         // same vowel pressed twice will cause a switch
         if (prev === keyState.unicodeKey && (prevCharacterType === LetterType.VOWEL_IN_KAR_FORM || prevCharacterType === LetterType.VOWEL_IN_FULL_FORM)) {
-            var temp = this.letterInformation.getSwitchedLetter(keyState.unicodeKey);
+            var temp = <string> this.letterInformation.getConsecutiveVowel(keyState.unicodeKey);
             // for "onamika" => no switch character because switching a character with same character insert nothing
             if (temp.length > 0) {
                 keyState.position.start -= 1;

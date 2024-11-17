@@ -2,12 +2,13 @@
     "compilerOptions": {
         "outDir": "./dist",
         "module": "ESNext",
-        "moduleResolution": "Node",
+        "moduleResolution": "node",
         "target": "ESNext",
         "noImplicitAny": true,
         "jsx": "react",
         "allowJs": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "esModuleInterop": true
     },
     "include": [
         "src/**/*"

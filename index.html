@@ -70,7 +70,7 @@
 			text-align: center;
 		}
 	</style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/gh/AhmedMRaihan/BanglaDateJS@master/src/buetDateTime.js"></script>
 </head>
@@ -78,8 +78,7 @@
 <body onload="document.getElementById('checkItOut').focus();">
 
 	<div class="main_content">
-		<h2>নিচের টেক্সট-এরিয়া তে বাংলা লিখুন <label onclick="switchLanguage()" id="activeLanguageIndicator"
-				class="langugage_switch_button">বাংলা</label>
+		<h2>নিচের টেক্সট-এরিয়া তে বাংলা লিখুন <label id="activeLanguageIndicator" class="langugage_switch_button">বাংলা</label>
 			<a href="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions" style="float:right">
 				<img src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg"
 					alt="Build Status" class="build-status-display">
@@ -130,30 +129,6 @@
 			<a href="coverage/lcov-report/">Code Coverage</a>
 		</div>
 		<script type="text/javascript">
-			rokeyaLayoutKeyboard = null;
-			var sourceLabel = document.getElementById("activeLanguageIndicator");
-
-			function switchLanguage() {
-				if (rokeyaLayoutKeyboard == null) {
-					return;
-				}
-
-				var wasBNActive = sourceLabel.innerHTML === "বাংলা";
-				if (wasBNActive == false) {
-					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage = "bn_BD";
-					modifySourceLabel("বাংলা", "green");
-				}
-				else {
-					rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage = "en_US";
-					modifySourceLabel("ইংরেজী", "#47a6f0");
-				}
-			}
-
-			function modifySourceLabel(text, backgroundColor) {
-				sourceLabel.innerHTML = text;
-				sourceLabel.style.backgroundColor = backgroundColor;
-			}
-
 			(function () {
 				var data = new buetDateConverter().convert("বর্তমান সময়: l, A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)");
 				var currentTimeBN = document.getElementById('currentTime');
@@ -161,24 +136,17 @@
 			})();
 		</script>
 
-		<script type="text/javascript">
-
-			requirejs(['./dist/BanglaLayout'], function (BanglaLayout_1) {
-				window.rokeyaLayoutKeyboard = new BanglaLayout_1.BanglaLayout("checkItOut",
-					{
-						afterKeyEvent: function () {
-							var isBNActive = rokeyaLayoutKeyboard.keyboard.letterInformation.currentLanguage === "bn_BD";
-							if (isBNActive === true) {
-								modifySourceLabel("বাংলা", "green");
-							}
-							else {
-								modifySourceLabel("ইংরেজী", "#47a6f0");
-							}
-						}
-					});
-			});
-			// */
-		</script>
+		<script type="importmap">
+			{
+			  "imports": {
+				"./dist/BanglaLayout": "./dist/BanglaLayout.js",
+				"./dist/KeyboardHandler": "./dist/KeyboardHandler.js",
+				"./dist/LetterInformation": "./dist/LetterInformation.js"
+			  }
+			}
+		  </script>
+		  
+		<script type="module" src="index.js"></script>
 
 </body>
 

@@ -18,13 +18,13 @@ Test here: [Rokeya Layout Demo](https://ahmedmraihan.github.io/rokeya-keyboard-l
 
 ## Local Development
 
-First, using Docker (e.g. [this](https://snapcraft.io/docker) link for Ubuntu), start a local environment in root folder of this git repository: `sudo docker run --rm -it -p 8080:8080 -v $PWD:/gh -w /gh node bash` (We are using nodejs base image)
+First, using Docker (e.g. [this](https://docs.docker.com/engine/install/ubuntu/) link for Ubuntu), start a local environment in root folder of this git repository: `docker run --rm -it -p 8080:8080 -v $PWD:/gh -w /gh node bash` (We are using nodejs base image)
 
 Then, install required libraries and start a http server using these commands (Press ENTER to return to console):
 ```bash
 npm install
 npm audit fix
-npx http-server -p 8080 . &
+npx http-server -p 8080 -g --cors
 ```
 Open the http url(s) from console to test
 
