@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "5.4.0",
+  "version": "5.4.1",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
@@ -16,6 +16,6 @@
     "build": "tsc",
     "cleanup": "rm -rf dist || true",
     "build-watch": "npm run cleanup && tsc --watch",
-    "test": "npm run build && vitest run --coverage"
+    "test": "npm run build && vitest run --coverage --coverage.exclude='index.js' "
   }
 }
