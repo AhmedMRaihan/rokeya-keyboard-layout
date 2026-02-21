@@ -1,0 +1,40 @@
+name: Build && Test
+
+on:
+  workflow_call:
+    inputs:
+      commit_sha:
+        type: string
+
+jobs:
+  only_build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Prepare environment
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
+      
+      # Prepare dist folder
+      - run: npm ci --verbose
+      
+      # Ensure tests will pass
+      - run: npm lint
+      - run: npm run test
+
+      # Build the project
+      - run: npm run build
+
+      # Prepare gh-pages contents
+      - run: mv coverage/ out/home/coverage/
+
+      # Upload artifacts to use later
+      - name: Upload page artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: ghpage-contents
+          path: ./out

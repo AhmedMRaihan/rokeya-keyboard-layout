@@ -1,0 +1,10 @@
+
+.help_texts strong {
+    color: darkred;
+}
+
+@media (prefers-color-scheme: dark) {  
+    .help_texts strong {
+        color: lightcoral;
+  }
+}

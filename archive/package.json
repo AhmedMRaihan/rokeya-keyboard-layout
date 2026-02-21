@@ -1,0 +1,21 @@
+{
+  "name": "rokeya-keyboard-layout",
+  "version": "5.4.1",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@vitest/coverage-v8": "^4.0.18",
+    "http-server": "^14.1.1",
+    "jsdom": "^26.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.6",
+    "@types/node": "^25.2.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "cleanup": "rm -rf dist || true",
+    "build-watch": "npm run cleanup && tsc --watch",
+    "test": "npm run build && vitest run --coverage --coverage.exclude='index.js' "
+  }
+}
