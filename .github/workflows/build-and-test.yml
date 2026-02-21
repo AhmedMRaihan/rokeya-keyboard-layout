@@ -23,7 +23,7 @@ jobs:
       - run: npm ci --verbose
       
       # Ensure tests will pass
-      - run: npm lint
+      - run: npm run lint
       - run: npm run test
 
       # Build the project
