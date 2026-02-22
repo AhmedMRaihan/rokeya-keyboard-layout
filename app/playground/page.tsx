@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import { KeyboardHandler } from "@/lib/KeyboardHandler";
-import ManagedTextarea from "@/src/common/managedTextarea";
-import Footer from "@/src/common/footer";
+import ManagedTextarea from "@/src/components/common/managedTextarea";
+import Footer from "@/src/components/common/footer";
 
 type componentProps = object;
 type componentState = {
@@ -13,14 +12,12 @@ export default class Playground extends React.Component<
   componentProps,
   componentState
 > {
-  private keyboardHandler: KeyboardHandler;
 
   constructor(props: componentProps) {
     super(props);
     this.state = {
       userInput: "",
     };
-    this.keyboardHandler = new KeyboardHandler();
   }
 
   render() {

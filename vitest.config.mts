@@ -5,6 +5,9 @@ import { playwright } from '@vitest/browser-playwright';
  
 export default defineConfig({
   plugins: [react()],
+  define: {
+    "process.env": JSON.stringify({}),
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './'),

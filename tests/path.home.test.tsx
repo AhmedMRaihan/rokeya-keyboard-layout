@@ -1,8 +1,8 @@
 
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
-import BuetDateUI from "@/src/home/buetDateUI";
-import Footer from "@/src/common/footer";
+import BuetDateUI from "@/src/components/home/buetDateUI";
+import Footer from "@/src/components/common/footer";
 
 describe("Date UI render", () => {
   test("should load current time", async () => {

@@ -28,7 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "tests/example1.spec.xyz"  ],
+    "**/*.mts" ],
   "exclude": ["archive","node_modules"]
 }
