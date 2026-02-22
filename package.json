@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "setup": "playwright install chromium --with-deps",
     "lint": "eslint",
     "lint-fix": "eslint --fix",
     "test-single": "vitest run --printConsoleTrace=true  tests/lib.keyboardHandler.test.tsx",

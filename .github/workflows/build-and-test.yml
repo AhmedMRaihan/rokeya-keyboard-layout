@@ -21,6 +21,7 @@ jobs:
       
       # Prepare dist folder
       - run: npm ci
+      - run: npm run setup
       
       # Ensure tests will pass
       - run: npm run lint
