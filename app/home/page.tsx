@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import styles from "@/src/components/home/ui.module.css";
 
@@ -8,7 +9,26 @@ import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
 import ManagedTextarea from "@/src/components/common/managedTextarea";
 
-class Home extends React.Component {
+type componentProps = {
+  keyboardLanguage: string;
+}
+type componentState = {
+  currentLanguage: string;
+}
+class Home extends React.Component<componentProps, componentState> {
+  constructor(props: componentProps) {
+    super(props);
+    this.state = {
+      currentLanguage: "bn_BD",
+    };
+  }
+
+  toggleLanguage() {
+    this.setState({
+      currentLanguage: this.state.currentLanguage === "bn_BD" ? "en_US" : "bn_BD",
+    });
+  }
+
   render() {
     return (
       <main className="main_content text-dark-black dark:text-light-grey m-4">
@@ -17,6 +37,7 @@ class Home extends React.Component {
           <label
             id="activeLanguageIndicator"
             className="langugage_switch_button bg-blue-100 dark:bg-blue-700 text-blue-700 dark:text-blue-100 px-2 py-1 rounded ml-2"
+            onClick={ () => {this.toggleLanguage();} }
           >
             বাংলা
           </label>
@@ -34,7 +55,8 @@ class Home extends React.Component {
           </a>
         </h2>
         <ManagedTextarea 
-          id="checkItOut" 
+          id="checkItOut"
+          currentLanguage={this.state.currentLanguage}
           twClassList="w-full text-lg border border-gray-700 p-1 mr-1 font-inherit"
           rows={8}
           />
