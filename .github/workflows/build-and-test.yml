@@ -15,15 +15,16 @@ jobs:
       # Prepare environment
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 'latest'
       
       # Prepare dist folder
-      - run: npm ci --verbose
+      - run: npm ci
+      - run: npm run setup
       
       # Ensure tests will pass
-      - run: npm lint
+      - run: npm run lint
       - run: npm run test
 
       # Build the project
