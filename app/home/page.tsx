@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import styles from "@/src/home/ui.module.css";
+import styles from "@/src/components/home/ui.module.css";
 
 import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
