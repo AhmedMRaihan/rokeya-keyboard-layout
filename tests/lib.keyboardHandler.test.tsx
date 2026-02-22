@@ -1,7 +1,7 @@
 import { describe, expect, test, afterEach } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 
-import ManagedTextarea from "@/src/common/managedTextarea";
+import ManagedTextarea from "@/src/components/common/managedTextarea";
 
 describe("Keyboard Functionality", function () {
   const placeholderID = "placeholderForTests";

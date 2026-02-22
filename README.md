@@ -18,15 +18,22 @@ Test here: [Rokeya Layout Demo](https://ahmedmraihan.github.io/rokeya-keyboard-l
 
 ## Local Development
 
-First, using Docker (e.g. [this](https://docs.docker.com/engine/install/ubuntu/) link for Ubuntu), start a local environment in root folder of this git repository: `docker run --rm -it -p 8080:8080 -v $PWD:/gh -w /gh node bash` (We are using nodejs base image)
+First, using Docker (e.g. [this](https://docs.docker.com/engine/install/ubuntu/) link for Ubuntu), start a local environment in root folder of this git repository: `docker run -it -p 3000:3000 -v $PWD:/gh -w /gh node bash` (We are using nodejs base image)
 
-Then, install required libraries and start a http server using these commands (Press ENTER to return to console):
+Then, install required libraries and start a http server:
 ```bash
 npm install
 npm audit fix
-npx http-server -p 8080 -g --cors
+npm run dev
 ```
-Open the http url(s) from console to test
+Open this url to test the application: [http://localhost:3000/rokeya-keyboard-layout]
+
+Additionally, to test the layout, run:
+```bash
+npm run setup
+npm run lint
+npm run test
+```
 
 ## Appendix
 

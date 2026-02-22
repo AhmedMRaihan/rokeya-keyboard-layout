@@ -2,11 +2,11 @@
 
 import React from "react";
 import Image from "next/image";
-import styles from "@/src/home/ui.module.css";
+import styles from "@/src/components/home/ui.module.css";
 
-import BuetDateUI from "@/src/home/buetDateUI";
-import Footer from "@/src/common/footer";
-import ManagedTextarea from "@/src/common/managedTextarea";
+import BuetDateUI from "@/src/components/home/buetDateUI";
+import Footer from "@/src/components/common/footer";
+import ManagedTextarea from "@/src/components/common/managedTextarea";
 
 class Home extends React.Component {
   render() {
