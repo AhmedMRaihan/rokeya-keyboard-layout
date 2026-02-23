@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -31,5 +31,6 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.0.18"
-  }
+  },
+  "registry": "https://registry.npmjs.org"
 }
