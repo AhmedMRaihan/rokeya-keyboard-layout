@@ -17,8 +17,9 @@ describe("Keyboard Functionality", function () {
     expectedString: string,
     msgOnError: string,
     doAssert: boolean = true,
+    ctrlKey: boolean = false,
   ) {
-    fireEvent.keyDown(inputNode, { key: givenKey });
+    fireEvent.keyDown(inputNode, { key: givenKey, ctrlKey: ctrlKey });
 
     if (doAssert) {
       const inputNodeValue = (inputNode as HTMLTextAreaElement).value;
@@ -41,7 +42,7 @@ describe("Keyboard Functionality", function () {
     test_key_conversion("P", "আকিফ", "ফ is not inserted");
     test_key_conversion("Backspace", "আকি", "Backspace is not working");
   });
-  
+
   test("should switch letter(s) by special combinations", () => {
     // Change by h
     test_key_conversion("k", "ক", "N/A - prep step", false);
@@ -57,6 +58,16 @@ describe("Keyboard Functionality", function () {
       ".",
       "খী.",
       "। is not switched to dot by pressing it twice",
+    );
+    test_key_conversion(
+      "A",
+      "খী.অ",
+      "Vowel should be inserted in full-form after a dot symbol",
+    );
+    test_key_conversion(
+      "A",
+      "খী.অঅ",
+      "Vowel without any follower will be inserted in full-form",
     );
   });
 
@@ -90,6 +101,23 @@ describe("Keyboard Functionality", function () {
       "সৎআ",
       `Vowels in Full form are not appearing after MANDATORY_END letters`,
     );
+    test_key_conversion(
+      "b",
+      "সৎআ",
+      "CTRL+B should not change text contents",
+      true,
+      true,
+    );
+    test_key_conversion(
+      "Backspace",
+      "সৎ",
+      "Backspace should remove the vowel but not the MANDATORY_END letter",
+    );
+    test_key_conversion(
+      "%",
+      "সৎ",
+      "Special characters should not be handled in library",
+    );
   });
 
   test("should change language", () => {
@@ -99,6 +127,22 @@ describe("Keyboard Functionality", function () {
       "ক",
       "Language switching key should not change text contents",
     );
+    test_key_conversion(
+      "i",
+      "ক",
+      "Library should skip if the current language is set to en_US",
+    );
+    test_key_conversion(
+      "m",
+      "ক",
+      "N/A - revert language to bn_BD",
+      false,
+      true,
+    );
+    test_key_conversion(
+      "i",
+      "কি",
+      "Language should switch back to bn_BD and allow normal typing",
+    );
   });
-  
 });
