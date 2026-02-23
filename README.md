@@ -26,7 +26,7 @@ npm install
 npm audit fix
 npm run dev
 ```
-Open this url to test the application: [http://localhost:3000/rokeya-keyboard-layout]
+Open [this](http://localhost:3000/rokeya-keyboard-layout) url to test the application.
 
 Additionally, to test the layout, run:
 ```bash

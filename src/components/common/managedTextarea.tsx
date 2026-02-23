@@ -1,17 +1,18 @@
 import React from "react";
 import { KeyboardHandler } from "@/lib/KeyboardHandler";
 
-type componentPropse = {
+type componentProps = {
     id: string;
     rows: number;
     twClassList?: string;
+    currentLanguage?: string;
     followupAction?: (eventKey: string) => void;
     };
 
-export default class ManagedTextarea extends React.Component<componentPropse> {
+export default class ManagedTextarea extends React.Component<componentProps> {
   private keyboardHandler: KeyboardHandler;
 
-  constructor(props: componentPropse) {
+  constructor(props: componentProps) {
     super(props);
     this.keyboardHandler = new KeyboardHandler();
   }
@@ -27,11 +28,12 @@ export default class ManagedTextarea extends React.Component<componentPropse> {
 
   private updateText = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // console.debug("Key pressed:", event.key);
-
+    
     const useDefaultBehaviour: boolean =
       this.keyboardHandler.handleKeyboardInput(
         event as unknown as KeyboardEvent,
         event.currentTarget,
+        this.props.currentLanguage
       );
 
     if (useDefaultBehaviour === false) {
