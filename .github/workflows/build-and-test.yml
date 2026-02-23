@@ -14,10 +14,11 @@ jobs:
     steps:
       # Prepare environment
       - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-node@v5
+        uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: 'latest'
+          cache: 'npm'
       
       # Prepare dist folder
       - run: npm ci
@@ -31,7 +32,7 @@ jobs:
       - run: npm run build
 
       # Prepare gh-pages contents
-      - run: mv coverage/ out/home/coverage/
+      - run: mv coverage/ out/coverage/
 
       # Upload artifacts to use later
       - name: Upload page artifacts
