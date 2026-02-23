@@ -1,6 +1,5 @@
 import React from "react";
 import { KeyboardHandler } from "@/lib/KeyboardHandler";
-import { console } from "inspector";
 
 type componentProps = {
     id: string;
@@ -29,13 +28,12 @@ export default class ManagedTextarea extends React.Component<componentProps> {
 
   private updateText = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // console.debug("Key pressed:", event.key);
-
-    console.log(this.props.currentLanguage);
     
     const useDefaultBehaviour: boolean =
       this.keyboardHandler.handleKeyboardInput(
         event as unknown as KeyboardEvent,
         event.currentTarget,
+        this.props.currentLanguage
       );
 
     if (useDefaultBehaviour === false) {

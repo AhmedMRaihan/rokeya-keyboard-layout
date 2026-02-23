@@ -17,9 +17,6 @@ const Footer: React.FunctionComponent = () => {
       <Link className="text-blue-600 dark:text-sky-400 p-4" href="/home">
         🏠 Home
       </Link>
-      <Link className="text-blue-600 dark:text-sky-400 p-4" href="/coverage/">
-        🔗‍️ Code Coverage
-      </Link>
       { ((pathname+"").toLowerCase().endsWith("playground") === false) && 
         <Link className="text-blue-600 dark:text-sky-400 p-4" href="/playground/">
           ✍️ Try the Playground

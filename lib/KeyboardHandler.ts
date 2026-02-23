@@ -106,9 +106,10 @@ export class KeyboardHandler {
         return userTypedKey;
     }
 
-    handleKeyboardInput(oEvent: KeyboardEvent, oSource: HTMLInputElement | HTMLTextAreaElement): boolean {
+    handleKeyboardInput(oEvent: KeyboardEvent, oSource: HTMLInputElement | HTMLTextAreaElement, currentLanguage?: string): boolean {
         this.textInputSource = oSource;
         this.oEvent = oEvent;
+        this.letterInformation.currentLanguage = currentLanguage || this.letterInformation.currentLanguage;
 
         let prev: string = "", prevPrev = "", prevCharacterType: number = 0;
         const existingContent: string = !!oSource ? this.textInputSource.value : "";
