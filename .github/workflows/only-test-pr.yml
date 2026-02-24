@@ -1,0 +1,29 @@
+name: Only Test
+
+on:
+  workflow_call:
+    inputs:
+      commit_sha:
+        type: string
+
+jobs:
+  only_build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Prepare environment
+      - name: Checkout
+        uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
+          cache: 'npm'
+      
+      # Prepare dist folder
+      - run: npm ci
+      - run: npm run setup
+      
+      # Ensure tests will pass
+      - run: npm run lint
+      - run: npm run test
