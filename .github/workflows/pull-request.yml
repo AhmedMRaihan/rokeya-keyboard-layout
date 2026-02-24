@@ -9,6 +9,6 @@ on:
 
 jobs:
   continuous-integration-only:
-    uses: ./.github/workflows/build-and-test.yml
+    uses: ./.github/workflows/only-test-pr.yml
     with:
       commit_sha: ${{ github.sha }}

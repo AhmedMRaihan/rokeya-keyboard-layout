@@ -1,4 +1,4 @@
-name: Build && Test
+name: Only Test
 
 on:
   workflow_call:
@@ -7,7 +7,7 @@ on:
         type: string
 
 jobs:
-  build_and_test:
+  only_test:
 
     runs-on: ubuntu-latest
 
@@ -27,16 +27,3 @@ jobs:
       # Ensure tests will pass
       - run: npm run lint
       - run: npm run test
-
-      # Build the project
-      - run: npm run build
-
-      # Prepare gh-pages contents
-      - run: mv coverage/ out/coverage/
-
-      # Upload artifacts to use later
-      - name: Upload page artifacts
-        uses: actions/upload-artifact@master
-        with:
-          name: ghpage-contents
-          path: ./out
