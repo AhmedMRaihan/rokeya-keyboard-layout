@@ -31,7 +31,7 @@ export default class BuetDateUI extends React.Component<
     }
 
     const data = new buetDateConverter().convert(
-      "বর্তমান সময়: l, A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)",
+      "এখন সময়: l, A gটা iমিনিট sসেকেন্ড, j F, Y (বঙ্গাব্দ)",
     );
     this.setState({ displayText: data });
   }
