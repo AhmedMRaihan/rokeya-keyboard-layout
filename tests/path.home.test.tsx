@@ -10,7 +10,7 @@ describe("Date UI render", () => {
 
     await waitFor(() => {
       const currentTimeElement = screen.getByText(
-        /বর্তমান সময়/i,
+        /এখন সময়/i,
       );
       return expect(currentTimeElement).toBeInTheDocument();
     }, {
@@ -18,7 +18,7 @@ describe("Date UI render", () => {
       interval: 50, // default is 50
     });
 
-    expect(screen.getByText(/বর্তমান সময়/i)).toBeInTheDocument();
+    expect(screen.getByText(/এখন সময়/i)).toBeInTheDocument();
   });
 });
 
