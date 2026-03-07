@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "7.0.0",
+  "version": "7.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
