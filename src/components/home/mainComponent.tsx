@@ -66,7 +66,7 @@ const MainComponent = () => {
              dark:placeholder:text-gray-500 dark:focus:border-blue-500"
           rows={8}
           />
-        <div className="user_instruction flex gap-2 mt-2">
+        <div className="user_instruction flex gap-2 mt-1">
           <div className={`${styles.help_texts} w-3/5 mt-2`}>
             <h2 className="text-lg font-semibold mb-4">সহায়ক তথ্যাবলী: </h2>
             <ul className="list-disc ml-4">
