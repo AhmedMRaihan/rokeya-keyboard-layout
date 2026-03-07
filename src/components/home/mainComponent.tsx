@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import {useState} from "react";
 import Image from "next/image";
 import styles from "@/src/components/home/ui.module.css";
 
@@ -11,7 +11,7 @@ import {CurrentLanguage} from "@/lib/KeyboardHandler"
 
 const MainComponent = () => {
   
-  const [currentLanguage, setCurrentLanguage] = React.useState<CurrentLanguage>(CurrentLanguage.BENGALI); 
+  const [currentLanguage, setCurrentLanguage] = useState<CurrentLanguage>(CurrentLanguage.BENGALI); 
 
   const toggleLanguage = () => {
     setCurrentLanguage( 
