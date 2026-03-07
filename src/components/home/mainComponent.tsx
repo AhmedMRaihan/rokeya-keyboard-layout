@@ -7,25 +7,21 @@ import styles from "@/src/components/home/ui.module.css";
 import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
 import ManagedTextarea from "@/src/components/common/managedTextarea";
-
-const LANGUAGES = {
-  BENGALI: 'bn_BD',
-  ENGLISH: 'en_US',
-} as const;
-type Language = typeof LANGUAGES[keyof typeof LANGUAGES];
+import {CurrentLanguage} from "@/lib/KeyboardHandler"
 
 const MainComponent = () => {
   
-  const [currentLanguage, setCurrentLanguage] = React.useState<Language>('bn_BD'); 
+  const [currentLanguage, setCurrentLanguage] = React.useState<CurrentLanguage>(CurrentLanguage.BENGALI); 
 
   const toggleLanguage = () => {
     setCurrentLanguage( 
-      prev => prev === LANGUAGES.BENGALI ? LANGUAGES.ENGLISH : LANGUAGES.BENGALI );
+      prev => prev === CurrentLanguage.BENGALI ? 
+                        CurrentLanguage.ENGLISH : CurrentLanguage.BENGALI );
   }
 
 
   const displayBackground = 
-    currentLanguage === "bn_BD" ? 
+    currentLanguage === CurrentLanguage.BENGALI ? 
       "bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100" :
       "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100";
 
@@ -39,7 +35,7 @@ const MainComponent = () => {
             className={`langugage_switch_button ${displayBackground} px-2 py-1 rounded ml-2 cursor-pointer`}
             onClick={toggleLanguage}
           >
-            { currentLanguage === LANGUAGES.BENGALI ? "বাংলা" : "English" }
+            { currentLanguage === CurrentLanguage.BENGALI ? "বাংলা" : "English" }
           </button>
           <a
             href="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions"
