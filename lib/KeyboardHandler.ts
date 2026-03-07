@@ -55,7 +55,6 @@ export class KeyboardHandler {
         if ((this.oEvent.ctrlKey == true && keyPressed === 'm') || keyPressed === 'F9') {
             const _C = this.currentLanguage === CurrentLanguage.BENGALI ? 
                             CurrentLanguage.ENGLISH : CurrentLanguage.BENGALI;
-            console.log(`Will switch to ${_C} from ${this.currentLanguage}`);
             this.currentLanguage = _C;
         }
 
