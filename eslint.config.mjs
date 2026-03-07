@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     // Custom ignores:
     "test-results/**",
     "archive/**",
+    "coverage/**",
   ]),
 ]);
 

@@ -4,18 +4,23 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
 
+declare global {
+  interface Window {
+    buetDateConverter: { new(): { convert(): string } } | undefined;
+  }
+}
+
 // Mock the external class
 beforeEach(() => {
-  (globalThis as any).buetDateConverter = class {
-    convert(format: string): string {
+  window.buetDateConverter = class {
+    convert(): string {
       return `এখন সময়: সোমবার, রাত ৯টা ৩মিনিট ৪০সেকেন্ড, ১ বৈশাখ, ১৪৩১ (বঙ্গাব্দ)`;
     }
   };
 });
 
-// Cleanup the mock
 afterEach(() => {
-  (globalThis as any).buetDateConverter = undefined;
+  window.buetDateConverter = undefined;
 });
 
 describe("Date UI render", () => {

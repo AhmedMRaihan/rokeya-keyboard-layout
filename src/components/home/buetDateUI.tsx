@@ -28,10 +28,9 @@ const BuetDateUI = () => {
   };
 
   useEffect(() => {
-    setDisplayText(LOADING_TEXT);
     const id = setInterval(updateTime, INTERVAL_MS);
     return () => clearInterval(id); // cleanup on unmount
-  }, []);
+  }, [updateTime]);
 
   return (
     <div>
