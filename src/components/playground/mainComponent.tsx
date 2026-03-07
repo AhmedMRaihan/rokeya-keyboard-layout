@@ -37,7 +37,7 @@ const PlaygroundComponent = () => {
 
       <ManagedTextarea
         id="input"
-        twClassList="w-full max-w-md p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        twClassList="w-full max-w-md mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         rows={5}
         followupAction={
           (eventKey) => {
