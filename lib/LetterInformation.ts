@@ -14,10 +14,10 @@ export enum LetterType {
 export class LetterInformation {
     currentLanguage: string = "bn_BD";
     replaceLastChar: boolean = false; // Replace ক with খ if required
-    ZWNJ: string = "\u200c"; // Do not render the letter with previous letter
-    ZWJ: string = "\u200d"; // Render the letter with previous letter
+    readonly ZWNJ: string = "\u200c"; // Do not render the letter with previous letter
+    readonly ZWJ: string = "\u200d"; // Render the letter with previous letter
 
-    letterKeyMap: string[][] =
+    readonly letterKeyMap: string[][] =
         [
             ["\u09be", "\u0985"], // aa-kar and onamika......... A
             ["\u09ac", "\u0981"], // bandorban and chondrobindu..... B
@@ -46,11 +46,11 @@ export class LetterInformation {
             ["\u09df", "\u09cd\u09af"], // ayan and z-fola...... Y
             ["\u09af", "\u09ce"], // zoti and khanda-ta...... Z
         ];
-    numberKeyMap: Array<string> =
+    readonly numberKeyMap: Array<string> =
         [
             "\u09e6", "\u09e7", "\u09e8", "\u09e9", "\u09ea", "\u09eb", "\u09ec", "\u09ed", "\u09ee", "\u09ef"
         ];
-    consecutiveVowelMap: string[][] =
+    readonly consecutiveVowelMap = new Map<string, string>(
         [
             ["\u0985", ""], ["\u09be", ""],
             ["\u09c7", "\u09c8"], ["\u098f", "\u0990"],
@@ -58,15 +58,10 @@ export class LetterInformation {
             ["\u09bf", "\u09c0"], ["\u0987", "\u0988"],
             ["\u09c1", "\u09c2"], ["\u0989", "\u098a"],
             ["\u09c3", "\u098b"], ["\u09cd", "+"]
-        ];
+        ]);
 
     public getConsecutiveVowel(inputValue: string): string {
-        for (let start = 0; start < this.consecutiveVowelMap.length; ++start) {
-            if (this.consecutiveVowelMap[start][0] === inputValue) {
-                return this.consecutiveVowelMap[start][1];
-            }
-        }
-        return "";
+        return this.consecutiveVowelMap.get(inputValue) ?? "";
     };
     
     letter_info =
