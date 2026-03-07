@@ -28,7 +28,7 @@ const MainComponent = () => {
   return (
       
       <main className="main_content text-dark-black dark:text-light-grey m-4">
-        <h2 className="text-lg font-semibold mb-4">
+        <h2 className="text-lg font-semibold mb-2">
           নিচের টেক্সট-এরিয়া তে বাংলা লিখুন
           <button
             id="activeLanguageIndicator"
@@ -45,8 +45,8 @@ const MainComponent = () => {
               src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg"
               alt="Build Status"
               className="inline-block"
-              width={370}
-              height={40}
+              width={300}
+              height={30}
             />
           </a>
         </h2>
@@ -64,7 +64,7 @@ const MainComponent = () => {
           />
         <div className="user_instruction flex gap-2 mt-1">
           <div className={`${styles.help_texts} w-3/5 mt-2`}>
-            <h2 className="text-lg font-semibold mb-4">সহায়ক তথ্যাবলী: </h2>
+            <h2 className="text-lg font-semibold mb-2">সহায়ক তথ্যাবলী: </h2>
             <ul className="list-disc ml-4">
               <li>
                 <strong>কি-ম্যাপ:</strong> প্রায় সকল বর্ণই ফোনেটিক স্টাইলের
@@ -102,12 +102,12 @@ const MainComponent = () => {
             </ul>
           </div>
           <div className="example_texts w-2/5 mt-2 text-justify">
-            <h2 className="text-lg font-semibold mb-4">নিজে চেষ্টা করুন: </h2>
+            <h2 className="text-lg font-semibold mb-2">নিজে চেষ্টা করুন: </h2>
             <span>
               এই প্যারাগ্রাফটিতে সকল বাংলা বর্ণ রয়েছে। চেষ্টা করুন এই কিবোর্ড
               লেআউট দিয়ে:
             </span>
-            <blockquote className="tracking-tight m-6">
+            <blockquote className="tracking-tight m-4">
               <p className="border-l-2 border-gray-700 pl-2">
                 বর্ষামুখর দিন শেষে, ঊর্দ্ধপানে চেয়ে যখন আষাঢ়ে গল্প শোনাতে বসে
                 ওসমান ভুঁইঞা, ঈষান কোণে তখন অন্ধকার মেঘের আড়ম্বর, সবুজে ঋদ্ধ
