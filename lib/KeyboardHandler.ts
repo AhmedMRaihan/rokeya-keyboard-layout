@@ -6,6 +6,11 @@ interface CursorPosition {
     end: number;
 }
 
+export enum CurrentLanguage {
+  BENGALI = 'bn_BD',
+  ENGLISH = 'en_US',
+}
+
 interface UserKeyPressed {
     iShouldDealIt: boolean; // =false
 
@@ -22,6 +27,7 @@ export class KeyboardHandler {
     private letterInformation: LetterInformation;
     private oEvent: KeyboardEvent;
     private textInputSource: HTMLTextAreaElement | HTMLInputElement;
+    private currentLanguage: string = CurrentLanguage.BENGALI;
 
     constructor() {
         this.oEvent = {} as KeyboardEvent;
@@ -47,8 +53,9 @@ export class KeyboardHandler {
 
         // using ctrl+m or F9 button to language switch
         if ((this.oEvent.ctrlKey == true && keyPressed === 'm') || keyPressed === 'F9') {
-            const _C = this.letterInformation.currentLanguage === "bn_BD" ? "en_US" : "bn_BD";
-            this.letterInformation.currentLanguage = _C;
+            const _C = this.currentLanguage === CurrentLanguage.BENGALI ? 
+                            CurrentLanguage.ENGLISH : CurrentLanguage.BENGALI;
+            this.currentLanguage = _C;
         }
 
         //  ctrl, shift, alt, alt-grp, up arrow, down arrow
@@ -109,15 +116,17 @@ export class KeyboardHandler {
     handleKeyboardInput(oEvent: KeyboardEvent, oSource: HTMLInputElement | HTMLTextAreaElement, currentLanguage?: string): boolean {
         this.textInputSource = oSource;
         this.oEvent = oEvent;
-        this.letterInformation.currentLanguage = currentLanguage || this.letterInformation.currentLanguage;
-
         let prev: string = "", prevPrev = "", prevCharacterType: number = 0;
         const existingContent: string = this.textInputSource.value;
 
+        if(currentLanguage) {
+            this.currentLanguage = currentLanguage;
+        }
         const keyState = this.selectKeyPressed();
 
         // <summary>Decision; Should script continue or not</summary>
-        if (keyState.iShouldDealIt === false || this.letterInformation.currentLanguage === "en_US") {
+        if (keyState.iShouldDealIt === false || 
+            this.currentLanguage === CurrentLanguage.ENGLISH) {
             return true;
         }
         if ( typeof(keyState.placeTo) !== "number" 

@@ -8,7 +8,7 @@ const Footer = () => {
   const isPlayground = pathname?.toLowerCase().endsWith("playground");
 
   return (
-    <div className="footer_text text-center mt-4">
+    <div className="footer_text text-center mt-8">
       <Link className="text-blue-600 dark:text-sky-400 p-4"
         href="https://github.com/AhmedMRaihan/rokeya-keyboard-layout">
         {"© " + new Date().getFullYear() + " Ahmed Raihan"}

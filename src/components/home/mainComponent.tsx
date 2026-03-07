@@ -1,45 +1,41 @@
 "use client";
 
-import React from "react";
+import {useState} from "react";
 import Image from "next/image";
 import styles from "@/src/components/home/ui.module.css";
 
 import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
 import ManagedTextarea from "@/src/components/common/managedTextarea";
-
-const LANGUAGES = {
-  BENGALI: 'bn_BD',
-  ENGLISH: 'en_US',
-} as const;
-type Language = typeof LANGUAGES[keyof typeof LANGUAGES];
+import {CurrentLanguage} from "@/lib/KeyboardHandler"
 
 const MainComponent = () => {
   
-  const [currentLanguage, setCurrentLanguage] = React.useState<Language>('bn_BD'); 
+  const [currentLanguage, setCurrentLanguage] = useState<CurrentLanguage>(CurrentLanguage.BENGALI); 
 
   const toggleLanguage = () => {
     setCurrentLanguage( 
-      prev => prev === LANGUAGES.BENGALI ? LANGUAGES.ENGLISH : LANGUAGES.BENGALI );
+      prev => prev === CurrentLanguage.BENGALI ? 
+                        CurrentLanguage.ENGLISH : CurrentLanguage.BENGALI );
   }
 
 
   const displayBackground = 
-    currentLanguage === "bn_BD" ? 
+    currentLanguage === CurrentLanguage.BENGALI ? 
       "bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100" :
       "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100";
 
   return (
       
       <main className="main_content text-dark-black dark:text-light-grey m-4">
-        <h2 className="text-lg font-semibold mb-4">
+        <h2 className="text-lg font-semibold mb-2">
           নিচের টেক্সট-এরিয়া তে বাংলা লিখুন
           <button
             id="activeLanguageIndicator"
             className={`langugage_switch_button ${displayBackground} px-2 py-1 rounded ml-2 cursor-pointer`}
             onClick={toggleLanguage}
           >
-            { currentLanguage === LANGUAGES.BENGALI ? "বাংলা" : "English" }
+            { currentLanguage === CurrentLanguage.BENGALI ? "বাংলা" : "English" }
           </button>
           <a
             href="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions"
@@ -49,8 +45,8 @@ const MainComponent = () => {
               src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg"
               alt="Build Status"
               className="inline-block"
-              width={370}
-              height={40}
+              width={300}
+              height={30}
             />
           </a>
         </h2>
@@ -68,7 +64,7 @@ const MainComponent = () => {
           />
         <div className="user_instruction flex gap-2 mt-1">
           <div className={`${styles.help_texts} w-3/5 mt-2`}>
-            <h2 className="text-lg font-semibold mb-4">সহায়ক তথ্যাবলী: </h2>
+            <h2 className="text-lg font-semibold mb-2">সহায়ক তথ্যাবলী: </h2>
             <ul className="list-disc ml-4">
               <li>
                 <strong>কি-ম্যাপ:</strong> প্রায় সকল বর্ণই ফোনেটিক স্টাইলের
@@ -106,12 +102,12 @@ const MainComponent = () => {
             </ul>
           </div>
           <div className="example_texts w-2/5 mt-2 text-justify">
-            <h2 className="text-lg font-semibold mb-4">নিজে চেষ্টা করুন: </h2>
+            <h2 className="text-lg font-semibold mb-2">নিজে চেষ্টা করুন: </h2>
             <span>
               এই প্যারাগ্রাফটিতে সকল বাংলা বর্ণ রয়েছে। চেষ্টা করুন এই কিবোর্ড
               লেআউট দিয়ে:
             </span>
-            <blockquote className="tracking-tight m-6">
+            <blockquote className="tracking-tight m-4">
               <p className="border-l-2 border-gray-700 pl-2">
                 বর্ষামুখর দিন শেষে, ঊর্দ্ধপানে চেয়ে যখন আষাঢ়ে গল্প শোনাতে বসে
                 ওসমান ভুঁইঞা, ঈষান কোণে তখন অন্ধকার মেঘের আড়ম্বর, সবুজে ঋদ্ধ

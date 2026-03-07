@@ -12,7 +12,7 @@ export enum LetterType {
 
 // <summary>Letter Information Class</summary>
 export class LetterInformation {
-    currentLanguage: string = "bn_BD";
+    
     replaceLastChar: boolean = false; // Replace ক with খ if required
     readonly ZWNJ: string = "\u200c"; // Do not render the letter with previous letter
     readonly ZWJ: string = "\u200d"; // Render the letter with previous letter
