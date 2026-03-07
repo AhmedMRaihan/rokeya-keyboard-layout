@@ -1,24 +1,42 @@
 
-import { render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, test } from "vitest";
+import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
+
+declare global {
+  interface Window {
+    buetDateConverter: { new(): { convert(): string } } | undefined;
+  }
+}
+
+// Mock the external class
+beforeEach(() => {
+  window.buetDateConverter = class {
+    convert(): string {
+      return `এখন সময়: সোমবার, রাত ৯টা ৩মিনিট ৪০সেকেন্ড, ১ বৈশাখ, ১৪৩১ (বঙ্গাব্দ)`;
+    }
+  };
+});
+
+afterEach(() => {
+  window.buetDateConverter = undefined;
+});
 
 describe("Date UI render", () => {
   test("should load current time", async () => {
     render(<BuetDateUI />);
 
-    await waitFor(() => {
-      const currentTimeElement = screen.getByText(
-        /এখন সময়/i,
-      );
-      return expect(currentTimeElement).toBeInTheDocument();
-    }, {
-      timeout: 15000, // default is 1000
-      interval: 50, // default is 50
-    });
+    // First: loading text should be visible immediately
+    expect(screen.getByText(/BanglaDateJS > BUETDateConverter/i)).toBeInTheDocument();
 
-    expect(screen.getByText(/এখন সময়/i)).toBeInTheDocument();
+    // Then: wait for loading text to disappear
+    await waitForElementToBeRemoved(() =>
+      screen.getByText(/BanglaDateJS > BUETDateConverter/i)
+    );
+
+    // Finally: real content should be visible
+    expect(screen.getByText(/এখন সময়/i)).toBeInTheDocument();
   });
 });
 

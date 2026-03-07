@@ -1,4 +1,3 @@
-"use client";
 
 import PlaygroundComponent from "@/src/components/playground/mainComponent";
 

@@ -1,7 +1,7 @@
 import { LetterInformation, LetterType } from "./LetterInformation";
 
 
-type CursorPosition = {
+interface CursorPosition {
     start: number;
     end: number;
 }
@@ -101,7 +101,7 @@ export class KeyboardHandler {
             replaceLastChar: replaceLastChar, // =false
             placeTo: position.start, // =3
             position: position, // { 1,8 }
-            characterType: <number>this.letterInformation.getFollower(unicodeKey, 1) // 1~7
+            characterType: this.letterInformation.getFollower(unicodeKey, 1) as number // 1~7
         };
         return userTypedKey;
     }
@@ -112,7 +112,7 @@ export class KeyboardHandler {
         this.letterInformation.currentLanguage = currentLanguage || this.letterInformation.currentLanguage;
 
         let prev: string = "", prevPrev = "", prevCharacterType: number = 0;
-        const existingContent: string = !!oSource ? this.textInputSource.value : "";
+        const existingContent: string = this.textInputSource.value;
 
         const keyState = this.selectKeyPressed();
 
@@ -132,11 +132,11 @@ export class KeyboardHandler {
         if (keyState.placeTo >= 2) {
             prevPrev = existingContent.charAt(keyState.placeTo - 2);
             prev = existingContent.charAt(keyState.placeTo - 1);
-            prevCharacterType = <number>this.letterInformation.getFollower(prev, 1);
+            prevCharacterType = this.letterInformation.getFollower(prev, 1) as number;
         }
         else if (keyState.placeTo === 1) {
             prev = existingContent.charAt(keyState.placeTo - 1);
-            prevCharacterType = <number>this.letterInformation.getFollower(prev, 1);
+            prevCharacterType = this.letterInformation.getFollower(prev, 1) as number;
         }
 
         /************************************** 

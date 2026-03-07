@@ -8,42 +8,39 @@ import BuetDateUI from "@/src/components/home/buetDateUI";
 import Footer from "@/src/components/common/footer";
 import ManagedTextarea from "@/src/components/common/managedTextarea";
 
-type componentProps = object;
-type componentState = {
-  currentLanguage: string;
-}
+const LANGUAGES = {
+  BENGALI: 'bn_BD',
+  ENGLISH: 'en_US',
+} as const;
+type Language = typeof LANGUAGES[keyof typeof LANGUAGES];
 
-export default class MainComponent extends React.Component<componentProps, componentState> {
+const MainComponent = () => {
   
-  constructor(props: componentProps) {
-    super(props);
-    this.state = {
-      currentLanguage: "bn_BD",
-    };
+  const [currentLanguage, setCurrentLanguage] = React.useState<Language>('bn_BD'); 
+
+  const toggleLanguage = () => {
+    setCurrentLanguage( 
+      prev => prev === LANGUAGES.BENGALI ? LANGUAGES.ENGLISH : LANGUAGES.BENGALI );
   }
 
-  toggleLanguage() {
-    const newLanguage = this.state.currentLanguage === "bn_BD" ? "en_US" : "bn_BD";
-    this.setState({
-      currentLanguage: newLanguage,
-    });
-  }
 
-  render() {
-    const displayBackground = this.state.currentLanguage === "bn_BD" ? 
-                                "bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100" : 
-                                "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100";
-    return (
+  const displayBackground = 
+    currentLanguage === "bn_BD" ? 
+      "bg-blue-100 text-blue-700 dark:bg-blue-700 dark:text-blue-100" :
+      "bg-green-100 text-green-700 dark:bg-green-700 dark:text-green-100";
+
+  return (
+      
       <main className="main_content text-dark-black dark:text-light-grey m-4">
         <h2 className="text-lg font-semibold mb-4">
           নিচের টেক্সট-এরিয়া তে বাংলা লিখুন
-          <label
+          <button
             id="activeLanguageIndicator"
             className={`langugage_switch_button ${displayBackground} px-2 py-1 rounded ml-2 cursor-pointer`}
-            onClick={ () => {this.toggleLanguage();} }
+            onClick={toggleLanguage}
           >
-            { this.state.currentLanguage === "bn_BD" ? "বাংলা" : "English" }
-          </label>
+            { currentLanguage === LANGUAGES.BENGALI ? "বাংলা" : "English" }
+          </button>
           <a
             href="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions"
             className="float-right"
@@ -57,14 +54,20 @@ export default class MainComponent extends React.Component<componentProps, compo
             />
           </a>
         </h2>
+
         <ManagedTextarea 
           id="checkItOut"
-          currentLanguage={this.state.currentLanguage}
-          twClassList="w-full text-lg border border-gray-700 p-1 mr-1 font-inherit"
+          currentLanguage={currentLanguage}
+          twClassList="w-full text-lg rounded-xl border-2 border-gray-200 p-3 
+             shadow-sm font-inherit resize-none
+             placeholder:text-gray-400 placeholder:italic
+             focus:outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100
+             dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 
+             dark:placeholder:text-gray-500 dark:focus:border-blue-500"
           rows={8}
           />
-        <div className="user_instruction inline-block">
-          <div className={`${styles.help_texts} float-left w-3/5 mr-[-4px]`}>
+        <div className="user_instruction flex gap-2 mt-1">
+          <div className={`${styles.help_texts} w-3/5 mt-2`}>
             <h2 className="text-lg font-semibold mb-4">সহায়ক তথ্যাবলী: </h2>
             <ul className="list-disc ml-4">
               <li>
@@ -102,7 +105,7 @@ export default class MainComponent extends React.Component<componentProps, compo
               </li>
             </ul>
           </div>
-          <div className="example_texts float-right w-2/5 mr-[-4px] text-justify">
+          <div className="example_texts w-2/5 mt-2 text-justify">
             <h2 className="text-lg font-semibold mb-4">নিজে চেষ্টা করুন: </h2>
             <span>
               এই প্যারাগ্রাফটিতে সকল বাংলা বর্ণ রয়েছে। চেষ্টা করুন এই কিবোর্ড
@@ -122,6 +125,7 @@ export default class MainComponent extends React.Component<componentProps, compo
         </div>
         <Footer />
       </main>
-    );
-  }
+  );
 }
+
+export default MainComponent;
