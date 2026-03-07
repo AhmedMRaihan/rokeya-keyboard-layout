@@ -13,7 +13,6 @@ export enum LetterType {
 // <summary>Letter Information Class</summary>
 export class LetterInformation {
     
-    replaceLastChar: boolean = false; // Replace ক with খ if required
     readonly ZWNJ: string = "\u200c"; // Do not render the letter with previous letter
     readonly ZWJ: string = "\u200d"; // Render the letter with previous letter
 
@@ -26,7 +25,7 @@ export class LetterInformation {
             ["\u09c7", "\u098f"], // emni and oirabot...... E
             ["\u09ab", "\u09a5"], // ful and thimpu...... F
             ["\u0997", "\u0998"], // gotokal and ghatshila...... G
-            ["", "\u09b9"], // ____ and hotath...... H
+            ["", "\u09b9"],       // ____ and hotath...... H
             ["\u09bf", "\u0987"], // ishrat and iishaan...... I
             ["\u099c", "\u099d"], // jonogon and jhargram...... J
             ["\u0995", "\u0996"], // kotha and khagrachori...... K
