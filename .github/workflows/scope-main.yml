@@ -20,7 +20,7 @@ concurrency:
 jobs:
   
   continuous-integration:
-    uses: ./.github/workflows/build-and-test.yml
+    uses: ./.github/workflows/only-build-artifact.yml
     with:
       commit_sha: ${{ github.sha }}
 
