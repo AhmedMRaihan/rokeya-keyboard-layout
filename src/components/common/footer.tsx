@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const pathname = usePathname();
-  const isPlayground = pathname?.toLowerCase().endsWith("playground");
+  const isPlayground = pathname?.toLowerCase().endsWith("/playground/");
 
   return (
     <div className="footer_text text-center mt-8">
