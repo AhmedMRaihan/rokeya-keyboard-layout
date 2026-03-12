@@ -17,8 +17,6 @@ export default defineConfig({
     include: ['@testing-library/react'],
   },
   test: {
-    
-    // environment: 'jsdom',
     //*
     browser: {
       provider: playwright(),
@@ -30,5 +28,10 @@ export default defineConfig({
       ],
     },
     //*/
+    // For Github action
+    coverage: {
+      reporter: ['text', 'json-summary', 'json'],
+      reportOnFailure: true,
+    },
   }
 });
