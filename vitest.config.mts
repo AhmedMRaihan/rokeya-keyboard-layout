@@ -30,7 +30,7 @@ export default defineConfig({
     //*/
     // For Github action
     coverage: {
-      reporter: ['text', 'json-summary', 'json'],
+      reporter: ['text', 'json-summary', 'json', 'html'],
       reportOnFailure: true,
     },
   }
