@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Build+Test+Publish
+name: Deploy to GH Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -19,13 +19,13 @@ concurrency:
 
 jobs:
   
-  continuous-integration-only:
+  continuous-integration:
     uses: ./.github/workflows/build-and-test.yml
     with:
       commit_sha: ${{ github.sha }}
 
   # Single deploy job since we're just deploying
-  deployment:
+  continuous-deployment:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
