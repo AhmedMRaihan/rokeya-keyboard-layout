@@ -56,7 +56,7 @@ const MainComponent = () => {
           currentLanguage={currentLanguage}
           twClassList="w-full text-lg rounded-xl border-2 border-gray-200 p-3 
              shadow-sm font-inherit resize-none
-             placeholder:text-gray-400 placeholder:italic
+             placeholder:text-gray-400
              focus:outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100
              dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 
              dark:placeholder:text-gray-500 dark:focus:border-blue-500"
