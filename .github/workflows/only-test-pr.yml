@@ -10,6 +10,12 @@ jobs:
   only_test:
 
     runs-on: ubuntu-latest
+    
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
 
     steps:
       # Prepare environment
@@ -27,3 +33,7 @@ jobs:
       # Ensure tests will pass
       - run: npm run lint
       - run: npm run test
+
+      # Publish code coverage in pull request
+      - name: 'Report Coverage'
+        uses:  davelosert/vitest-coverage-report-action@v2
