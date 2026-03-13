@@ -20,8 +20,8 @@ jobs:
     steps:
       # Prepare environment
       - name: Checkout
-        uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+        uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 'latest'
           cache: 'npm'
@@ -44,7 +44,7 @@ jobs:
 
       # Publish code coverage in pull request
       - name: 'Report Coverage'
-        uses:  davelosert/vitest-coverage-report-action@v2
+        uses:  davelosert/vitest-coverage-report-action@main
         with:
           file-coverage-mode: 'changes-affected'
           json-summary-compare-path: coverage/coverage-summary.json
