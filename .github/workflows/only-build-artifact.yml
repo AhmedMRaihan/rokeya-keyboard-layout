@@ -7,7 +7,7 @@ on:
         type: string
 
 jobs:
-  build_and_test:
+  build-artifact:
 
     runs-on: ubuntu-latest
 
