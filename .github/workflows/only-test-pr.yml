@@ -25,20 +25,21 @@ jobs:
         with:
           node-version: 'latest'
           cache: 'npm'
-      
+
       - name: Cache dependencies
-        uses: actions/cache@v2
+        id: cache
+        uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
-      
-      # Prepare dist folder
-      - run: npm ci
-      - run: npm run setup
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
       
       # Ensure tests will pass
       - run: npm run lint
+      - run: npm run setup
       - run: npm run test
 
       # Publish code coverage in pull request
