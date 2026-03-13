@@ -42,7 +42,7 @@ const MainComponent = () => {
             className="float-right"
           >
             <Image
-              src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg"
+              src="https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/scope-main.yml/badge.svg"
               alt="Build Status"
               className="inline-block"
               width={300}
