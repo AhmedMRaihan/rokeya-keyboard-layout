@@ -39,4 +39,5 @@ jobs:
         uses:  davelosert/vitest-coverage-report-action@v2
         with:
           file-coverage-mode: 'changes-affected'
+          json-summary-compare-path: coverage-main/coverage-summary.json
           threshold-icons: "{0: '🔴', 60: '🟠', 90: '🟢'}"
