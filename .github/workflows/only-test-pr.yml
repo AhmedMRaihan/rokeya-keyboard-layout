@@ -26,6 +26,13 @@ jobs:
           node-version: 'latest'
           cache: 'npm'
       
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      
       # Prepare dist folder
       - run: npm ci
       - run: npm run setup
@@ -39,5 +46,5 @@ jobs:
         uses:  davelosert/vitest-coverage-report-action@v2
         with:
           file-coverage-mode: 'changes-affected'
-          json-summary-compare-path: coverage-main/coverage-summary.json
+          json-summary-compare-path: coverage/coverage-summary.json
           threshold-icons: "{0: '🔴', 60: '🟠', 90: '🟢'}"
