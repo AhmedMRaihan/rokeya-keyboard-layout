@@ -7,7 +7,7 @@ on:
         type: string
 
 jobs:
-  test_with_coverage:
+  test-with-coverage:
 
     runs-on: ubuntu-latest
     
@@ -20,23 +20,32 @@ jobs:
     steps:
       # Prepare environment
       - name: Checkout
-        uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+        uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 'latest'
           cache: 'npm'
-      
-      # Prepare dist folder
-      - run: npm ci
-      - run: npm run setup
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@main
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
       
       # Ensure tests will pass
       - run: npm run lint
+      - run: npm run setup
       - run: npm run test
 
       # Publish code coverage in pull request
       - name: 'Report Coverage'
-        uses:  davelosert/vitest-coverage-report-action@v2
+        uses:  davelosert/vitest-coverage-report-action@main
         with:
-          file-coverage-mode: 'all'
+          file-coverage-mode: 'changes-affected'
+          json-summary-compare-path: coverage/coverage-summary.json
           threshold-icons: "{0: '🔴', 60: '🟠', 90: '🟢'}"

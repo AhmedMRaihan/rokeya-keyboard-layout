@@ -7,28 +7,36 @@ on:
         type: string
 
 jobs:
-  build_and_test:
+  build-artifact:
 
     runs-on: ubuntu-latest
 
     steps:
       # Prepare environment
       - name: Checkout
-        uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+        uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 'latest'
           cache: 'npm'
       
-      # Prepare dist folder
-      - run: npm ci
-      - run: npm run setup
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@main
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
       
       # Ensure tests will pass
       - run: npm run lint
+      - run: npm run setup
       - run: npm run test
 
-      # Build the project
+      # Prepare dist folder
       - run: npm run build
 
       # Prepare gh-pages contents
