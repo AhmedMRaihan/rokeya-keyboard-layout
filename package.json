@@ -1,6 +1,6 @@
 {
   "name": "rokeya-keyboard-layout",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -26,7 +26,7 @@
     "@vitejs/plugin-react": "^6",
     "@vitest/browser-playwright": "4.1.10",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^10",
+    "eslint": "^9",
     "eslint-config-next": "^16",
     "tailwindcss": "^4",
     "typescript": "^5.9.3",
