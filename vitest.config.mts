@@ -2,9 +2,10 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { playwright } from '@vitest/browser-playwright';
- 
+import { mockNextFontPlugin } from './tests/config/localfont.vitest';
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mockNextFontPlugin()],
   define: {
     "process.env": JSON.stringify({}),
   },

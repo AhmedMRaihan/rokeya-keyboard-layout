@@ -26,7 +26,7 @@ npm install
 npx next telemetry disable
 npm run dev
 ```
-Open http://localhost:3000/rokeya-keyboard-layout url to test the application.
+Open http://code-testing.localhost:3000/rokeya-keyboard-layout/ url to test the application.
 
 Additionally, to test the layout, run:
 ```bash
