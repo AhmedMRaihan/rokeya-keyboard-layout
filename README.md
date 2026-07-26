@@ -23,7 +23,7 @@ First, using Docker (e.g. [this](https://docs.docker.com/engine/install/ubuntu/)
 Then, install required libraries and start a http server:
 ```bash
 npm install
-npm audit fix
+npx next telemetry disable
 npm run dev
 ```
 Open http://localhost:3000/rokeya-keyboard-layout url to test the application.
