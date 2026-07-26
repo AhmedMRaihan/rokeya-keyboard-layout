@@ -8,7 +8,7 @@
  * সকল রকমের বাংলা বর্ণ লেখা সম্ভব
  * ফোনেটিক এবং ফিক্সড উভয় লেআউট হিসেবেই ব্যবহার করা সম্ভব
 
-## Introduction [![Build+Test+Publish](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml/badge.svg)](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml)
+## Introduction [![Build+Test+Publish](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/scope-main.yml/badge.svg)](https://github.com/AhmedMRaihan/rokeya-keyboard-layout/actions/workflows/deployment.yml)
 
 This keyboard layout is based on QWERTY based English keyboard. The layout and the implementation code takes an input from keyboard, then check a valid combination with previously pressed keys and finally output the corresponding bangla letter typed.
 
@@ -23,10 +23,10 @@ First, using Docker (e.g. [this](https://docs.docker.com/engine/install/ubuntu/)
 Then, install required libraries and start a http server:
 ```bash
 npm install
-npm audit fix
+npx next telemetry disable
 npm run dev
 ```
-Open [this](http://localhost:3000/rokeya-keyboard-layout) url to test the application.
+Open http://code-testing.localhost:3000/rokeya-keyboard-layout/ url to test the application.
 
 Additionally, to test the layout, run:
 ```bash

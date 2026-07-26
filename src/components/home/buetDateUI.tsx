@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import Script from "next/script";
+import { purnoFont } from "@/app/fonts";
 
 declare class buetDateConverter {
   convert(format: string): string;
@@ -33,8 +34,8 @@ const BuetDateUI = () => {
   }, [updateTime]);
 
   return (
-    <div>
-      <code className="text-sm italic text-gray-500">
+    <div>    
+      <code className={`${purnoFont.className} text-lg italic text-gray-500`}>
         <div id="currentTime">{displayText}</div>
       </code>
 
