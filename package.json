@@ -12,7 +12,7 @@
     "test": "vitest run --coverage --coverage.exclude='index.js' "
   },
   "dependencies": {
-    "next": "^16.1.6",
+    "next": "^16.3.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.4"
   },
