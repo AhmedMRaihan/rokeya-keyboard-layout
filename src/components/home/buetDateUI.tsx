@@ -14,11 +14,11 @@ declare class buetDateConverter {
 
 const BuetDateUI = () => {
   const [displayText, setDisplayText] = useState(LOADING_TEXT);
-  const converterRef = useRef<any>(null);
+  const converterRef = useRef<buetDateConverter>(null);
 
   const updateTimerDisplayText = () => {
     if (converterRef.current) {
-        const data = new converterRef.current.constructor(new Date()).convert(DATE_FORMAT);
+        const data = new converterRef.current(new Date()).convert(DATE_FORMAT);
         setDisplayText(data);
     }
   };
@@ -33,7 +33,7 @@ const BuetDateUI = () => {
 
         const ConverterClass = (module.default || module.buetDateConverter) as typeof buetDateConverter;
         if (ConverterClass) {
-          converterRef.current = new ConverterClass();
+          converterRef.current = ConverterClass; // Function reference to the class
           updateTimerDisplayText(); // Initial update
         }
       })
