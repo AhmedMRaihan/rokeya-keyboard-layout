@@ -6,9 +6,7 @@ const LOADING_TEXT = "BanglaDateJS > BUETDateConverter লোড হচ্ছে
 const INTERVAL_MS = 10_000;
 const buetDateJsUrl = "https://cdn.jsdelivr.net/gh/AhmedMRaihan/BanglaDateJS@master/src/buetDateTime.js";
 
-declare class buetDateConverter {
-  constructor(date: Date);
-  constructor();
+interface buetDateConverter {
   convert(format: string): string;
 }
 
@@ -26,20 +24,11 @@ const BuetDateUI = () => {
   useEffect(() => {
     let isMounted = true;
 
-    // Direct dynamic ES module import with Webpack directive
-    import(/* webpackIgnore: true */ buetDateJsUrl)
-      .then((module) => {
-        if (!isMounted) return;
-
-        const ConverterClass = (module.default || module.buetDateConverter) as typeof buetDateConverter;
-        if (ConverterClass) {
-          converterRef.current = ConverterClass; // Function reference to the class
-          updateTimerDisplayText(); // Initial update
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to load BanglaDateJS:", err);
-      });
+    (async () => {
+      const bnDateJsModule = await import(/* webpackIgnore: true */ buetDateJsUrl);
+      converterRef.current = (bnDateJsModule.default || bnDateJsModule.buetDateConverter) as buetDateConverter;
+      updateTimerDisplayText();
+    })();
 
     // Continuous timer checking the ref on every tick
     const intervalId = setInterval(() => {
