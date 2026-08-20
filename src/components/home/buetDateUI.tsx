@@ -6,13 +6,15 @@ const LOADING_TEXT = "BanglaDateJS > BUETDateConverter লোড হচ্ছে
 const INTERVAL_MS = 10_000;
 const buetDateJsUrl = "https://cdn.jsdelivr.net/gh/AhmedMRaihan/BanglaDateJS@master/src/buetDateTime.js";
 
-interface buetDateConverter {
+declare class buetDateConverter {
   convert(format: string): string;
+  constructor(date: Date);
+  constructor();
 }
 
 const BuetDateUI = () => {
   const [displayText, setDisplayText] = useState(LOADING_TEXT);
-  const converterRef = useRef<buetDateConverter>(null);
+  const converterRef = useRef<typeof buetDateConverter>(null);
 
   const updateTimerDisplayText = () => {
     if (converterRef.current) {
@@ -26,7 +28,7 @@ const BuetDateUI = () => {
 
     (async () => {
       const bnDateJsModule = await import(/* webpackIgnore: true */ buetDateJsUrl);
-      converterRef.current = (bnDateJsModule.default || bnDateJsModule.buetDateConverter) as buetDateConverter;
+      converterRef.current = (bnDateJsModule.default || bnDateJsModule.buetDateConverter) as typeof buetDateConverter;
       updateTimerDisplayText();
     })();
 
